@@ -51,7 +51,7 @@ export default async function initAuthorization(repo: GitHub, travis: Travis = n
 				type: 'oauth',
 				token: appAuth.token
 			});
-			await travisRepo.setEnvironmentVariables({ name: env.githubAuthName, value: tokenStr, isPublic: true });
+			await travisRepo.setEnvironmentVariables({ name: env.githubAuthName, value: tokenStr, isPublic: false });
 		}
 	}
 	catch (e) {
