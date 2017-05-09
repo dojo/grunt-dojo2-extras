@@ -83,29 +83,31 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="github.html#_api" class="tsd-kind-icon">_api</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="github.html#authed" class="tsd-kind-icon">authed</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="github.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="github.html#owner" class="tsd-kind-icon">owner</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="github.html#password" class="tsd-kind-icon">password</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="github.html#username" class="tsd-kind-icon">username</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="github.html#api" class="tsd-kind-icon">api</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="github.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#adddeploykey" class="tsd-kind-icon">add<wbr>Deploy<wbr>Key</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="github.html#assertauthentication" class="tsd-kind-icon">assert<wbr>Authentication</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#authenticate" class="tsd-kind-icon">authenticate</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#createauthorizationtoken" class="tsd-kind-icon">create<wbr>Authorization<wbr>Token</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#createauthorization" class="tsd-kind-icon">create<wbr>Authorization</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#createkey" class="tsd-kind-icon">create<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#deleteauthorization" class="tsd-kind-icon">delete<wbr>Authorization</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#deletekey" class="tsd-kind-icon">delete<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#fetchreleases" class="tsd-kind-icon">fetch<wbr>Releases</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#findauthorization" class="tsd-kind-icon">find<wbr>Authorization</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#gethttpsurl" class="tsd-kind-icon">get<wbr>Https<wbr>Url</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#getsshurl" class="tsd-kind-icon">get<wbr>Ssh<wbr>Url</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#removeauthorizationtoken" class="tsd-kind-icon">remove<wbr>Authorization<wbr>Token</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#isapiauthenticated" class="tsd-kind-icon">is<wbr>Api<wbr>Authenticated</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="github.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 							</ul>
 						</section>
@@ -118,13 +120,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Git<wbr>Hub<span class="tsd-signature-symbol">(</span>owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="github.html" class="tsd-signature-type">GitHub</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Git<wbr>Hub<span class="tsd-signature-symbol">(</span>owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="github.html" class="tsd-signature-type">GitHub</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L34">src/util/GitHub.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L35">src/util/GitHub.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -135,9 +137,6 @@
 								<li>
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="github.html" class="tsd-signature-type">GitHub</a></h4>
 						</li>
@@ -147,12 +146,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_api" class="tsd-anchor"></a>
+					<h3>_api</h3>
+					<div class="tsd-signature tsd-kind-icon">_api<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">GitHubApi</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L33">src/util/GitHub.ts:33</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="authed" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> authed</h3>
+					<div class="tsd-signature tsd-kind-icon">authed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L35">src/util/GitHub.ts:35</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="name" class="tsd-anchor"></a>
 					<h3>name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L28">src/util/GitHub.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L29">src/util/GitHub.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,33 +181,30 @@
 					<div class="tsd-signature tsd-kind-icon">owner<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L30">src/util/GitHub.ts:30</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="password" class="tsd-anchor"></a>
-					<h3>password</h3>
-					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L32">src/util/GitHub.ts:32</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="username" class="tsd-anchor"></a>
-					<h3>username</h3>
-					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L34">src/util/GitHub.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L31">src/util/GitHub.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="api" class="tsd-anchor"></a>
+					<h3>api</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> api<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">GitHubApi</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L56">src/util/GitHub.ts:56</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">GitHubApi</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="url" class="tsd-anchor"></a>
 					<h3>url</h3>
@@ -199,7 +215,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L49">src/util/GitHub.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L61">src/util/GitHub.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -210,100 +226,94 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="adddeploykey" class="tsd-anchor"></a>
-					<h3>add<wbr>Deploy<wbr>Key</h3>
+					<a name="createauthorization" class="tsd-anchor"></a>
+					<h3>create<wbr>Authorization</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Deploy<wbr>Key<span class="tsd-signature-symbol">(</span>keyfile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, title<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, readOnly<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Authorization<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AuthorizationCreateParams</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/authresponse.html" class="tsd-signature-type">AuthResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L79">src/util/GitHub.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L65">src/util/GitHub.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>keyfile: <span class="tsd-signature-type">string</span></h5>
+									<h5>params: <span class="tsd-signature-type">AuthorizationCreateParams</span></h5>
 								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/authresponse.html" class="tsd-signature-type">AuthResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createkey" class="tsd-anchor"></a>
+					<h3>create<wbr>Key</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L70">src/util/GitHub.ts:70</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
 								<li>
-									<h5>title: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> readOnly: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="assertauthentication" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> assert<wbr>Authentication</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">assert<wbr>Authentication<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L123">src/util/GitHub.ts:123</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="authenticate" class="tsd-anchor"></a>
-					<h3>authenticate</h3>
+					<a name="deleteauthorization" class="tsd-anchor"></a>
+					<h3>delete<wbr>Authorization</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">authenticate<span class="tsd-signature-symbol">(</span>username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Authorization<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L95">src/util/GitHub.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L81">src/util/GitHub.ts:81</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>username: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>password: <span class="tsd-signature-type">string</span></h5>
+									<h5>id: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="createauthorizationtoken" class="tsd-anchor"></a>
-					<h3>create<wbr>Authorization<wbr>Token</h3>
+					<a name="deletekey" class="tsd-anchor"></a>
+					<h3>delete<wbr>Key</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Authorization<wbr>Token<span class="tsd-signature-symbol">(</span>note<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, scopes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/authresponse.html" class="tsd-signature-type">AuthResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Key<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L53">src/util/GitHub.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L87">src/util/GitHub.ts:87</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> note: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> scopes: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&#x27;read:org&#x27;, &#x27;user:email&#x27;, &#x27;repo_deployment&#x27;, &#x27;repo:status&#x27;, &#x27;public_repo&#x27;, &#x27;write:repo_hook&#x27;]</span></h5>
+									<h5>id: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/authresponse.html" class="tsd-signature-type">AuthResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -317,13 +327,42 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L103">src/util/GitHub.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L95">src/util/GitHub.ts:95</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/release.html" class="tsd-signature-type">Release</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="findauthorization" class="tsd-anchor"></a>
+					<h3>find<wbr>Authorization</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Authorization<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AuthorizationCreateParams</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/authresponse.html" class="tsd-signature-type">AuthResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L108">src/util/GitHub.ts:108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Find an authorization that matches the supplied params.
+									NOTE: the token value will be unavailable and is only available on creation</p>
+								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/release.html" class="tsd-signature-type">Release</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>a list of releases</p>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>params: <span class="tsd-signature-type">AuthorizationCreateParams</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>search params to match for the authorization</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/authresponse.html" class="tsd-signature-type">AuthResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -337,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L111">src/util/GitHub.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L153">src/util/GitHub.ts:153</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -354,7 +393,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L115">src/util/GitHub.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L157">src/util/GitHub.ts:157</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -362,25 +401,26 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="removeauthorizationtoken" class="tsd-anchor"></a>
-					<h3>remove<wbr>Authorization<wbr>Token</h3>
+					<a name="isapiauthenticated" class="tsd-anchor"></a>
+					<h3>is<wbr>Api<wbr>Authenticated</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Authorization<wbr>Token<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Api<wbr>Authenticated<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L71">src/util/GitHub.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L141">src/util/GitHub.ts:141</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Report if the API has been authenticated with an OAuth token. API calls that have not been authenticated are
+									subject to stricter rate-limits</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>if the API has an OAuth token</p>
 						</li>
 					</ul>
 				</section>
@@ -394,7 +434,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L119">src/util/GitHub.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/GitHub.ts#L161">src/util/GitHub.ts:161</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -422,34 +462,40 @@
 								<a href="github.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="github.html#_api" class="tsd-kind-icon">_api</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="github.html#authed" class="tsd-kind-icon">authed</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="github.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="github.html#owner" class="tsd-kind-icon">owner</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="github.html#password" class="tsd-kind-icon">password</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="github.html#username" class="tsd-kind-icon">username</a>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="github.html#api" class="tsd-kind-icon">api</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="github.html#url" class="tsd-kind-icon">url</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="github.html#adddeploykey" class="tsd-kind-icon">add<wbr>Deploy<wbr>Key</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="github.html#assertauthentication" class="tsd-kind-icon">assert<wbr>Authentication</a>
+								<a href="github.html#createauthorization" class="tsd-kind-icon">create<wbr>Authorization</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="github.html#authenticate" class="tsd-kind-icon">authenticate</a>
+								<a href="github.html#createkey" class="tsd-kind-icon">create<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="github.html#createauthorizationtoken" class="tsd-kind-icon">create<wbr>Authorization<wbr>Token</a>
+								<a href="github.html#deleteauthorization" class="tsd-kind-icon">delete<wbr>Authorization</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="github.html#deletekey" class="tsd-kind-icon">delete<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="github.html#fetchreleases" class="tsd-kind-icon">fetch<wbr>Releases</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="github.html#findauthorization" class="tsd-kind-icon">find<wbr>Authorization</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="github.html#gethttpsurl" class="tsd-kind-icon">get<wbr>Https<wbr>Url</a>
@@ -458,7 +504,7 @@
 								<a href="github.html#getsshurl" class="tsd-kind-icon">get<wbr>Ssh<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="github.html#removeauthorizationtoken" class="tsd-kind-icon">remove<wbr>Authorization<wbr>Token</a>
+								<a href="github.html#isapiauthenticated" class="tsd-kind-icon">is<wbr>Api<wbr>Authenticated</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="github.html#tostring" class="tsd-kind-icon">to<wbr>String</a>

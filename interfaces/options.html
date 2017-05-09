@@ -79,7 +79,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#branch" class="tsd-kind-icon">branch</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#clonedirectory" class="tsd-kind-icon">clone<wbr>Directory</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#password" class="tsd-kind-icon">password</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#deploykeyfile" class="tsd-kind-icon">deploy<wbr>Key<wbr>File</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#encryptedkeyfile" class="tsd-kind-icon">encrypted<wbr>Key<wbr>File</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#publishmode" class="tsd-kind-icon">publish<wbr>Mode</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#repo" class="tsd-kind-icon">repo</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="options.html#url" class="tsd-kind-icon">url</a></li>
@@ -98,8 +99,8 @@
 					<div class="tsd-signature tsd-kind-icon">branch<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/publish.ts#L8">src/commands/publish.ts:8</a></li>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/sync.ts#L5">src/commands/sync.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/publish.ts#L8">src/commands/publish.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/sync.ts#L5">src/commands/sync.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -109,17 +110,27 @@
 					<div class="tsd-signature tsd-kind-icon">clone<wbr>Directory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/sync.ts#L6">src/commands/sync.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/sync.ts#L6">src/commands/sync.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="password" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password</h3>
-					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="deploykeyfile" class="tsd-anchor"></a>
+					<h3>deploy<wbr>Key<wbr>File</h3>
+					<div class="tsd-signature tsd-kind-icon">deploy<wbr>Key<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L18">src/util/GitHub.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/initialize/initDeployment.ts#L10">src/commands/initialize/initDeployment.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="encryptedkeyfile" class="tsd-anchor"></a>
+					<h3>encrypted<wbr>Key<wbr>File</h3>
+					<div class="tsd-signature tsd-kind-icon">encrypted<wbr>Key<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/initialize/initDeployment.ts#L11">src/commands/initialize/initDeployment.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -129,7 +140,7 @@
 					<div class="tsd-signature tsd-kind-icon">publish<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><a href="../globals.html#publishmode" class="tsd-signature-type">PublishMode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/publish.ts#L9">src/commands/publish.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/publish.ts#L9">src/commands/publish.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,8 +150,8 @@
 					<div class="tsd-signature tsd-kind-icon">repo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/publish.ts#L10">src/commands/publish.ts:10</a></li>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/tasks/util/getGithubSlug.ts#L4">tasks/util/getGithubSlug.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/publish.ts#L10">src/commands/publish.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/tasks/util/getGithubSlug.ts#L4">tasks/util/getGithubSlug.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -150,7 +161,7 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/sync.ts#L7">src/commands/sync.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/sync.ts#L7">src/commands/sync.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -160,8 +171,8 @@
 					<div class="tsd-signature tsd-kind-icon">useremail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/publish.ts#L12">src/commands/publish.ts:12</a></li>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/sync.ts#L9">src/commands/sync.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/publish.ts#L12">src/commands/publish.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/sync.ts#L9">src/commands/sync.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,9 +182,8 @@
 					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/publish.ts#L11">src/commands/publish.ts:11</a></li>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/GitHub.ts#L19">src/util/GitHub.ts:19</a></li>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/commands/sync.ts#L8">src/commands/sync.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/publish.ts#L11">src/commands/publish.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/commands/sync.ts#L8">src/commands/sync.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +211,10 @@
 								<a href="options.html#clonedirectory" class="tsd-kind-icon">clone<wbr>Directory</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="options.html#password" class="tsd-kind-icon">password</a>
+								<a href="options.html#deploykeyfile" class="tsd-kind-icon">deploy<wbr>Key<wbr>File</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="options.html#encryptedkeyfile" class="tsd-kind-icon">encrypted<wbr>Key<wbr>File</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="options.html#publishmode" class="tsd-kind-icon">publish<wbr>Mode</a>

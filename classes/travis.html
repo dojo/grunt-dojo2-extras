@@ -77,6 +77,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="travis.html#githubauthorization" class="tsd-kind-icon">github<wbr>Authorization</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="travis.html#token" class="tsd-kind-icon">token</a></li>
 							</ul>
 						</section>
@@ -84,7 +85,10 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="travis.html#authenticate" class="tsd-kind-icon">authenticate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="travis.html#createauthorization" class="tsd-kind-icon">create<wbr>Authorization</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="travis.html#deleteauthorization" class="tsd-kind-icon">delete<wbr>Authorization</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="travis.html#fetchrepository" class="tsd-kind-icon">fetch<wbr>Repository</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="travis.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,13 +96,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="githubauthorization" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> github<wbr>Authorization</h3>
+					<div class="tsd-signature tsd-kind-icon">github<wbr>Authorization<span class="tsd-signature-symbol">:</span> <a href="../interfaces/authresponse.html" class="tsd-signature-type">AuthResponse</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/Travis.ts#L37">src/util/Travis.ts:37</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="token" class="tsd-anchor"></a>
 					<h3>token</h3>
 					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/Travis.ts#L33">src/util/Travis.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/Travis.ts#L35">src/util/Travis.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -115,7 +129,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/Travis.ts#L35">src/util/Travis.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/Travis.ts#L39">src/util/Travis.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -129,6 +143,62 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createauthorization" class="tsd-anchor"></a>
+					<h3>create<wbr>Authorization</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Authorization<span class="tsd-signature-symbol">(</span>repo<span class="tsd-signature-symbol">: </span><a href="github.html" class="tsd-signature-type">GitHub</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/Travis.ts#L55">src/util/Travis.ts:55</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a temporary authorization for GitHub to use with Travis</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>repo: <a href="github.html" class="tsd-signature-type">GitHub</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="deleteauthorization" class="tsd-anchor"></a>
+					<h3>delete<wbr>Authorization</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Authorization<span class="tsd-signature-symbol">(</span>repo<span class="tsd-signature-symbol">: </span><a href="github.html" class="tsd-signature-type">GitHub</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/Travis.ts#L82">src/util/Travis.ts:82</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>delete authorization used by the GitHub repo</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>repo: <a href="github.html" class="tsd-signature-type">GitHub</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="fetchrepository" class="tsd-anchor"></a>
 					<h3>fetch<wbr>Repository</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -138,7 +208,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/9c9ad01/src/util/Travis.ts#L48">src/util/Travis.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/Travis.ts#L88">src/util/Travis.ts:88</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -148,6 +218,26 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="repository.html" class="tsd-signature-type">Repository</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isauthorized" class="tsd-anchor"></a>
+					<h3>is<wbr>Authorized</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Authorized<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dojo/grunt-dojo2-extras/blob/7f47912/src/util/Travis.ts#L101">src/util/Travis.ts:101</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>if Travis has been authorized through GitHub</p>
 						</li>
 					</ul>
 				</section>
@@ -168,6 +258,9 @@
 					<li class="current tsd-kind-class">
 						<a href="travis.html" class="tsd-kind-icon">Travis</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="travis.html#githubauthorization" class="tsd-kind-icon">github<wbr>Authorization</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="travis.html#token" class="tsd-kind-icon">token</a>
 							</li>
@@ -175,7 +268,16 @@
 								<a href="travis.html#authenticate" class="tsd-kind-icon">authenticate</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="travis.html#createauthorization" class="tsd-kind-icon">create<wbr>Authorization</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="travis.html#deleteauthorization" class="tsd-kind-icon">delete<wbr>Authorization</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="travis.html#fetchrepository" class="tsd-kind-icon">fetch<wbr>Repository</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="travis.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a>
 							</li>
 						</ul>
 					</li>
