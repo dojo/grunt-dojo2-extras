@@ -37,7 +37,7 @@ export default class Travis {
 	private githubAuthorization: AuthResponse;
 
 	async authenticate(githubToken: string): Promise<string> {
-		const response: Response = <Response> await request.post('https://api.travis-ci.org/auth/github', {
+		const response = await request.post('https://api.travis-ci.org/auth/github', {
 			body: JSON.stringify({
 				'github_token': githubToken
 			}),
@@ -87,7 +87,7 @@ export default class Travis {
 
 	async fetchRepository(slug: string) {
 		const endpoint = `https://api.travis-ci.org/repos/${ slug }`;
-		const response: Response = <Response> await request.get(endpoint, {
+		const response = await request.get(endpoint, {
 			headers: getHeaders(this.token)
 		}).then(responseHandler);
 
@@ -139,7 +139,7 @@ export class Repository {
 
 	async listEnvironmentVariables(): Promise<EnvironmentVariable[]> {
 		const endpoint = `https://api.travis-ci.org/settings/env_vars?repository_id=${ this.id }`;
-		const response: Response = <Response> await request.get(endpoint, {
+		const response = await request.get(endpoint, {
 			headers: getHeaders(this.token)
 		}).then(responseHandler);
 
@@ -165,7 +165,7 @@ export class Repository {
 
 	private async addEnvironmentVariable(name: string, value: string, isPublic = false): Promise<Repository> {
 		const endpoint = `https://api.travis-ci.org/settings/env_vars?repository_id=${ this.id }`;
-		const response: Response = <Response> await request.post(endpoint, {
+		const response = await request.post(endpoint, {
 			body: JSON.stringify({
 				'env_var': {
 					name,
@@ -181,7 +181,7 @@ export class Repository {
 
 	private async updateEnvironmentVariable(id: string, name: string, value: string, isPublic = false): Promise<Repository> {
 		const endpoint = `https://api.travis-ci.org/settings/env_vars/${ id }?repository_id=${ this.id }`;
-		const response: Response = <Response> await request(endpoint, {
+		const response = await request(endpoint, {
 			body: JSON.stringify({
 				'env_var': {
 					name,
