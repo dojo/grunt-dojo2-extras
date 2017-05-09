@@ -14,6 +14,7 @@
         if (returnDefault === void 0) { returnDefault = true; }
         mockery.enable({
             useCleanCache: true,
+            warnOnReplace: false,
             warnOnUnregistered: false
         });
         mockery.resetCache();

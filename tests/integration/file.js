@@ -16,7 +16,7 @@
     registerSuite({
         name: 'file',
         tempDirectory: function () {
-            var path = file_1.makeTempDirectory('./test');
+            var path = file_1.makeTempDirectory('.test');
             assert.isTrue(fs_1.existsSync(path));
             assert.isTrue(fs_1.statSync(path).isDirectory());
         }

@@ -59,7 +59,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             tmp = tmpFiles_1.tmpFile('deployKey');
-                            return [4 /*yield*/, crypto.createDeployKey(tmp)];
+                            return [4 /*yield*/, crypto.createKey(tmp)];
                         case 1:
                             keys = _a.sent();
                             assert.isTrue(fs_1.existsSync(keys.publicKey));

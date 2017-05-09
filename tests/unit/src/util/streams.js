@@ -97,6 +97,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         }
                     });
                 });
+            },
+            'stream provides buffers': function () {
+                return __awaiter(this, void 0, void 0, function () {
+                    var expected, data, stream, value;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                expected = 'Hello World';
+                                data = new Buffer(expected);
+                                stream = createStream(data);
+                                return [4 /*yield*/, streams.toString(stream)];
+                            case 1:
+                                value = _a.sent();
+                                assert.strictEqual(value, expected);
+                                return [2 /*return*/];
+                        }
+                    });
+                });
             }
         },
         equal: {

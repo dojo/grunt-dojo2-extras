@@ -39,28 +39,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./request", "./environment", "fs"], factory);
+        define(["require", "exports", "./environment", "github"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var request_1 = require("./request");
     var environment_1 = require("./environment");
-    var fs_1 = require("fs");
-    var API_URL = 'https://api.github.com';
+    var GitHubApi = require("github");
     var GitHub = (function () {
-        function GitHub(owner, name, options) {
-            if (options === void 0) { options = {}; }
+        function GitHub(owner, name) {
+            this.authed = false;
             if (!owner) {
                 throw new Error('A repo owner must be specified');
             }
             if (!name) {
                 throw new Error('A repo name must be specified');
             }
+            this._api = new GitHubApi({
+                headers: {
+                    'user-agent': 'grunt-dojo2-extras'
+                },
+                Promise: Promise
+            });
             this.owner = owner;
             this.name = name;
-            this.authenticate(options.username, options.password);
         }
+        Object.defineProperty(GitHub.prototype, "api", {
+            get: function () {
+                this.isApiAuthenticated();
+                return this._api;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(GitHub.prototype, "url", {
             get: function () {
                 return environment_1.hasGitCredentials() ? this.getSshUrl() : this.getHttpsUrl();
@@ -68,67 +79,119 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             enumerable: true,
             configurable: true
         });
-        GitHub.prototype.createAuthorizationToken = function (note, scopes) {
-            if (note === void 0) { note = ''; }
-            if (scopes === void 0) { scopes = [
-                'read:org', 'user:email', 'repo_deployment', 'repo:status', 'public_repo', 'write:repo_hook'
-            ]; }
+        GitHub.prototype.createAuthorization = function (params) {
             return __awaiter(this, void 0, void 0, function () {
-                var endpoint, options;
+                var response;
                 return __generator(this, function (_a) {
-                    this.assertAuthentication();
-                    endpoint = "https://api.github.com/authorizations";
-                    options = {
-                        body: JSON.stringify({
-                            scopes: scopes,
-                            note: note
-                        }),
-                        password: this.password,
-                        user: this.username
-                    };
-                    return [2 /*return*/, request_1.default.post(endpoint, options)
-                            .then(request_1.responseHandler)
-                            .then(function (response) { return response.json(); })];
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.api.authorization.create(params)];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, response.data];
+                    }
                 });
             });
         };
-        GitHub.prototype.removeAuthorizationToken = function (id) {
+        GitHub.prototype.createKey = function (key) {
             return __awaiter(this, void 0, void 0, function () {
-                var endpoint;
+                var reponse;
                 return __generator(this, function (_a) {
-                    endpoint = "https://api.github.com/authorizations/" + id;
-                    return [2 /*return*/, request_1.default.delete(endpoint, {
-                            password: this.password,
-                            user: this.username
-                        }).then(request_1.responseHandler)];
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.api.repos.createKey({
+                                key: key,
+                                owner: this.owner,
+                                read_only: false,
+                                repo: this.name,
+                                title: 'Auto-created Travis Deploy Key'
+                            })];
+                        case 1:
+                            reponse = _a.sent();
+                            return [2 /*return*/, reponse.data];
+                    }
                 });
             });
         };
-        GitHub.prototype.addDeployKey = function (keyfile, title, readOnly) {
-            if (readOnly === void 0) { readOnly = true; }
-            this.assertAuthentication();
-            var endpoint = "https://api.github.com/repos/" + this.owner + "/" + this.name + "/keys";
-            var key = fs_1.readFileSync(keyfile, { encoding: 'utf8' });
-            return request_1.default.post(endpoint, {
-                body: JSON.stringify({
-                    title: title,
-                    key: key,
-                    read_only: readOnly
-                }),
-                password: this.password,
-                user: this.username
-            }).then(request_1.responseHandler)
-                .then(function (response) { return response.json(); });
+        GitHub.prototype.deleteAuthorization = function (id) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, this.api.authorization.delete({
+                            id: String(id)
+                        })];
+                });
+            });
         };
-        GitHub.prototype.authenticate = function (username, password) {
-            this.username = username;
-            this.password = password;
+        GitHub.prototype.deleteKey = function (id) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, this.api.repos.deleteKey({
+                            id: String(id),
+                            owner: this.owner,
+                            repo: this.name
+                        })];
+                });
+            });
         };
         GitHub.prototype.fetchReleases = function () {
-            var url = API_URL + "/repos/" + this.owner + "/" + this.name + "/tags";
-            return request_1.default(url)
-                .then(request_1.responseHandler)
-                .then(function (response) { return response.json(); });
+            return __awaiter(this, void 0, void 0, function () {
+                var response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.api.repos.getReleases({
+                                owner: this.owner,
+                                repo: this.name
+                            })];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, response.data];
+                    }
+                });
+            });
+        };
+        GitHub.prototype.findAuthorization = function (params) {
+            return __awaiter(this, void 0, void 0, function () {
+                var response, auths;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.api.authorization.getAll({
+                                page: 1
+                            })];
+                        case 1:
+                            response = _a.sent();
+                            auths = response.data || [];
+                            return [2 /*return*/, auths.filter(function (auth) {
+                                    for (var name_1 in params) {
+                                        var expected = params[name_1];
+                                        var actual = auth[name_1];
+                                        if (Array.isArray(expected)) {
+                                            if (!Array.isArray(actual)) {
+                                                return false;
+                                            }
+                                            for (var _i = 0, expected_1 = expected; _i < expected_1.length; _i++) {
+                                                var value = expected_1[_i];
+                                                if (actual.indexOf(value) === -1) {
+                                                    return false;
+                                                }
+                                            }
+                                        }
+                                        else if (expected !== actual) {
+                                            return false;
+                                        }
+                                    }
+                                    return true;
+                                })[0]];
+                    }
+                });
+            });
+        };
+        GitHub.prototype.isApiAuthenticated = function () {
+            if (!this.authed) {
+                var auth = environment_1.githubAuth();
+                if (auth) {
+                    this._api.authenticate(auth);
+                }
+                this.authed = true;
+            }
+            return !!this._api.auth;
         };
         GitHub.prototype.getHttpsUrl = function () {
             return "https://github.com/" + this.owner + "/" + this.name + ".git";
@@ -138,14 +201,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         };
         GitHub.prototype.toString = function () {
             return this.owner + "/" + this.name;
-        };
-        GitHub.prototype.assertAuthentication = function () {
-            if (!this.username) {
-                throw new Error('Username must be provided');
-            }
-            if (!this.password) {
-                throw new Error('Password must be provided');
-            }
         };
         return GitHub;
     }());

@@ -39,12 +39,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@dojo/core/request"], factory);
+        define(["require", "exports", "@dojo/core/request", "../log"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var request_1 = require("@dojo/core/request");
+    var log_1 = require("../log");
     function responseHandler(response) {
         var statusCode = response.status;
         if (statusCode < 200 || statusCode >= 300) {
@@ -90,6 +91,62 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 });
             });
         };
+        Travis.prototype.createAuthorization = function (repo) {
+            return __awaiter(this, void 0, void 0, function () {
+                var params, existing, _a, e_1;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            params = {
+                                note: 'temporary token for travis cli',
+                                scopes: [
+                                    'read:org', 'user:email', 'repo_deployment', 'repo:status', 'public_repo', 'write:repo_hook'
+                                ]
+                            };
+                            return [4 /*yield*/, repo.findAuthorization(params)];
+                        case 1:
+                            existing = _b.sent();
+                            if (existing) {
+                                throw new Error("An existing authorization exists. \"#" + existing.id + "\"");
+                            }
+                            _a = this;
+                            return [4 /*yield*/, repo.createAuthorization(params)];
+                        case 2:
+                            _a.githubAuthorization = _b.sent();
+                            _b.label = 3;
+                        case 3:
+                            _b.trys.push([3, 5, , 7]);
+                            return [4 /*yield*/, this.authenticate(this.githubAuthorization.token)];
+                        case 4:
+                            _b.sent();
+                            return [3 /*break*/, 7];
+                        case 5:
+                            e_1 = _b.sent();
+                            log_1.logger.info('Cleaning up temporary GitHub token');
+                            return [4 /*yield*/, this.deleteAuthorization(repo)];
+                        case 6:
+                            _b.sent();
+                            throw e_1;
+                        case 7: return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        Travis.prototype.deleteAuthorization = function (repo) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            if (!this.githubAuthorization) return [3 /*break*/, 2];
+                            return [4 /*yield*/, repo.deleteAuthorization(this.githubAuthorization.id)];
+                        case 1:
+                            _a.sent();
+                            _a.label = 2;
+                        case 2: return [2 /*return*/];
+                    }
+                });
+            });
+        };
         Travis.prototype.fetchRepository = function (slug) {
             return __awaiter(this, void 0, void 0, function () {
                 var endpoint, response, body;
@@ -109,6 +166,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     }
                 });
             });
+        };
+        Travis.prototype.isAuthorized = function () {
+            return !!this.githubAuthorization;
         };
         return Travis;
     }());

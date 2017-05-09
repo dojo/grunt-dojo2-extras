@@ -39,54 +39,79 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "crypto", "./process", "./environment"], factory);
+        define(["require", "exports", "fs", "../../log", "../../util/crypto", "../../util/environment", "../../util/streams"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var crypto = require("crypto");
-    var process_1 = require("./process");
-    var env = require("./environment");
-    function randomUtf8(bytes) {
-        return crypto.randomBytes(bytes).toString('hex').slice(0, bytes);
-    }
-    function createKey(deployKeyFile, keyComment) {
-        if (deployKeyFile === void 0) { deployKeyFile = env.keyFile(); }
-        if (keyComment === void 0) { keyComment = 'Automated Travis Deploy Key'; }
+    var fs_1 = require("fs");
+    var log_1 = require("../../log");
+    var crypto_1 = require("../../util/crypto");
+    var env = require("../../util/environment");
+    var streams_1 = require("../../util/streams");
+    function initDeployKey(deployKeyFile) {
         return __awaiter(this, void 0, void 0, function () {
-            var command, proc;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        command = "ssh-keygen -t rsa -b 4096 -C \"" + keyComment + "\" -f " + deployKeyFile + " -N \"\"";
-                        proc = process_1.exec(command, { silent: false });
-                        return [4 /*yield*/, process_1.promisify(proc)];
+                        if (fs_1.existsSync(deployKeyFile)) {
+                            throw new Error('Deploy key already exists');
+                        }
+                        return [4 /*yield*/, crypto_1.createKey(deployKeyFile)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    }
+    function encryptDeployKey(privateKey, encryptedKeyFile) {
+        return __awaiter(this, void 0, void 0, function () {
+            var enc;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        enc = crypto_1.encryptData(fs_1.createReadStream(privateKey));
+                        return [4 /*yield*/, new Promise(function (resolve) {
+                                enc.encrypted.pipe(fs_1.createWriteStream(encryptedKeyFile))
+                                    .on('close', function () {
+                                    resolve();
+                                });
+                            })];
                     case 1:
                         _a.sent();
+                        return [2 /*return*/, enc];
+                }
+            });
+        });
+    }
+    function createDeployKey(deployKeyFile, encryptedKeyFile) {
+        if (deployKeyFile === void 0) { deployKeyFile = env.keyFile(); }
+        if (encryptedKeyFile === void 0) { encryptedKeyFile = env.encryptedKeyFile(deployKeyFile); }
+        return __awaiter(this, void 0, void 0, function () {
+            var keys, enc;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        log_1.logger.info('Creating a deployment key');
+                        return [4 /*yield*/, initDeployKey(deployKeyFile)];
+                    case 1:
+                        keys = _a.sent();
+                        log_1.logger.info('Encrypting deployment key');
+                        return [4 /*yield*/, encryptDeployKey(keys.privateKey, encryptedKeyFile)];
+                    case 2:
+                        enc = _a.sent();
+                        log_1.logger.info("Confirm decrypt deploy key");
+                        return [4 /*yield*/, streams_1.equal(crypto_1.decryptData(fs_1.createReadStream(encryptedKeyFile), enc.key, enc.iv), fs_1.createReadStream(keys.privateKey))];
+                    case 3:
+                        _a.sent();
                         return [2 /*return*/, {
-                                publicKey: deployKeyFile + ".pub",
-                                privateKey: deployKeyFile
+                                privateKey: keys.privateKey,
+                                publicKey: keys.publicKey,
+                                encryptedKey: enc
                             }];
                 }
             });
         });
     }
-    exports.createKey = createKey;
-    function decryptData(data, key, iv) {
-        var decipher = crypto.createDecipheriv('AES-256-CBC', key, iv);
-        return data.pipe(decipher);
-    }
-    exports.decryptData = decryptData;
-    function encryptData(data, key, iv) {
-        if (key === void 0) { key = randomUtf8(32); }
-        if (iv === void 0) { iv = randomUtf8(16); }
-        var cipher = crypto.createCipheriv('AES-256-CBC', key, iv);
-        return {
-            encrypted: data.pipe(cipher),
-            iv: iv,
-            key: key
-        };
-    }
-    exports.encryptData = encryptData;
+    exports.default = createDeployKey;
 });
-//# sourceMappingURL=crypto.js.map
+//# sourceMappingURL=createDeployKey.js.map

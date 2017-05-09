@@ -39,33 +39,50 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./util/wrapAsyncTask", "../src/util/GitHub", "./util/getGithubSlug", "../src/commands/initAutomation"], factory);
+        define(["require", "exports", "./util/wrapAsyncTask", "../src/util/GitHub", "./util/getGithubSlug", "../src/commands/initialize/initDeployment", "../src/commands/initialize/initAuthorization"], factory);
     }
 })(function (require, exports) {
     "use strict";
     var wrapAsyncTask_1 = require("./util/wrapAsyncTask");
     var GitHub_1 = require("../src/util/GitHub");
     var getGithubSlug_1 = require("./util/getGithubSlug");
-    var initAutomation_1 = require("../src/commands/initAutomation");
+    var initDeployment_1 = require("../src/commands/initialize/initDeployment");
+    var initAuthorization_1 = require("../src/commands/initialize/initAuthorization");
+    function getGitHub(task, grunt) {
+        var options = task.options({
+            password: grunt.config.get('github.password'),
+            username: grunt.config.get('github.username')
+        });
+        var _a = getGithubSlug_1.default(options, grunt), name = _a.name, owner = _a.owner;
+        var repo = new GitHub_1.default(owner, name);
+        repo.api.authenticate({
+            type: 'basic',
+            password: options.password,
+            username: options.username
+        });
+        return repo;
+    }
     return function (grunt) {
-        function initTask() {
+        function setupDeployment() {
             return __awaiter(this, void 0, void 0, function () {
-                var options, _a, name, owner, repo;
-                return __generator(this, function (_b) {
-                    options = this.options({
-                        password: grunt.config.get('github.password'),
-                        username: grunt.config.get('github.username')
-                    });
-                    _a = getGithubSlug_1.default(options, grunt), name = _a.name, owner = _a.owner;
-                    repo = new GitHub_1.default(owner, name, {
-                        password: options.password,
-                        username: options.username
-                    });
-                    return [2 /*return*/, initAutomation_1.default(repo)];
+                var repo;
+                return __generator(this, function (_a) {
+                    repo = getGitHub(this, grunt);
+                    return [2 /*return*/, initDeployment_1.default(repo)];
                 });
             });
         }
-        grunt.registerMultiTask('initAutomation', wrapAsyncTask_1.default(initTask));
+        function setupAuthorization() {
+            return __awaiter(this, void 0, void 0, function () {
+                var repo;
+                return __generator(this, function (_a) {
+                    repo = getGitHub(this, grunt);
+                    return [2 /*return*/, initAuthorization_1.default(repo)];
+                });
+            });
+        }
+        grunt.registerMultiTask('setupDeploy', wrapAsyncTask_1.default(setupDeployment));
+        grunt.registerMultiTask('setupAuth', wrapAsyncTask_1.default(setupAuthorization));
     };
 });
-//# sourceMappingURL=initAutomation.js.map
+//# sourceMappingURL=setup.js.map

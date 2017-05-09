@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../src/commands/typedoc", "./util/wrapAsyncTask", "../src/util/GitHub", "../src/commands/sync", "../src/commands/getReleases", "path", "../src/commands/installDependencies", "../src/log", "../src/util/file"], factory);
+        define(["require", "exports", "../src/commands/typedoc", "./util/wrapAsyncTask", "../src/util/GitHub", "../src/commands/sync", "../src/commands/getReleases", "path", "../src/commands/installDependencies", "../src/log", "../src/util/file", "@dojo/shim/Promise"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -52,6 +52,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var installDependencies_1 = require("../src/commands/installDependencies");
     var log_1 = require("../src/log");
     var file_1 = require("../src/util/file");
+    require("@dojo/shim/Promise");
     function isRemoteOptions(options) {
         return !!options.repo;
     }

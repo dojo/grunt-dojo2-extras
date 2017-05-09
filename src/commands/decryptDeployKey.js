@@ -49,8 +49,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var fs_1 = require("fs");
     function decryptDeployKey(encryptedFile, key, iv, decryptedFile) {
         if (encryptedFile === void 0) { encryptedFile = env.encryptedKeyFile(); }
-        if (key === void 0) { key = process.env[env.decryptKeyName()]; }
-        if (iv === void 0) { iv = process.env[env.decryptIvName()]; }
+        if (key === void 0) { key = process.env[env.decryptKeyName]; }
+        if (iv === void 0) { iv = process.env[env.decryptIvName]; }
         if (decryptedFile === void 0) { decryptedFile = env.keyFile(); }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

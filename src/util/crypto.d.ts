@@ -10,6 +10,6 @@ export interface KeyPairFiles {
     publicKey: string;
     privateKey: string;
 }
-export declare function createDeployKey(deployKeyFile?: string, keyComment?: string): Promise<KeyPairFiles>;
+export declare function createKey(deployKeyFile?: string, keyComment?: string): Promise<KeyPairFiles>;
 export declare function decryptData(data: ReadableStream, key: string, iv: string): Decipher;
 export declare function encryptData(data: ReadableStream, key?: string, iv?: string): EncryptResult;

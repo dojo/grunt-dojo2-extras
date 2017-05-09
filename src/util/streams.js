@@ -16,6 +16,9 @@
         return new Promise(function (resolve, reject) {
             var chunks = [];
             stream.on('data', function (chunk) {
+                if (typeof chunk !== 'string') {
+                    chunk = chunk.toString();
+                }
                 chunks.push(chunk);
             }).on('error', function (error) {
                 reject(error);

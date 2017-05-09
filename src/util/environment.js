@@ -10,6 +10,10 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var fs_1 = require("fs");
+    exports.githubAuthName = 'GITHUB_AUTH';
+    exports.decryptIvName = 'publish_deploy_iv';
+    exports.decryptKeyName = 'publish_deploy_key';
+    exports.privateKeyName = 'PRIVATE_KEY';
     function commitMessage() {
         return process.env.TRAVIS_COMMIT_MESSAGE;
     }
@@ -18,14 +22,6 @@
         return process.env.TRAVIS_BRANCH;
     }
     exports.currentBranch = currentBranch;
-    function decryptIvName() {
-        return 'publish_deploy_iv';
-    }
-    exports.decryptIvName = decryptIvName;
-    function decryptKeyName() {
-        return 'publish_deploy_key';
-    }
-    exports.decryptKeyName = decryptKeyName;
     function encryptedKeyFile(file) {
         if (file === void 0) { file = keyFile(); }
         return process.env.ENCRYPTED_KEY_FILE || file + ".enc";
@@ -35,6 +31,11 @@
         return process.env.TRAVIS_COMMIT;
     }
     exports.gitCommit = gitCommit;
+    function githubAuth(authStr) {
+        if (authStr === void 0) { authStr = process.env[exports.githubAuthName]; }
+        return authStr ? JSON.parse(authStr) : null;
+    }
+    exports.githubAuth = githubAuth;
     function hasGitCredentials(keyFile) {
         if (process.env.hasOwnProperty('HAS_GIT_CREDENTIALS')) {
             return process.env.HAS_GIT_CREDENTIALS === 'true';

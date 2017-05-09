@@ -68,12 +68,6 @@
             process.env.TRAVIS_BRANCH = expected;
             assert.equal(environment.currentBranch(), expected);
         },
-        decryptIvName: function () {
-            assert.equal(environment.decryptIvName(), 'publish_deploy_iv');
-        },
-        decryptKeyName: function () {
-            assert.equal(environment.decryptKeyName(), 'publish_deploy_key');
-        },
         encryptedKeyFile: {
             'returns ENCRYPTED_KEY_FILE': function () {
                 var filename = 'keyfile';
