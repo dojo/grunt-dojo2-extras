@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -59,12 +59,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             out = tmpFiles_1.tmpDirectory();
-                            return [4 /*yield*/, typedoc_1.default(require.toUrl('assets/sample'), out)];
+                            return [4, typedoc_1.default(require.toUrl('assets/sample'), out)];
                         case 1:
                             _a.sent();
                             indexFile = fs_1.readFileSync(path_1.join(out, 'index.html'));
                             assert.include(String(indexFile), 'This is a README!');
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });

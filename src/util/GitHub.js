@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -84,10 +84,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.api.authorization.create(params)];
+                        case 0: return [4, this.api.authorization.create(params)];
                         case 1:
                             response = _a.sent();
-                            return [2 /*return*/, response.data];
+                            return [2, response.data];
                     }
                 });
             });
@@ -97,7 +97,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var reponse;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.api.repos.createKey({
+                        case 0: return [4, this.api.repos.createKey({
                                 key: key,
                                 owner: this.owner,
                                 read_only: false,
@@ -106,7 +106,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             })];
                         case 1:
                             reponse = _a.sent();
-                            return [2 /*return*/, reponse.data];
+                            return [2, reponse.data];
                     }
                 });
             });
@@ -114,7 +114,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         GitHub.prototype.deleteAuthorization = function (id) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, this.api.authorization.delete({
+                    return [2, this.api.authorization.delete({
                             id: String(id)
                         })];
                 });
@@ -123,7 +123,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         GitHub.prototype.deleteKey = function (id) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, this.api.repos.deleteKey({
+                    return [2, this.api.repos.deleteKey({
                             id: String(id),
                             owner: this.owner,
                             repo: this.name
@@ -136,13 +136,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.api.repos.getReleases({
+                        case 0: return [4, this.api.repos.getReleases({
                                 owner: this.owner,
                                 repo: this.name
                             })];
                         case 1:
                             response = _a.sent();
-                            return [2 /*return*/, response.data];
+                            return [2, response.data];
                     }
                 });
             });
@@ -152,13 +152,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var response, auths;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.api.authorization.getAll({
+                        case 0: return [4, this.api.authorization.getAll({
                                 page: 1
                             })];
                         case 1:
                             response = _a.sent();
                             auths = response.data || [];
-                            return [2 /*return*/, auths.filter(function (auth) {
+                            return [2, auths.filter(function (auth) {
                                     for (var name_1 in params) {
                                         var expected = params[name_1];
                                         var actual = auth[name_1];

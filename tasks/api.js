@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -76,7 +76,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 else {
                     filters.push(getReleases_1.createHtmlApiMissingFilter(repo.name, options.dest));
                 }
-                return [2 /*return*/, getReleases_1.default(repo, filters)];
+                return [2, getReleases_1.default(repo, filters)];
             });
         });
     }
@@ -113,11 +113,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 }
                             });
                             src = options.src, dest = options.dest, format = options.format;
-                            if (!isRemoteOptions(options)) return [3 /*break*/, 9];
+                            if (!isRemoteOptions(options)) return [3, 9];
                             repo = getGitHub(options.repo);
                             cloneDirectory = options.cloneDirectory ?
                                 options.cloneDirectory : file_1.makeTempDirectory(path_1.join('.sync', repo.name));
-                            return [4 /*yield*/, getMissing(repo, options)];
+                            return [4, getMissing(repo, options)];
                         case 1:
                             missing = _a.sent();
                             pathTemplate = format === 'json' ? getReleases_1.getJsonApiPath : getReleases_1.getHtmlApiPath;
@@ -128,45 +128,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 else {
                                     log_1.logger.info("all APIs are up-to-date.");
                                 }
-                                return [2 /*return*/];
+                                return [2];
                             }
                             _i = 0, missing_1 = missing;
                             _a.label = 2;
                         case 2:
-                            if (!(_i < missing_1.length)) return [3 /*break*/, 8];
+                            if (!(_i < missing_1.length)) return [3, 8];
                             release = missing_1[_i];
                             target = pathTemplate(dest, repo.name, release.name);
-                            return [4 /*yield*/, sync_1.default({
+                            return [4, sync_1.default({
                                     branch: release.name,
                                     cloneDirectory: cloneDirectory,
                                     url: repo.url
                                 })];
                         case 3:
                             _a.sent();
-                            if (!(options.skipInstall !== true)) return [3 /*break*/, 5];
-                            return [4 /*yield*/, installDependencies_1.default(cloneDirectory)];
+                            if (!(options.skipInstall !== true)) return [3, 5];
+                            return [4, installDependencies_1.default(cloneDirectory)];
                         case 4:
                             _a.sent();
                             _a.label = 5;
-                        case 5: return [4 /*yield*/, typedoc_1.default(cloneDirectory, target, options.typedoc)];
+                        case 5: return [4, typedoc_1.default(cloneDirectory, target, options.typedoc)];
                         case 6:
                             _a.sent();
                             _a.label = 7;
                         case 7:
                             _i++;
-                            return [3 /*break*/, 2];
-                        case 8: return [3 /*break*/, 13];
+                            return [3, 2];
+                        case 8: return [3, 13];
                         case 9:
-                            if (!(options.skipInstall === false)) return [3 /*break*/, 11];
-                            return [4 /*yield*/, installDependencies_1.default(src)];
+                            if (!(options.skipInstall === false)) return [3, 11];
+                            return [4, installDependencies_1.default(src)];
                         case 10:
                             _a.sent();
                             _a.label = 11;
-                        case 11: return [4 /*yield*/, typedoc_1.default(path_1.resolve(src), dest, options.typedoc)];
+                        case 11: return [4, typedoc_1.default(path_1.resolve(src), dest, options.typedoc)];
                         case 12:
                             _a.sent();
                             _a.label = 13;
-                        case 13: return [2 /*return*/];
+                        case 13: return [2];
                     }
                 });
             });

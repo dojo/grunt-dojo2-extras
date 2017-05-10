@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -59,12 +59,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             tmp = tmpFiles_1.tmpFile('deployKey');
-                            return [4 /*yield*/, crypto.createKey(tmp)];
+                            return [4, crypto.createKey(tmp)];
                         case 1:
                             keys = _a.sent();
                             assert.isTrue(fs_1.existsSync(keys.publicKey));
                             assert.isTrue(fs_1.existsSync(keys.privateKey));
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });
@@ -76,7 +76,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             expected = 'Hello World!';
-                            return [4 /*yield*/, new Promise(function (resolve) {
+                            return [4, new Promise(function (resolve) {
                                     var out = '';
                                     var stream = new stream_1.Readable();
                                     stream.push(expected);
@@ -93,7 +93,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         case 1:
                             result = _a.sent();
                             assert.strictEqual(result, expected);
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });

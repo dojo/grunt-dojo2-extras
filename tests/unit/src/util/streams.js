@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -89,11 +89,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             case 0:
                                 expected = 'Hello World';
                                 stream = createStream(expected);
-                                return [4 /*yield*/, streams.toString(stream)];
+                                return [4, streams.toString(stream)];
                             case 1:
                                 value = _a.sent();
                                 assert.strictEqual(value, expected);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -107,11 +107,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 expected = 'Hello World';
                                 data = new Buffer(expected);
                                 stream = createStream(data);
-                                return [4 /*yield*/, streams.toString(stream)];
+                                return [4, streams.toString(stream)];
                             case 1:
                                 value = _a.sent();
                                 assert.strictEqual(value, expected);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });

@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -93,29 +93,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 switch (_a.label) {
                     case 0:
                         deployKeyFile = options.deployKeyFile, encryptedKeyFile = options.encryptedKeyFile;
-                        if (!!travis.isAuthorized()) return [3 /*break*/, 2];
+                        if (!!travis.isAuthorized()) return [3, 2];
                         log_1.logger.info('Creating a temporary authorization token in GitHub for Travis');
-                        return [4 /*yield*/, travis.createAuthorization(repo)];
+                        return [4, travis.createAuthorization(repo)];
                     case 1:
                         _a.sent();
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 10, 13, 15]);
-                        return [4 /*yield*/, travis.fetchRepository(repo.toString())];
+                        return [4, travis.fetchRepository(repo.toString())];
                     case 3:
                         travisRepo = _a.sent();
-                        return [4 /*yield*/, travisRepo.listEnvironmentVariables()];
+                        return [4, travisRepo.listEnvironmentVariables()];
                     case 4:
                         travisEnvVars = _a.sent();
-                        if (!shouldCreateDeployKey(travisEnvVars, encryptedKeyFile)) return [3 /*break*/, 8];
-                        return [4 /*yield*/, createDeployKey_1.default(deployKeyFile, encryptedKeyFile)];
+                        if (!shouldCreateDeployKey(travisEnvVars, encryptedKeyFile)) return [3, 8];
+                        return [4, createDeployKey_1.default(deployKeyFile, encryptedKeyFile)];
                     case 5:
                         keys = _a.sent();
                         log_1.logger.info('Adding deployment key to GitHub');
-                        return [4 /*yield*/, repo.createKey(fs_1.readFileSync(keys.publicKey, { encoding: 'utf8' }))];
+                        return [4, repo.createKey(fs_1.readFileSync(keys.publicKey, { encoding: 'utf8' }))];
                     case 6:
                         keyResponse = _a.sent();
-                        return [4 /*yield*/, travisRepo.setEnvironmentVariables({ name: env.decryptKeyName, value: keys.encryptedKey.key, isPublic: false }, { name: env.decryptIvName, value: keys.encryptedKey.iv, isPublic: false })];
+                        return [4, travisRepo.setEnvironmentVariables({ name: env.decryptKeyName, value: keys.encryptedKey.key, isPublic: false }, { name: env.decryptIvName, value: keys.encryptedKey.iv, isPublic: false })];
                     case 7:
                         _a.sent();
                         log_1.logger.info('');
@@ -124,29 +124,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         log_1.logger.info("and \"" + keys.privateKey + "\" may be deleted.");
                         log_1.logger.info("Variables to decrypt this key have been added to your Travis repository with the name");
                         log_1.logger.info("\"" + env.decryptKeyName + "\" and \"" + env.decryptIvName + "\".");
-                        return [3 /*break*/, 9];
+                        return [3, 9];
                     case 8:
                         log_1.logger.info("An encrypted deploy key already exists at \"" + encryptedKeyFile + "\" so a new one was not created.");
                         _a.label = 9;
                     case 9:
                         displayDeployOptionSummary(travisEnvVars);
-                        return [3 /*break*/, 15];
+                        return [3, 15];
                     case 10:
                         e_1 = _a.sent();
                         log_1.logger.error("There was an error " + e_1.message + ". Cleaning up...");
-                        if (!keyResponse) return [3 /*break*/, 12];
-                        return [4 /*yield*/, repo.deleteKey(keyResponse.id)];
+                        if (!keyResponse) return [3, 12];
+                        return [4, repo.deleteKey(keyResponse.id)];
                     case 11:
                         _a.sent();
                         _a.label = 12;
                     case 12: throw e_1;
                     case 13:
                         log_1.logger.info('Removing temporary authorization token from GitHub');
-                        return [4 /*yield*/, travis.deleteAuthorization(repo)];
+                        return [4, travis.deleteAuthorization(repo)];
                     case 14:
                         _a.sent();
-                        return [7 /*endfinally*/];
-                    case 15: return [2 /*return*/];
+                        return [7];
+                    case 15: return [2];
                 }
             });
         });

@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -56,17 +56,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 switch (_b.label) {
                     case 0:
                         if (options.url) {
-                            return [2 /*return*/, options.url];
+                            return [2, options.url];
                         }
                         _a = getGithubSlug_1.default(options, grunt), name = _a.name, owner = _a.owner;
                         if (name && owner) {
                             repo = new GitHub_1.default(owner, name);
-                            return [2 /*return*/, repo.url];
+                            return [2, repo.url];
                         }
                         log_1.logger.info('Repository not explicitly defined. Using current git repository url.');
                         git = new Git_1.default();
-                        return [4 /*yield*/, git.getConfig('remote.origin.url')];
-                    case 1: return [2 /*return*/, _b.sent()];
+                        return [4, git.getConfig('remote.origin.url')];
+                    case 1: return [2, _b.sent()];
                 }
             });
         });
@@ -80,13 +80,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         case 0:
                             options = this.options({});
                             _a = options;
-                            return [4 /*yield*/, getRepoUrl(options, grunt)];
+                            return [4, getRepoUrl(options, grunt)];
                         case 1:
                             _a.url = _b.sent();
-                            return [4 /*yield*/, sync_1.default(options)];
+                            return [4, sync_1.default(options)];
                         case 2:
                             _b.sent();
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });

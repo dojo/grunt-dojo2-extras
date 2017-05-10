@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -57,8 +57,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         if (fs_1.existsSync(deployKeyFile)) {
                             throw new Error('Deploy key already exists');
                         }
-                        return [4 /*yield*/, crypto_1.createKey(deployKeyFile)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                        return [4, crypto_1.createKey(deployKeyFile)];
+                    case 1: return [2, _a.sent()];
                 }
             });
         });
@@ -70,7 +70,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 switch (_a.label) {
                     case 0:
                         enc = crypto_1.encryptData(fs_1.createReadStream(privateKey));
-                        return [4 /*yield*/, new Promise(function (resolve) {
+                        return [4, new Promise(function (resolve) {
                                 enc.encrypted.pipe(fs_1.createWriteStream(encryptedKeyFile))
                                     .on('close', function () {
                                     resolve();
@@ -78,7 +78,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             })];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, enc];
+                        return [2, enc];
                 }
             });
         });
@@ -92,18 +92,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 switch (_a.label) {
                     case 0:
                         log_1.logger.info('Creating a deployment key');
-                        return [4 /*yield*/, initDeployKey(deployKeyFile)];
+                        return [4, initDeployKey(deployKeyFile)];
                     case 1:
                         keys = _a.sent();
                         log_1.logger.info('Encrypting deployment key');
-                        return [4 /*yield*/, encryptDeployKey(keys.privateKey, encryptedKeyFile)];
+                        return [4, encryptDeployKey(keys.privateKey, encryptedKeyFile)];
                     case 2:
                         enc = _a.sent();
                         log_1.logger.info("Confirm decrypt deploy key");
-                        return [4 /*yield*/, streams_1.equal(crypto_1.decryptData(fs_1.createReadStream(encryptedKeyFile), enc.key, enc.iv), fs_1.createReadStream(keys.privateKey))];
+                        return [4, streams_1.equal(crypto_1.decryptData(fs_1.createReadStream(encryptedKeyFile), enc.key, enc.iv), fs_1.createReadStream(keys.privateKey))];
                     case 3:
                         _a.sent();
-                        return [2 /*return*/, {
+                        return [2, {
                                 privateKey: keys.privateKey,
                                 publicKey: keys.publicKey,
                                 encryptedKey: enc

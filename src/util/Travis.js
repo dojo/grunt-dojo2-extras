@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -74,7 +74,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var response, token;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, request_1.default.post('https://api.travis-ci.org/auth/github', {
+                        case 0: return [4, request_1.default.post('https://api.travis-ci.org/auth/github', {
                                 body: JSON.stringify({
                                     'github_token': githubToken
                                 }),
@@ -82,11 +82,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             }).then(responseHandler)];
                         case 1:
                             response = _a.sent();
-                            return [4 /*yield*/, response.json()];
+                            return [4, response.json()];
                         case 2:
                             token = (_a.sent()).access_token;
                             this.token = token;
-                            return [2 /*return*/, token];
+                            return [2, token];
                     }
                 });
             });
@@ -103,31 +103,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                     'read:org', 'user:email', 'repo_deployment', 'repo:status', 'public_repo', 'write:repo_hook'
                                 ]
                             };
-                            return [4 /*yield*/, repo.findAuthorization(params)];
+                            return [4, repo.findAuthorization(params)];
                         case 1:
                             existing = _b.sent();
                             if (existing) {
                                 throw new Error("An existing authorization exists. \"#" + existing.id + "\"");
                             }
                             _a = this;
-                            return [4 /*yield*/, repo.createAuthorization(params)];
+                            return [4, repo.createAuthorization(params)];
                         case 2:
                             _a.githubAuthorization = _b.sent();
                             _b.label = 3;
                         case 3:
                             _b.trys.push([3, 5, , 7]);
-                            return [4 /*yield*/, this.authenticate(this.githubAuthorization.token)];
+                            return [4, this.authenticate(this.githubAuthorization.token)];
                         case 4:
                             _b.sent();
-                            return [3 /*break*/, 7];
+                            return [3, 7];
                         case 5:
                             e_1 = _b.sent();
                             log_1.logger.info('Cleaning up temporary GitHub token');
-                            return [4 /*yield*/, this.deleteAuthorization(repo)];
+                            return [4, this.deleteAuthorization(repo)];
                         case 6:
                             _b.sent();
                             throw e_1;
-                        case 7: return [2 /*return*/];
+                        case 7: return [2];
                     }
                 });
             });
@@ -137,12 +137,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            if (!this.githubAuthorization) return [3 /*break*/, 2];
-                            return [4 /*yield*/, repo.deleteAuthorization(this.githubAuthorization.id)];
+                            if (!this.githubAuthorization) return [3, 2];
+                            return [4, repo.deleteAuthorization(this.githubAuthorization.id)];
                         case 1:
                             _a.sent();
                             _a.label = 2;
-                        case 2: return [2 /*return*/];
+                        case 2: return [2];
                     }
                 });
             });
@@ -154,15 +154,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             endpoint = "https://api.travis-ci.org/repos/" + slug;
-                            return [4 /*yield*/, request_1.default.get(endpoint, {
+                            return [4, request_1.default.get(endpoint, {
                                     headers: getHeaders(this.token)
                                 }).then(responseHandler)];
                         case 1:
                             response = _a.sent();
-                            return [4 /*yield*/, response.json()];
+                            return [4, response.json()];
                         case 2:
                             body = _a.sent();
-                            return [2 /*return*/, new Repository(this.token, body.repo)];
+                            return [2, new Repository(this.token, body.repo)];
                     }
                 });
             });
@@ -187,13 +187,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             endpoint = "https://api.travis-ci.org/settings/env_vars?repository_id=" + this.id;
-                            return [4 /*yield*/, request_1.default.get(endpoint, {
+                            return [4, request_1.default.get(endpoint, {
                                     headers: getHeaders(this.token)
                                 }).then(responseHandler)];
                         case 1:
                             response = _a.sent();
-                            return [4 /*yield*/, response.json()];
-                        case 2: return [2 /*return*/, (_a.sent()).env_vars];
+                            return [4, response.json()];
+                        case 2: return [2, (_a.sent()).env_vars];
                     }
                 });
             });
@@ -207,7 +207,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var envvars, _loop_1, this_1, _i, variables_1, _a, name_1, value, isPublic;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.listEnvironmentVariables()];
+                        case 0: return [4, this.listEnvironmentVariables()];
                         case 1:
                             envvars = _b.sent();
                             _loop_1 = function (name_1, value, isPublic) {
@@ -218,16 +218,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                             match = envvars.find(function (envvar) {
                                                 return envvar.name === name_1;
                                             });
-                                            if (!match) return [3 /*break*/, 2];
-                                            return [4 /*yield*/, this_1.updateEnvironmentVariable(match.id, name_1, value, isPublic)];
+                                            if (!match) return [3, 2];
+                                            return [4, this_1.updateEnvironmentVariable(match.id, name_1, value, isPublic)];
                                         case 1:
                                             _a.sent();
-                                            return [3 /*break*/, 4];
-                                        case 2: return [4 /*yield*/, this_1.addEnvironmentVariable(name_1, value, isPublic)];
+                                            return [3, 4];
+                                        case 2: return [4, this_1.addEnvironmentVariable(name_1, value, isPublic)];
                                         case 3:
                                             _a.sent();
                                             _a.label = 4;
-                                        case 4: return [2 /*return*/];
+                                        case 4: return [2];
                                     }
                                 });
                             };
@@ -235,16 +235,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             _i = 0, variables_1 = variables;
                             _b.label = 2;
                         case 2:
-                            if (!(_i < variables_1.length)) return [3 /*break*/, 5];
+                            if (!(_i < variables_1.length)) return [3, 5];
                             _a = variables_1[_i], name_1 = _a.name, value = _a.value, isPublic = _a.isPublic;
-                            return [5 /*yield**/, _loop_1(name_1, value, isPublic)];
+                            return [5, _loop_1(name_1, value, isPublic)];
                         case 3:
                             _b.sent();
                             _b.label = 4;
                         case 4:
                             _i++;
-                            return [3 /*break*/, 2];
-                        case 5: return [2 /*return*/];
+                            return [3, 2];
+                        case 5: return [2];
                     }
                 });
             });
@@ -257,7 +257,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             endpoint = "https://api.travis-ci.org/settings/env_vars?repository_id=" + this.id;
-                            return [4 /*yield*/, request_1.default.post(endpoint, {
+                            return [4, request_1.default.post(endpoint, {
                                     body: JSON.stringify({
                                         'env_var': {
                                             name: name,
@@ -269,7 +269,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 }).then(responseHandler)];
                         case 1:
                             response = _a.sent();
-                            return [2 /*return*/, response.json()];
+                            return [2, response.json()];
                     }
                 });
             });
@@ -282,7 +282,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             endpoint = "https://api.travis-ci.org/settings/env_vars/" + id + "?repository_id=" + this.id;
-                            return [4 /*yield*/, request_1.default(endpoint, {
+                            return [4, request_1.default(endpoint, {
                                     body: JSON.stringify({
                                         'env_var': {
                                             name: name,
@@ -295,7 +295,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 }).then(responseHandler)];
                         case 1:
                             response = _a.sent();
-                            return [2 /*return*/, response.json()];
+                            return [2, response.json()];
                     }
                 });
             });

@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -55,24 +55,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         branch = options.branch, cloneDirectory = options.cloneDirectory, url = options.url;
                         git = new Git_1.default(cloneDirectory);
                         log_1.logger.info("Syncing " + url + " to " + cloneDirectory);
-                        return [4 /*yield*/, git.ensureConfig(options.username, options.useremail)];
+                        return [4, git.ensureConfig(options.username, options.useremail)];
                     case 1:
                         _a.sent();
-                        if (!git.isInitialized()) return [3 /*break*/, 3];
+                        if (!git.isInitialized()) return [3, 3];
                         log_1.logger.info("Using existing repository at " + cloneDirectory);
-                        return [4 /*yield*/, git.assert(url)];
+                        return [4, git.assert(url)];
                     case 2:
                         _a.sent();
-                        return [3 /*break*/, 5];
-                    case 3: return [4 /*yield*/, git.clone(url)];
+                        return [3, 5];
+                    case 3: return [4, git.clone(url)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
-                    case 5: return [4 /*yield*/, git.checkout(branch)
+                    case 5: return [4, git.checkout(branch)
                             .then(function () { return git.pull('origin', branch); }, function () { return git.createOrphan(branch); })];
                     case 6:
                         _a.sent();
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });

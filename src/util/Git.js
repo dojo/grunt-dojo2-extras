@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -64,7 +64,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             }
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, process_1.promiseExec("git add " + params.join(' '), { silent: false, cwd: this.cloneDirectory })];
+                    return [2, process_1.promiseExec("git add " + params.join(' '), { silent: false, cwd: this.cloneDirectory })];
                 });
             });
         };
@@ -77,13 +77,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             if (!this.isInitialized()) {
                                 throw new Error("Repository is not initialized at \"" + this.cloneDirectory + "\"");
                             }
-                            return [4 /*yield*/, this.getConfig('remote.origin.url')];
+                            return [4, this.getConfig('remote.origin.url')];
                         case 1:
                             repoUrl = _a.sent();
                             if (repoUrl !== url) {
                                 throw new Error("Repository mismatch. Expected \"" + repoUrl + "\" to be \"" + url + "\".");
                             }
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });
@@ -100,17 +100,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 throw new Error('A clone directory must be set');
                             }
                             log_1.logger.info("Cloning " + url + " to " + this.cloneDirectory);
-                            if (!this.isInitialized()) return [3 /*break*/, 2];
+                            if (!this.isInitialized()) return [3, 2];
                             log_1.logger.info("Repository exists at " + this.cloneDirectory);
-                            return [4 /*yield*/, this.assert(url)];
+                            return [4, this.assert(url)];
                         case 1:
                             _a.sent();
                             _a.label = 2;
-                        case 2: return [4 /*yield*/, this.execSSHAgent('git', ['clone', url, this.cloneDirectory], { silent: false })];
+                        case 2: return [4, this.execSSHAgent('git', ['clone', url, this.cloneDirectory], { silent: false })];
                         case 3:
                             _a.sent();
                             this.url = url;
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });
@@ -118,7 +118,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         Git.prototype.commit = function (message) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, this.execSSHAgent('git', ['commit', '-m', "\"" + message + "\""], { silent: false, cwd: this.cloneDirectory })];
+                    return [2, this.execSSHAgent('git', ['commit', '-m', "\"" + message + "\""], { silent: false, cwd: this.cloneDirectory })];
                 });
             });
         };
@@ -130,14 +130,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             if (!this.cloneDirectory) {
                                 throw new Error('A clone directory must be set');
                             }
-                            return [4 /*yield*/, process_1.promiseExec("git checkout --orphan " + branch, { silent: true, cwd: this.cloneDirectory })];
+                            return [4, process_1.promiseExec("git checkout --orphan " + branch, { silent: true, cwd: this.cloneDirectory })];
                         case 1:
                             _a.sent();
-                            return [4 /*yield*/, process_1.promiseExec('git rm -rf .', { silent: true, cwd: this.cloneDirectory })];
+                            return [4, process_1.promiseExec('git rm -rf .', { silent: true, cwd: this.cloneDirectory })];
                         case 2:
                             _a.sent();
                             log_1.logger.info("Created \"" + branch + "\" branch");
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });
@@ -148,21 +148,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.hasConfig('user.name')];
+                        case 0: return [4, this.hasConfig('user.name')];
                         case 1:
-                            if (!!(_a.sent())) return [3 /*break*/, 3];
-                            return [4 /*yield*/, this.setConfig('user.name', user)];
+                            if (!!(_a.sent())) return [3, 3];
+                            return [4, this.setConfig('user.name', user)];
                         case 2:
                             _a.sent();
                             _a.label = 3;
-                        case 3: return [4 /*yield*/, this.hasConfig('user.email')];
+                        case 3: return [4, this.hasConfig('user.email')];
                         case 4:
-                            if (!!(_a.sent())) return [3 /*break*/, 6];
-                            return [4 /*yield*/, this.setConfig('user.email', email)];
+                            if (!!(_a.sent())) return [3, 6];
+                            return [4, this.setConfig('user.email', email)];
                         case 5:
                             _a.sent();
                             _a.label = 6;
-                        case 6: return [2 /*return*/];
+                        case 6: return [2];
                     }
                 });
             });
@@ -185,11 +185,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var proc;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, process_1.exec("git config " + key, { silent: true, cwd: this.cloneDirectory })];
+                        case 0: return [4, process_1.exec("git config " + key, { silent: true, cwd: this.cloneDirectory })];
                         case 1:
                             proc = _a.sent();
-                            return [4 /*yield*/, streams_1.toString(proc.stdout)];
-                        case 2: return [2 /*return*/, (_a.sent()).trim()];
+                            return [4, streams_1.toString(proc.stdout)];
+                        case 2: return [2, (_a.sent()).trim()];
                     }
                 });
             });
@@ -199,13 +199,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var proc, changes;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, process_1.exec('git status --porcelain', { silent: true, cwd: this.cloneDirectory })];
+                        case 0: return [4, process_1.exec('git status --porcelain', { silent: true, cwd: this.cloneDirectory })];
                         case 1:
                             proc = _a.sent();
-                            return [4 /*yield*/, streams_1.toString(proc.stdout)];
+                            return [4, streams_1.toString(proc.stdout)];
                         case 2:
                             changes = (_a.sent()).trim();
-                            return [2 /*return*/, changes !== ''];
+                            return [2, changes !== ''];
                     }
                 });
             });
@@ -215,10 +215,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var value;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.getConfig(key)];
+                        case 0: return [4, this.getConfig(key)];
                         case 1:
                             value = _a.sent();
-                            return [2 /*return*/, !!value];
+                            return [2, !!value];
                     }
                 });
             });
@@ -231,11 +231,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var proc;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, process_1.exec("git rev-parse HEAD", { silent: false, cwd: this.cloneDirectory })];
+                        case 0: return [4, process_1.exec("git rev-parse HEAD", { silent: false, cwd: this.cloneDirectory })];
                         case 1:
                             proc = _a.sent();
-                            return [4 /*yield*/, streams_1.toString(proc.stdout)];
-                        case 2: return [2 /*return*/, (_a.sent()).trim()];
+                            return [4, streams_1.toString(proc.stdout)];
+                        case 2: return [2, (_a.sent()).trim()];
                     }
                 });
             });

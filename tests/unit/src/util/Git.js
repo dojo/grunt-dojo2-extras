@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -108,9 +108,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         },
         add: function () {
             return __awaiter(this, void 0, void 0, function () {
-                var actual, _a, _b, _c;
-                return __generator(this, function (_d) {
-                    switch (_d.label) {
+                var actual, _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
                         case 0:
                             promiseExecStub.withArgs('git add file1 file2', {
                                 silent: false,
@@ -119,10 +119,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             actual = git.add('file1', 'file2');
                             assert.instanceOf(actual, Promise);
                             _b = (_a = assert).strictEqual;
-                            return [4 /*yield*/, actual];
+                            return [4, actual];
                         case 1:
-                            _b.apply(_a, [_d.sent(), 'pass']);
-                            return [2 /*return*/];
+                            _b.apply(_a, [_c.sent(), 'pass']);
+                            return [2];
                     }
                 });
             });
@@ -140,15 +140,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     git.assert('other_url').then(function () { return assert.fail(); }, function (error) {
                         assert.strictEqual(error.message, 'Repository mismatch. Expected "url" to be "other_url".');
                     });
-                    return [2 /*return*/, git.assert('url')];
+                    return [2, git.assert('url')];
                 });
             });
         },
         checkout: function () {
             return __awaiter(this, void 0, void 0, function () {
-                var actual, _a, _b, _c;
-                return __generator(this, function (_d) {
-                    switch (_d.label) {
+                var actual, _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
                         case 0:
                             promiseExecStub.withArgs('git checkout 1.2.3', {
                                 silent: false,
@@ -157,10 +157,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             actual = git.checkout('1.2.3');
                             assert.instanceOf(actual, Promise);
                             _b = (_a = assert).strictEqual;
-                            return [4 /*yield*/, actual];
+                            return [4, actual];
                         case 1:
-                            _b.apply(_a, [_d.sent(), 'pass']);
-                            return [2 /*return*/];
+                            _b.apply(_a, [_c.sent(), 'pass']);
+                            return [2];
                     }
                 });
             });
@@ -182,13 +182,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 assertSpy = sinon_1.spy(git, 'assert');
                                 execSSHAgentStub = sinon_1.stub(git, 'execSSHAgent').returns(Promise.resolve());
                                 git.isInitialized = function () { return false; };
-                                return [4 /*yield*/, git.clone(url)];
+                                return [4, git.clone(url)];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(assertSpy.notCalled);
                                 assert.isTrue(execSSHAgentStub.called);
                                 assert.strictEqual(git.url, url);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -203,13 +203,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 assertStub = sinon_1.stub(git, 'assert');
                                 execSSHAgentStub = sinon_1.stub(git, 'execSSHAgent').returns(Promise.resolve());
                                 git.isInitialized = function () { return true; };
-                                return [4 /*yield*/, git.clone(url)];
+                                return [4, git.clone(url)];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(assertStub.called);
                                 assert.isTrue(execSSHAgentStub.called);
                                 assert.strictEqual(git.url, url);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -222,12 +222,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     switch (_a.label) {
                         case 0:
                             execSSHAgent = sinon_1.stub(git, 'execSSHAgent').returns(Promise.resolve());
-                            return [4 /*yield*/, git.commit('message')];
+                            return [4, git.commit('message')];
                         case 1:
                             _a.sent();
                             assert.isTrue(execSSHAgent.calledOnce);
                             assert.isTrue(execSSHAgent.calledWith('git', ['commit', '-m', '"message"'], { silent: false, cwd: git.cloneDirectory }));
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });
@@ -246,13 +246,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         switch (_a.label) {
                             case 0:
                                 execOptions = { silent: true, cwd: git.cloneDirectory };
-                                return [4 /*yield*/, git.createOrphan('branch')];
+                                return [4, git.createOrphan('branch')];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(promiseExecStub.calledTwice);
                                 assert.isTrue(promiseExecStub.calledWith('git checkout --orphan branch', execOptions));
                                 assert.isTrue(promiseExecStub.calledWith('git rm -rf .', execOptions));
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -267,11 +267,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             case 0:
                                 git.hasConfig = sinon_1.stub().returns(true);
                                 setConfig = git.setConfig = sinon_1.stub();
-                                return [4 /*yield*/, git.ensureConfig()];
+                                return [4, git.ensureConfig()];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(setConfig.notCalled);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -284,12 +284,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             case 0:
                                 git.hasConfig = sinon_1.stub().returns(false);
                                 setConfig = git.setConfig = sinon_1.stub();
-                                return [4 /*yield*/, git.ensureConfig()];
+                                return [4, git.ensureConfig()];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(setConfig.calledWith('user.name', 'Travis CI'));
                                 assert.isTrue(setConfig.calledWith('user.email', 'support@sitepen.com'));
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -302,12 +302,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             case 0:
                                 git.hasConfig = sinon_1.stub().returns(false);
                                 setConfig = git.setConfig = sinon_1.stub();
-                                return [4 /*yield*/, git.ensureConfig('name', 'email')];
+                                return [4, git.ensureConfig('name', 'email')];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(setConfig.calledWith('user.name', 'name'));
                                 assert.isTrue(setConfig.calledWith('user.email', 'email'));
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -324,12 +324,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 args = ['status'];
                                 opts = { silent: false };
                                 git.hasDeployCredentials = function () { return false; };
-                                return [4 /*yield*/, git.execSSHAgent(command, args, opts)];
+                                return [4, git.execSSHAgent(command, args, opts)];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(promiseSpawnStub.calledOnce);
                                 assert.isTrue(promiseSpawnStub.calledWith(command, args, opts));
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -345,13 +345,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 opts = { silent: false };
                                 git.keyFile = 'key.file';
                                 git.hasDeployCredentials = function () { return true; };
-                                return [4 /*yield*/, git.execSSHAgent(command, args, opts)];
+                                return [4, git.execSSHAgent(command, args, opts)];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(chmodSyncStub.calledOnce);
                                 assert.isTrue(promiseExecStub.calledOnce);
                                 assert.isTrue(promiseExecStub.calledWith("ssh-agent bash -c 'ssh-add key.file; git status'", opts));
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -368,13 +368,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 cwd: git.cloneDirectory
                             }).returns({ stdout: 'key' });
                             toStringStub.withArgs('key').returns('key');
-                            return [4 /*yield*/, git.getConfig('key')];
+                            return [4, git.getConfig('key')];
                         case 1:
                             keyConfig = _a.sent();
                             assert.isTrue(execStub.calledOnce);
                             assert.isTrue(toStringStub.calledOnce);
                             assert.strictEqual(keyConfig, 'key');
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });
@@ -393,12 +393,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             case 0:
                                 execStub.returns({ stdout: '' });
                                 toStringStub.returns('');
-                                return [4 /*yield*/, git.areFilesChanged()];
+                                return [4, git.areFilesChanged()];
                             case 1:
                                 _a.sent();
                                 assert.isTrue(execStub.calledOnce);
                                 assert.isTrue(toStringStub.calledOnce);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -411,11 +411,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             case 0:
                                 execStub.returns({ stdout: 'changed' });
                                 toStringStub.withArgs('changed').returns('changed');
-                                return [4 /*yield*/, git.areFilesChanged()];
+                                return [4, git.areFilesChanged()];
                             case 1:
                                 changed = _a.sent();
                                 assert.isTrue(changed);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -428,11 +428,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             case 0:
                                 execStub.returns({ stdout: '' });
                                 toStringStub.withArgs('').returns('');
-                                return [4 /*yield*/, git.areFilesChanged()];
+                                return [4, git.areFilesChanged()];
                             case 1:
                                 changed = _a.sent();
                                 assert.isFalse(changed);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -447,13 +447,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         switch (_a.label) {
                             case 0:
                                 git.getConfig = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                                    return [2 /*return*/, 'config'];
+                                    return [2, 'config'];
                                 }); }); };
-                                return [4 /*yield*/, git.hasConfig('config')];
+                                return [4, git.hasConfig('config')];
                             case 1:
                                 hasConfig = _a.sent();
                                 assert.isTrue(hasConfig);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -466,13 +466,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         switch (_a.label) {
                             case 0:
                                 git.getConfig = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                                    return [2 /*return*/, ''];
+                                    return [2, ''];
                                 }); }); };
-                                return [4 /*yield*/, git.hasConfig('config')];
+                                return [4, git.hasConfig('config')];
                             case 1:
                                 hasConfig = _a.sent();
                                 assert.isFalse(hasConfig);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -498,13 +498,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             }).returns({ stdout: hash });
                             toStringStub.withArgs(hash)
                                 .returns(hash);
-                            return [4 /*yield*/, git.headRevision()];
+                            return [4, git.headRevision()];
                         case 1:
                             revision = _a.sent();
                             assert.isTrue(execStub.calledOnce);
                             assert.isTrue(toStringStub.calledOnce);
                             assert.strictEqual(revision, hash);
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });

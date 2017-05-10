@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -59,11 +59,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             return envvar.name === env.githubAuthName;
                         });
                         if (!authEnvVar) {
-                            return [2 /*return*/, true];
+                            return [2, true];
                         }
                         repo = new GitHub_1.default(repo.owner, repo.name);
                         repo.api.authenticate(env.githubAuth(authEnvVar.value));
-                        return [4 /*yield*/, repo.api.misc.getRateLimit({})];
+                        return [4, repo.api.misc.getRateLimit({})];
                     case 1:
                         response = _a.sent();
                         limits = response.data;
@@ -72,7 +72,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             log_1.logger.info('An existing environment variable exists with a GitHub authorization');
                             log_1.logger.info("Currently " + limits.resources.core.limit + " queries remain");
                         }
-                        return [2 /*return*/, !hasAuth];
+                        return [2, !hasAuth];
                 }
             });
         });
@@ -84,25 +84,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!!travis.isAuthorized()) return [3 /*break*/, 2];
+                        if (!!travis.isAuthorized()) return [3, 2];
                         log_1.logger.info('Creating a temporary authorization token in GitHub for Travis');
-                        return [4 /*yield*/, travis.createAuthorization(repo)];
+                        return [4, travis.createAuthorization(repo)];
                     case 1:
                         _a.sent();
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 9, 12, 14]);
-                        return [4 /*yield*/, travis.fetchRepository(repo.toString())];
+                        return [4, travis.fetchRepository(repo.toString())];
                     case 3:
                         travisRepo = _a.sent();
-                        return [4 /*yield*/, travisRepo.listEnvironmentVariables()];
+                        return [4, travisRepo.listEnvironmentVariables()];
                     case 4:
                         travisEnvVars = _a.sent();
-                        return [4 /*yield*/, shouldCreateGithubAuth(travisEnvVars, repo)];
+                        return [4, shouldCreateGithubAuth(travisEnvVars, repo)];
                     case 5:
-                        if (!_a.sent()) return [3 /*break*/, 8];
+                        if (!_a.sent()) return [3, 8];
                         log_1.logger.info('Creating an OAuth token for GitHub queries');
-                        return [4 /*yield*/, repo.createAuthorization({
+                        return [4, repo.createAuthorization({
                                 note: 'Authorization for Travis to call GitHub APIs',
                                 fingerprint: repo.toString()
                             })];
@@ -112,26 +112,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             type: 'oauth',
                             token: appAuth.token
                         });
-                        return [4 /*yield*/, travisRepo.setEnvironmentVariables({ name: env.githubAuthName, value: tokenStr, isPublic: false })];
+                        return [4, travisRepo.setEnvironmentVariables({ name: env.githubAuthName, value: tokenStr, isPublic: false })];
                     case 7:
                         _a.sent();
                         _a.label = 8;
-                    case 8: return [3 /*break*/, 14];
+                    case 8: return [3, 14];
                     case 9:
                         e_1 = _a.sent();
-                        if (!appAuth) return [3 /*break*/, 11];
-                        return [4 /*yield*/, repo.deleteAuthorization(appAuth.id)];
+                        if (!appAuth) return [3, 11];
+                        return [4, repo.deleteAuthorization(appAuth.id)];
                     case 10:
                         _a.sent();
                         _a.label = 11;
                     case 11: throw e_1;
                     case 12:
                         log_1.logger.info('Removing temporary authorization token from GitHub');
-                        return [4 /*yield*/, travis.deleteAuthorization(repo)];
+                        return [4, travis.deleteAuthorization(repo)];
                     case 13:
                         _a.sent();
-                        return [7 /*endfinally*/];
-                    case 14: return [2 /*return*/];
+                        return [7];
+                    case 14: return [2];
                 }
             });
         });
