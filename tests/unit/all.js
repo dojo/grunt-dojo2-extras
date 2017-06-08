@@ -4,7 +4,7 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./src/log", "./src/commands/getReleases", "./src/commands/publish", "./src/commands/installDependencies", "./src/commands/sync", "./src/util/crypto", "./src/util/environment", "./src/util/file", "./src/util/Git", "./src/util/process", "./src/util/GitHub", "./src/util/streams", "./tasks/util/getGithubSlug"], factory);
+        define(["require", "exports", "./src/log", "./src/commands/getReleases", "./src/commands/publish", "./src/commands/installDependencies", "./src/commands/sync", "./src/util/crypto", "./src/util/environment", "./src/util/file", "./src/util/Git", "./src/util/process", "./src/util/GitHub", "./src/util/Travis", "./src/util/streams", "./tasks/util/getGithubSlug"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -20,6 +20,7 @@
     require("./src/util/Git");
     require("./src/util/process");
     require("./src/util/GitHub");
+    require("./src/util/Travis");
     require("./src/util/streams");
     require("./tasks/util/getGithubSlug");
 });
