@@ -4,13 +4,14 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./src/log", "./src/commands/getReleases", "./src/commands/installDependencies", "./src/commands/sync", "./src/util/crypto", "./src/util/environment", "./src/util/file", "./src/util/Git", "./src/util/process", "./src/util/GitHub", "./src/util/streams", "./tasks/util/getGithubSlug"], factory);
+        define(["require", "exports", "./src/log", "./src/commands/getReleases", "./src/commands/publish", "./src/commands/installDependencies", "./src/commands/sync", "./src/util/crypto", "./src/util/environment", "./src/util/file", "./src/util/Git", "./src/util/process", "./src/util/GitHub", "./src/util/streams", "./tasks/util/getGithubSlug"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     require("./src/log");
     require("./src/commands/getReleases");
+    require("./src/commands/publish");
     require("./src/commands/installDependencies");
     require("./src/commands/sync");
     require("./src/util/crypto");
