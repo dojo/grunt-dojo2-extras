@@ -25,7 +25,7 @@ export default class Git {
 	/**
 	 * Ensures that a repository is initialized and matches the provided url
 	 */
-	async assert(url: string) {
+	async assert(url: string): Promise<void> {
 		if (!this.isInitialized()) {
 			throw new Error(`Repository is not initialized at "${ this.cloneDirectory }"`);
 		}
@@ -40,7 +40,7 @@ export default class Git {
 		return promiseExec(`git checkout ${ version }`, { silent: false, cwd: this.cloneDirectory});
 	}
 
-	async clone(url: string) {
+	async clone(url: string)  {
 		if (!this.cloneDirectory) {
 			throw new Error('A clone directory must be set');
 		}
@@ -120,7 +120,7 @@ export default class Git {
 		return existsSync(this.keyFile);
 	}
 
-	async headRevision() {
+	async headRevision(): Promise<string> {
 		const proc = await exec(`git rev-parse HEAD`, { silent: false, cwd: this.cloneDirectory });
 		return (await toString(proc.stdout)).trim();
 	}
