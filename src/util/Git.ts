@@ -97,7 +97,8 @@ export default class Git {
 	}
 
 	async getConfig(key: string): Promise<string> {
-		const proc = await exec(`git config ${ key }`, { silent: true, cwd: this.cloneDirectory });
+		const cwd = existsSync(this.cloneDirectory) ? this.cloneDirectory : process.cwd();
+		const proc = await exec(`git config ${ key }`, { silent: true, cwd });
 		return (await toString(proc.stdout)).trim();
 	}
 
