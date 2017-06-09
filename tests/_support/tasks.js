@@ -10,8 +10,9 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function setupWrappedAsyncStub(stub, dfd, callback) {
+        var _this = this;
         stub.callsFake(function (task) {
-            task().then(dfd.callback(callback));
+            task.call(_this).then(dfd.callback(callback));
         });
     }
     exports.setupWrappedAsyncStub = setupWrappedAsyncStub;
