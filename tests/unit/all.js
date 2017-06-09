@@ -4,7 +4,7 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./src/log", "./src/commands/decryptDeployKey", "./src/commands/getReleases", "./src/commands/initialize/initAuthorization", "./src/commands/initialize/createDeployKey", "./src/commands/typedoc", "./src/commands/publish", "./src/commands/installDependencies", "./src/commands/sync", "./src/util/crypto", "./src/util/environment", "./src/util/file", "./src/util/Git", "./src/util/process", "./src/util/GitHub", "./src/util/Travis", "./src/util/streams", "./tasks/util/getGithubSlug"], factory);
+        define(["require", "exports", "./src/log", "./src/commands/decryptDeployKey", "./src/commands/getReleases", "./src/commands/initialize/initAuthorization", "./src/commands/initialize/createDeployKey", "./src/commands/typedoc", "./src/commands/publish", "./src/commands/installDependencies", "./src/commands/sync", "./src/util/crypto", "./src/util/environment", "./src/util/file", "./src/util/Git", "./tasks/prebuild", "./src/util/process", "./src/util/GitHub", "./src/util/Travis", "./src/util/streams", "./tasks/util/getGithubSlug"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -22,6 +22,7 @@
     require("./src/util/environment");
     require("./src/util/file");
     require("./src/util/Git");
+    require("./tasks/prebuild");
     require("./src/util/process");
     require("./src/util/GitHub");
     require("./src/util/Travis");

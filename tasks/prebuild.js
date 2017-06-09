@@ -63,7 +63,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 });
             });
         }
-        grunt.registerTask('prebuild', 'prepares a the ci environment', wrapAsyncTask_1.default(prebuildTask));
+        grunt.registerTask('prebuild', 'prepares the ci environment', wrapAsyncTask_1.default(prebuildTask));
     };
 });
 //# sourceMappingURL=prebuild.js.map
