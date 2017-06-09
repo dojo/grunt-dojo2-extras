@@ -16,12 +16,12 @@
     var loadModule_1 = require("../../_support/loadModule");
     var tasks_1 = require("../../_support/tasks");
     var sync;
+    var registerMultiTaskStub;
     var getGithubSlugStub = sinon_1.stub();
     var syncStub = sinon_1.stub();
     var getConfigStub = sinon_1.stub();
     var wrapAsyncTaskStub = sinon_1.stub();
     var optionsStub = sinon_1.stub();
-    var registerMultiTaskStub = sinon_1.stub(grunt, 'registerMultiTask');
     var Git = (function () {
         function class_1() {
             this.getConfig = getConfigStub;
@@ -40,9 +40,9 @@
         name: 'tasks/sync',
         after: function () {
             loadModule_1.cleanupModuleMocks();
-            registerMultiTaskStub.restore();
         },
         beforeEach: function () {
+            registerMultiTaskStub = sinon_1.stub(grunt, 'registerMultiTask');
             optionsStub.returns({});
             sync = loadModule_1.default('tasks/sync', {
                 '../src/commands/sync': { default: syncStub },
@@ -60,7 +60,7 @@
             getConfigStub.reset();
             wrapAsyncTaskStub.reset();
             optionsStub.reset();
-            registerMultiTaskStub.reset();
+            registerMultiTaskStub.restore();
         },
         'syncTask uses GitHub repo info, calls sync; eventually resolves': function () {
             getGithubSlugStub.returns({ name: 'name', owner: 'owner' });

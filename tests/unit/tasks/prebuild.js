@@ -16,17 +16,17 @@
     var loadModule_1 = require("../../_support/loadModule");
     var tasks_1 = require("../../_support/tasks");
     var prebuild;
+    var registerTaskStub;
     var wrapAsyncTaskStub = sinon_1.stub();
     var decryptDeployKeyStub = sinon_1.stub();
     var loggerStub = { info: sinon_1.stub() };
-    var registerTaskStub = sinon_1.stub(grunt, 'registerTask');
     registerSuite({
         name: 'tasks/prebuild',
         after: function () {
             loadModule_1.cleanupModuleMocks();
-            registerTaskStub.restore();
         },
         beforeEach: function () {
+            registerTaskStub = sinon_1.stub(grunt, 'registerTask');
             prebuild = loadModule_1.default('tasks/prebuild', {
                 './util/wrapAsyncTask': { default: wrapAsyncTaskStub },
                 '../src/commands/decryptDeployKey': { default: decryptDeployKeyStub },
@@ -34,10 +34,10 @@
             });
         },
         afterEach: function () {
-            registerTaskStub.reset();
             wrapAsyncTaskStub.reset();
             decryptDeployKeyStub.reset();
             loggerStub.info.reset();
+            registerTaskStub.restore();
         },
         'decryptDeployKey': (function () {
             function assertInWrappedAsyncStub(test, shouldLog) {
