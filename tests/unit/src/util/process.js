@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "sinon", "../../../_support/loadModule", "src/util/process", "src/log"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "sinon", "../../../_support/loadModule", "src/util/process", "src/log", "../../../_support/util"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -50,6 +50,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var loadModule_1 = require("../../../_support/loadModule");
     var processUtil = require("src/util/process");
     var log_1 = require("src/log");
+    var util_1 = require("../../../_support/util");
     var module;
     var execStub;
     var spawnStub;
@@ -107,27 +108,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     });
                 },
                 'child process exits with code other than 0; eventually rejects the returned promise': function () {
-                    return __awaiter(this, void 0, void 0, function () {
-                        var promise, e_1;
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    _a.trys.push([0, 2, , 3]);
-                                    promise = processUtil.promisify(processUtil.exec('test'));
-                                    proc.on.lastCall.args[1](1);
-                                    return [4, promise];
-                                case 1:
-                                    _a.sent();
-                                    assert.fail('promise should reject');
-                                    return [3, 3];
-                                case 2:
-                                    e_1 = _a.sent();
-                                    assert.strictEqual(e_1.message, 'Process exited with a code of 1');
-                                    assert.strictEqual(process.exitCode, 1);
-                                    return [3, 3];
-                                case 3: return [2];
-                            }
-                        });
+                    var promise;
+                    promise = processUtil.promisify(processUtil.exec('test'));
+                    proc.on.lastCall.args[1](1);
+                    return promise.then(util_1.throwWithError('promise should reject'), function (e) {
+                        assert.strictEqual(e.message, 'Process exited with a code of 1');
+                        assert.strictEqual(process.exitCode, 1);
                     });
                 }
             };

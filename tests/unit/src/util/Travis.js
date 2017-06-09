@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon", "../../../_support/util"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -48,6 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var assert = require("intern/chai!assert");
     var loadModule_1 = require("../../../_support/loadModule");
     var sinon_1 = require("sinon");
+    var util_1 = require("../../../_support/util");
     var module;
     var travis;
     var repository;
@@ -114,7 +115,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     'existing authorization; eventually throws': function () {
                         repo.findAuthorization.returns(Promise.resolve({ id: 1 }));
                         var promise = travis.createAuthorization(repo);
-                        return promise.then(assert.fail, function (e) {
+                        return promise.then(util_1.throwWithError('Should reject when an authorization exists'), function (e) {
                             assert.strictEqual(e.message, 'An existing authorization exists. "#1"');
                             assert.isTrue(repo.createAuthorization.notCalled);
                             assert.isTrue(repo.findAuthorization.calledOnce);
@@ -144,30 +145,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     },
                     'authentication fails; eventually throws': function () {
                         return __awaiter(this, void 0, void 0, function () {
-                            var auth, deleteAuth, e_1;
+                            var auth, deleteAuth;
                             return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        auth = sinon_1.stub(travis, 'authenticate').returns(Promise.reject());
-                                        deleteAuth = sinon_1.stub(travis, 'deleteAuthorization').returns(Promise.resolve());
-                                        _a.label = 1;
-                                    case 1:
-                                        _a.trys.push([1, 3, , 4]);
-                                        return [4, travis.createAuthorization(repo)];
-                                    case 2:
-                                        _a.sent();
-                                        assert.fail('Should have thrown');
-                                        return [3, 4];
-                                    case 3:
-                                        e_1 = _a.sent();
-                                        return [3, 4];
-                                    case 4:
-                                        assert.isTrue(auth.calledOnce);
-                                        assert.isTrue(deleteAuth.calledOnce);
+                                auth = sinon_1.stub(travis, 'authenticate').returns(Promise.reject());
+                                deleteAuth = sinon_1.stub(travis, 'deleteAuthorization').returns(Promise.resolve());
+                                return [2, travis.createAuthorization(repo).then(function () {
                                         auth.restore();
                                         deleteAuth.restore();
-                                        return [2];
-                                }
+                                        throw new Error('Should reject when authentication fails');
+                                    }, function () {
+                                        auth.restore();
+                                        deleteAuth.restore();
+                                        assert.isTrue(auth.calledOnce);
+                                        assert.isTrue(deleteAuth.calledOnce);
+                                    })];
                             });
                         });
                     }

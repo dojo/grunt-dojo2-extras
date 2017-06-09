@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon", "../../../_support/util"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -48,6 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var assert = require("intern/chai!assert");
     var loadModule_1 = require("../../../_support/loadModule");
     var sinon_1 = require("sinon");
+    var util_1 = require("../../../_support/util");
     var decryptDeployKey;
     var decryptDataObj = {
         on: sinon_1.stub(),
@@ -165,27 +166,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 },
                 'decryption eventually rejects': function () {
                     return __awaiter(this, void 0, void 0, function () {
-                        var err_1;
                         return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    existsSyncStub.onCall(0).returns(true);
-                                    existsSyncStub.onCall(1).returns(false);
-                                    decryptDataObj.on.withArgs('error').yields(new Error('error'));
-                                    _a.label = 1;
-                                case 1:
-                                    _a.trys.push([1, 3, , 4]);
-                                    return [4, assertDecryptDeployKey()];
-                                case 2:
-                                    _a.sent();
-                                    assert.fail();
-                                    return [3, 4];
-                                case 3:
-                                    err_1 = _a.sent();
-                                    assert.strictEqual(err_1.message, 'error');
-                                    return [3, 4];
-                                case 4: return [2];
-                            }
+                            existsSyncStub.onCall(0).returns(true);
+                            existsSyncStub.onCall(1).returns(false);
+                            decryptDataObj.on.withArgs('error').yields(new Error('error'));
+                            return [2, assertDecryptDeployKey().then(util_1.throwWithError('Should reject when necessary files don\'t exist'), function (err) {
+                                    assert.strictEqual(err.message, 'error');
+                                })];
                         });
                     });
                 }

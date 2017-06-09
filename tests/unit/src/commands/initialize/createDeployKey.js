@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../../_support/loadModule", "sinon"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../../_support/loadModule", "sinon", "../../../../_support/util"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -48,6 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var assert = require("intern/chai!assert");
     var loadModule_1 = require("../../../../_support/loadModule");
     var sinon_1 = require("sinon");
+    var util_1 = require("../../../../_support/util");
     var createDeployKey;
     var encryptedStub = {
         pipe: sinon_1.stub(),
@@ -139,7 +140,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 'Deploy key already exists': function () {
                     existsSyncStub.returns(true);
                     var promise = createDeployKey('deploykey.file', 'deploykey.enc');
-                    return promise.then(assert.fail, function (err) {
+                    return promise.then(util_1.throwWithError('Should reject when deploy key already exists'), function (err) {
                         assert.strictEqual(err.message, 'Deploy key already exists');
                         assert.isTrue(existsSyncStub.calledOnce);
                     });

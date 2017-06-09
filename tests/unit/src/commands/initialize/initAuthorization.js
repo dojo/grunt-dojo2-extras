@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../../_support/loadModule", "sinon"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../../_support/loadModule", "sinon", "../../../../_support/util"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -48,6 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var assert = require("intern/chai!assert");
     var loadModule_1 = require("../../../../_support/loadModule");
     var sinon_1 = require("sinon");
+    var util_1 = require("../../../../_support/util");
     var initAuthorization;
     var isAuthorizedStub = sinon_1.stub();
     var travisCreateAuthorizationStub = sinon_1.stub();
@@ -188,7 +189,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 'eventually throws': function () {
                     fetchRepositoryStub.returns(Promise.reject(new Error('error')));
                     var promise = assertInitAuthorization();
-                    return promise.then(assert.fail, function (e) {
+                    return promise.then(util_1.throwWithError('Should reject when fetching repository stub fails'), function (e) {
                         assert.strictEqual(e.message, 'error');
                     });
                 },
@@ -196,7 +197,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     repoCreateAuthorizationStub.returns(Promise.resolve(true));
                     setEnvironmentVariablesStub.returns(Promise.reject(new Error('error')));
                     var promise = assertInitAuthorization();
-                    return promise.then(assert.fail, function () {
+                    return promise.then(util_1.throwWithError('Should reject when setting environment variables fails'), function () {
                         assert.isTrue(repoDeleteAuthorizationStub.calledOnce);
                     });
                 }

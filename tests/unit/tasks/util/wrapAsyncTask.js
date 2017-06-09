@@ -4,7 +4,7 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "sinon", "../../../_support/loadModule"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "sinon", "../../../_support/loadModule", "../../../_support/util"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -13,6 +13,7 @@
     var assert = require("intern/chai!assert");
     var sinon_1 = require("sinon");
     var loadModule_1 = require("../../../_support/loadModule");
+    var util_1 = require("../../../_support/util");
     var doneStub = sinon_1.stub();
     var taskStub = sinon_1.stub();
     var loggerStub = { error: sinon_1.stub() };
@@ -55,7 +56,7 @@
                         assert.isTrue(loggerStub.error.notCalled);
                         assert.isTrue(doneStub.calledWithExactly(false));
                     };
-                    return runWrapAsyncTaskTest.call(this, taskPromise, assert.fail, errbackAssert);
+                    return runWrapAsyncTaskTest.call(this, taskPromise, util_1.throwWithError('Should reject when task fails'), errbackAssert);
                 },
                 'reject; logs error messages': function () {
                     var taskPromise = Promise.reject({ message: 'error message' });
@@ -63,7 +64,7 @@
                         assert.isTrue(loggerStub.error.calledWith('error message'));
                         assert.isTrue(doneStub.calledWithExactly(false));
                     };
-                    return runWrapAsyncTaskTest.call(this, taskPromise, assert.fail, errbackAssert);
+                    return runWrapAsyncTaskTest.call(this, taskPromise, util_1.throwWithError('Should reject when task fails'), errbackAssert);
                 }
             };
         })()

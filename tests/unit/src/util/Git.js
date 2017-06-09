@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon", "src/util/environment"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon", "src/util/environment", "../../../_support/util"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -49,6 +49,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var loadModule_1 = require("../../../_support/loadModule");
     var sinon_1 = require("sinon");
     var env = require("src/util/environment");
+    var util_1 = require("../../../_support/util");
     var Module;
     var git;
     var promiseSpawnStub;
@@ -131,13 +132,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     git.isInitialized = function () { return false; };
-                    git.assert('url').then(function () { return assert.fail(); }, function (error) {
+                    git.assert('url').then(util_1.throwWithError('Should reject when the repository is not initialized'), function (error) {
                         assert.strictEqual(error.message, "Repository is not initialized at \"" + git.cloneDirectory + "\"");
                     });
                     git.isInitialized = function () { return true; };
                     git.getConfig = sinon_1.stub().withArgs('remote.origin.url')
                         .returns('url');
-                    git.assert('other_url').then(function () { return assert.fail(); }, function (error) {
+                    git.assert('other_url').then(util_1.throwWithError('Should reject when the repository url is wrong'), function (error) {
                         assert.strictEqual(error.message, 'Repository mismatch. Expected "url" to be "other_url".');
                     });
                     return [2, git.assert('url')];
@@ -168,7 +169,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         clone: {
             'If clone directory is not set; eventually rejects': function () {
                 delete git.cloneDirectory;
-                return git.clone('url').then(function () { return assert.fail(); }, function (error) {
+                return git.clone('url').then(util_1.throwWithError('Should reject if clone directory is not set'), function (error) {
                     assert.equal(error.message, 'A clone directory must be set');
                 });
             },
@@ -235,7 +236,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         createOrphan: {
             'If clone directory is not set; throws': function () {
                 delete git.cloneDirectory;
-                git.createOrphan('branch').then(function () { return assert.fail(); }, function (error) {
+                git.createOrphan('branch').then(util_1.throwWithError('Should throw when clone directory is not set'), function (error) {
                     assert.equal(error.message, 'A clone directory must be set');
                 });
             },
