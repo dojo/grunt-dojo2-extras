@@ -15,13 +15,13 @@
     var sinon_1 = require("sinon");
     var loadModule_1 = require("../../_support/loadModule");
     var setup;
+    var registerMultiTaskStub;
     var authenticateStub = sinon_1.stub();
     var getGithubSlugStub = sinon_1.stub();
     var initDeploymentStub = sinon_1.stub();
     var initAuthorizationStub = sinon_1.stub();
     var wrapAsyncTaskStub = sinon_1.stub();
     var optionsStub = sinon_1.stub();
-    var registerMultiTaskStub = sinon_1.stub(grunt, 'registerMultiTask');
     var GitHub = (function () {
         function class_1() {
             this.api = {
@@ -35,6 +35,7 @@
     registerSuite({
         name: 'tasks/setup',
         beforeEach: function () {
+            registerMultiTaskStub = sinon_1.stub(grunt, 'registerMultiTask');
             setup = loadModule_1.default('tasks/setup', {
                 './util/wrapAsyncTask': { default: wrapAsyncTaskStub },
                 '../src/util/GitHub': { default: GitHubSpy },
@@ -45,7 +46,6 @@
         },
         after: function () {
             loadModule_1.cleanupModuleMocks();
-            registerMultiTaskStub.restore();
         },
         afterEach: function () {
             getGithubSlugStub.reset();
@@ -55,7 +55,7 @@
             wrapAsyncTaskStub.reset();
             optionsStub.reset();
             GitHubSpy.reset();
-            registerMultiTaskStub.reset();
+            registerMultiTaskStub.restore();
         },
         'setup calls initDeployment and initAuthorization; eventually resolves': function () {
             var deferred = this.async();
