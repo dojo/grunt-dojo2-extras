@@ -40,7 +40,7 @@ export default class Git {
 		return promiseExec(`git checkout ${ version }`, { silent: false, cwd: this.cloneDirectory});
 	}
 
-	async clone(url: string)  {
+	async clone(url: string) {
 		if (!this.cloneDirectory) {
 			throw new Error('A clone directory must be set');
 		}
