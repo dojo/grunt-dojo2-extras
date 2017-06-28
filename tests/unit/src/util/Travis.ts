@@ -14,7 +14,7 @@ registerSuite({
 	name: 'util/Travis',
 
 	before() {
-		requestStub = stub();
+		requestStub = stub() as SinonStub & Partial<{ get: SinonStub, post: SinonStub }>;
 		requestStub.post = stub();
 		requestStub.get = stub();
 	},
