@@ -182,10 +182,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         };
         Git.prototype.getConfig = function (key) {
             return __awaiter(this, void 0, void 0, function () {
-                var proc;
+                var cwd, proc;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4, process_1.exec("git config " + key, { silent: true, cwd: this.cloneDirectory })];
+                        case 0:
+                            cwd = fs_1.existsSync(this.cloneDirectory) ? this.cloneDirectory : process.cwd();
+                            return [4, process_1.exec("git config " + key, { silent: true, cwd: cwd })];
                         case 1:
                             proc = _a.sent();
                             return [4, streams_1.toString(proc.stdout)];

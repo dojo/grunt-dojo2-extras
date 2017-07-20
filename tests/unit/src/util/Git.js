@@ -364,6 +364,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
+                            existsSyncStub.withArgs(git.cloneDirectory).returns(true);
                             execStub.withArgs('git config key', {
                                 silent: true,
                                 cwd: git.cloneDirectory
@@ -372,6 +373,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             return [4, git.getConfig('key')];
                         case 1:
                             keyConfig = _a.sent();
+                            assert.isTrue(execStub.calledOnce);
+                            assert.isTrue(toStringStub.calledOnce);
+                            assert.strictEqual(keyConfig, 'key');
+                            return [2];
+                    }
+                });
+            });
+        },
+        getConfigDirectoryDoesNotExist: function () {
+            return __awaiter(this, void 0, void 0, function () {
+                var cwd, cloneDirectory, keyConfig;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            cwd = process.cwd();
+                            cloneDirectory = git.cloneDirectory;
+                            existsSyncStub.withArgs(cwd).returns(false);
+                            execStub.withArgs('git config key', {
+                                silent: true,
+                                cwd: cwd
+                            }).returns({ stdout: 'key' });
+                            toStringStub.withArgs('key').returns('key');
+                            git.cloneDirectory = '_does_not_exist_';
+                            return [4, git.getConfig('key')];
+                        case 1:
+                            keyConfig = _a.sent();
+                            git.cloneDirectory = cloneDirectory;
                             assert.isTrue(execStub.calledOnce);
                             assert.isTrue(toStringStub.calledOnce);
                             assert.strictEqual(keyConfig, 'key');
