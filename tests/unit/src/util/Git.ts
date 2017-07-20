@@ -230,6 +230,7 @@ registerSuite({
 	},
 
 	async getConfig() {
+		existsSyncStub.withArgs(git.cloneDirectory).returns(true);
 		execStub.withArgs('git config key', {
 			silent: true,
 			cwd: git.cloneDirectory
@@ -237,6 +238,26 @@ registerSuite({
 		toStringStub.withArgs('key').returns('key');
 
 		const keyConfig = await git.getConfig('key');
+
+		assert.isTrue(execStub.calledOnce);
+		assert.isTrue(toStringStub.calledOnce);
+		assert.strictEqual(keyConfig, 'key');
+	},
+
+	async getConfigDirectoryDoesNotExist() {
+		const cwd = process.cwd();
+		const cloneDirectory = git.cloneDirectory;
+
+		existsSyncStub.withArgs(cwd).returns(false);
+		execStub.withArgs('git config key', {
+			silent: true,
+			cwd
+		}).returns({ stdout: 'key' });
+		toStringStub.withArgs('key').returns('key');
+
+		git.cloneDirectory = '_does_not_exist_';
+		const keyConfig = await git.getConfig('key');
+		git.cloneDirectory = cloneDirectory;
 
 		assert.isTrue(execStub.calledOnce);
 		assert.isTrue(toStringStub.calledOnce);

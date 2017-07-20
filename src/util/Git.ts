@@ -25,7 +25,7 @@ export default class Git {
 	/**
 	 * Ensures that a repository is initialized and matches the provided url
 	 */
-	async assert(url: string) {
+	async assert(url: string): Promise<void> {
 		if (!this.isInitialized()) {
 			throw new Error(`Repository is not initialized at "${ this.cloneDirectory }"`);
 		}
@@ -97,7 +97,8 @@ export default class Git {
 	}
 
 	async getConfig(key: string): Promise<string> {
-		const proc = await exec(`git config ${ key }`, { silent: true, cwd: this.cloneDirectory });
+		const cwd = existsSync(this.cloneDirectory) ? this.cloneDirectory : process.cwd();
+		const proc = await exec(`git config ${ key }`, { silent: true, cwd });
 		return (await toString(proc.stdout)).trim();
 	}
 
@@ -119,7 +120,7 @@ export default class Git {
 		return existsSync(this.keyFile);
 	}
 
-	async headRevision() {
+	async headRevision(): Promise<string> {
 		const proc = await exec(`git rev-parse HEAD`, { silent: false, cwd: this.cloneDirectory });
 		return (await toString(proc.stdout)).trim();
 	}
