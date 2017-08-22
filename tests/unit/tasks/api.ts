@@ -10,7 +10,7 @@ let registerMultiTaskStub: SinonStub;
 
 const typedocStub = stub();
 const syncStub = stub();
-const getReleasesStub = stub();
+const getTagsStub = stub();
 const createHtmlApiMissingFilterStub = stub();
 const createJsonApiMissingFilterStub = stub();
 const createVersionFilterStub = stub();
@@ -43,8 +43,8 @@ registerSuite({
 			'./util/wrapAsyncTask': { default: wrapAsyncTaskStub },
 			'../src/util/GitHub': { default: GitHubSpy },
 			'../src/commands/sync': { default: syncStub },
-			'../src/commands/getReleases': {
-				default: getReleasesStub,
+			'../src/commands/getTags': {
+				default: getTagsStub,
 				createHtmlApiMissingFilter: createHtmlApiMissingFilterStub,
 				createJsonApiMissingFilter: createJsonApiMissingFilterStub,
 				createVersionFilter: createVersionFilterStub,
@@ -70,7 +70,7 @@ registerSuite({
 		typedocStub.reset();
 		GitHubSpy.reset();
 		syncStub.reset();
-		getReleasesStub.reset();
+		getTagsStub.reset();
 		createHtmlApiMissingFilterStub.reset();
 		createJsonApiMissingFilterStub.reset();
 		createVersionFilterStub.reset();
@@ -88,7 +88,7 @@ registerSuite({
 	},
 
 	'api task has remote options including html format and string repo; no missing filters, no APIs match; eventually resolves'(this: any) {
-		getReleasesStub.returns([]);
+		getTagsStub.returns([]);
 		optionsStub.returns({
 			src: 'src',
 			dest: 'dest',
@@ -109,7 +109,7 @@ registerSuite({
 			assert.isTrue(makeTempDirectoryStub.notCalled);
 			assert.isTrue(createVersionFilterStub.calledOnce);
 			assert.isTrue(createHtmlApiMissingFilterStub.calledOnce);
-			assert.isTrue(getReleasesStub.calledOnce);
+			assert.isTrue(getTagsStub.calledOnce);
 			assert.isTrue(getHtmlApiPathStub.notCalled);
 		});
 
@@ -120,7 +120,7 @@ registerSuite({
 	},
 
 	'api task has remote options including json format and object repo; no filters, all APIs up to date; eventually resolves'(this: any) {
-		getReleasesStub.returns([]);
+		getTagsStub.returns([]);
 		optionsStub.returns({
 			src: 'src',
 			dest: 'dest',
@@ -139,7 +139,7 @@ registerSuite({
 			assert.isTrue(makeTempDirectoryStub.calledOnce);
 			assert.isTrue(createVersionFilterStub.notCalled);
 			assert.isTrue(createJsonApiMissingFilterStub.calledOnce);
-			assert.isTrue(getReleasesStub.calledOnce);
+			assert.isTrue(getTagsStub.calledOnce);
 			assert.isTrue(getJsonApiPathStub.notCalled);
 		});
 
@@ -150,7 +150,7 @@ registerSuite({
 	},
 
 	'api task has remote options including json format and object repo; latest filters, all APIs up to date; eventually resolves'(this: any) {
-		getReleasesStub.returns([{ name: 'name' }]);
+		getTagsStub.returns([{ name: 'name' }]);
 		optionsStub.returns({
 			src: 'src',
 			dest: 'dest',
@@ -170,7 +170,7 @@ registerSuite({
 			assert.isTrue(makeTempDirectoryStub.calledOnce);
 			assert.isTrue(createVersionFilterStub.notCalled);
 			assert.isTrue(createJsonApiMissingFilterStub.calledOnce);
-			assert.isTrue(getReleasesStub.calledOnce);
+			assert.isTrue(getTagsStub.calledOnce);
 			assert.isTrue(getJsonApiPathStub.calledOnce);
 			assert.isTrue(syncStub.calledOnce);
 			assert.isTrue(installDependenciesStub.notCalled);
@@ -184,7 +184,7 @@ registerSuite({
 	},
 
 	'api task has remote options including filter object; runs installDependencies; eventually resolves'(this: any) {
-		getReleasesStub.returns([{ name: 'name' }]);
+		getTagsStub.returns([{ name: 'name' }]);
 		optionsStub.returns({
 			src: 'src',
 			dest: 'dest',
@@ -204,7 +204,7 @@ registerSuite({
 			assert.isTrue(makeTempDirectoryStub.calledOnce);
 			assert.isTrue(createVersionFilterStub.notCalled);
 			assert.isTrue(createHtmlApiMissingFilterStub.calledOnce);
-			assert.isTrue(getReleasesStub.calledOnce);
+			assert.isTrue(getTagsStub.calledOnce);
 			assert.isTrue(getHtmlApiPathStub.calledOnce);
 			assert.isTrue(syncStub.calledOnce);
 			assert.isTrue(installDependenciesStub.calledOnce);
@@ -218,7 +218,7 @@ registerSuite({
 	},
 
 	'api task has remote options; runs installDependencies; eventually resolves'(this: any) {
-		getReleasesStub.returns([{ name: 'name' }]);
+		getTagsStub.returns([{ name: 'name' }]);
 		optionsStub.returns({
 			src: 'src',
 			dest: 'dest',
@@ -238,7 +238,7 @@ registerSuite({
 			assert.isTrue(makeTempDirectoryStub.calledOnce);
 			assert.isTrue(createVersionFilterStub.notCalled);
 			assert.isTrue(createHtmlApiMissingFilterStub.calledOnce);
-			assert.isTrue(getReleasesStub.calledOnce);
+			assert.isTrue(getTagsStub.calledOnce);
 			assert.isTrue(getHtmlApiPathStub.calledOnce);
 			assert.isTrue(syncStub.calledOnce);
 			assert.isTrue(installDependenciesStub.calledOnce);

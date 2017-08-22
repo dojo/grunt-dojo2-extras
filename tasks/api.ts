@@ -1,7 +1,7 @@
 import IMultiTask = grunt.task.IMultiTask;
 import typedoc, { Options as TypedocOptions } from '../src/commands/typedoc';
 import wrapAsyncTask from './util/wrapAsyncTask';
-import GitHub, { Release } from '../src/util/GitHub';
+import GitHub, { Tag } from '../src/util/GitHub';
 import sync from '../src/commands/sync';
 import getReleases, {
 	createHtmlApiMissingFilter,
@@ -10,8 +10,8 @@ import getReleases, {
 	getHtmlApiPath,
 	getJsonApiPath,
 	latestFilter,
-	ReleaseFilter
-} from '../src/commands/getReleases';
+	TagFilter
+} from '../src/commands/getTags';
 import { join, resolve } from 'path';
 import installDependencies from '../src/commands/installDependencies';
 import { logger } from '../src/log';
@@ -28,7 +28,7 @@ interface BaseOptions {
 
 interface RemoteApiOptions extends BaseOptions {
 	cloneDirectory?: string;
-	filter?: ReleaseFilter | ReleaseFilter[] | string;
+	filter?: TagFilter | TagFilter[] | string;
 	repo: {
 		owner: string;
 		name: string;
@@ -51,7 +51,7 @@ function getGitHub(repo: RemoteApiOptions['repo']) {
 	}
 }
 
-async function getMissing(repo: GitHub, options: RemoteApiOptions): Promise<Release[]> {
+async function getMissing(repo: GitHub, options: RemoteApiOptions): Promise<Tag[]> {
 	const filters = getFilterOptions(options.filter);
 
 	if (options.format === 'json') {
@@ -64,7 +64,7 @@ async function getMissing(repo: GitHub, options: RemoteApiOptions): Promise<Rele
 	return getReleases(repo, filters);
 }
 
-function getFilterOptions(filter?: RemoteApiOptions['filter']): ReleaseFilter[] {
+function getFilterOptions(filter?: RemoteApiOptions['filter']): TagFilter[] {
 	if (!filter) {
 		return [];
 	}
