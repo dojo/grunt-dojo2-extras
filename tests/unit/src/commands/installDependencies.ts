@@ -5,7 +5,7 @@ import { stub, SinonStub } from 'sinon';
 
 let installDependencies: any;
 let joinStub: SinonStub;
-let execStub: SinonStub;
+let promiseExecStub: SinonStub;
 let existsSyncStub: SinonStub;
 
 registerSuite({
@@ -13,7 +13,7 @@ registerSuite({
 
 	before() {
 		joinStub = stub();
-		execStub = stub();
+		promiseExecStub = stub();
 		existsSyncStub = stub();
 	},
 
@@ -27,7 +27,7 @@ registerSuite({
 				join: joinStub
 			},
 			'../util/process': {
-				exec: execStub
+				promiseExec: promiseExecStub
 			},
 			'fs': {
 				existsSync: existsSyncStub
@@ -37,7 +37,7 @@ registerSuite({
 
 	afterEach() {
 		joinStub.reset();
-		execStub.reset();
+		promiseExecStub.reset();
 		existsSyncStub.reset();
 	},
 
@@ -51,8 +51,8 @@ registerSuite({
 
 				await assertInstallDependencies(dir);
 
-				assert.isTrue(execStub.calledTwice);
-				assert.strictEqual(execStub.secondCall.args[1].cwd, dir);
+				assert.isTrue(promiseExecStub.calledTwice);
+				assert.strictEqual(promiseExecStub.secondCall.args[1].cwd, dir);
 			},
 
 			async 'typings.json does not exist'() {
@@ -60,7 +60,7 @@ registerSuite({
 
 				await assertInstallDependencies(dir);
 
-				assert.isTrue(execStub.calledOnce);
+				assert.isTrue(promiseExecStub.calledOnce);
 			}
 		};
 
@@ -72,7 +72,7 @@ registerSuite({
 			assert.strictEqual(typingsJson, typingsJsonDir);
 			assert.isTrue(joinStub.calledOnce);
 			assert.strictEqual(joinStub.firstCall.args[0], dir);
-			assert.strictEqual(execStub.firstCall.args[1].cwd, dir);
+			assert.strictEqual(promiseExecStub.firstCall.args[1].cwd, dir);
 
 			return typingsJson;
 		}
