@@ -60,7 +60,7 @@ registerSuite({
 			},
 
 			'rejects'(this: any) {
-				const taskPromise = Promise.reject();
+				const taskPromise = Promise.reject(undefined);
 				const errbackAssert = () => {
 					assert.isTrue(loggerStub.error.notCalled);
 					assert.isTrue(doneStub.calledWithExactly(false));

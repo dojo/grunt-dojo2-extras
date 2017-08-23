@@ -77,7 +77,7 @@ registerSuite({
 			},
 
 			async 'Git checkout eventually rejects'() {
-				checkoutStub.returns(Promise.reject());
+				checkoutStub.returns(Promise.reject(undefined));
 				isInitializedStub.returns(true);
 
 				await assertSync();

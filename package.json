@@ -39,13 +39,13 @@
     "ts-node": "^3.0.2",
     "tslint": "^5.1.0",
     "tslint-sitepen": "^0.1.0",
-    "typescript": "^2.3.2"
+    "typescript": "^2.4.2"
   },
   "dependencies": {
-    "@dojo/core": "beta1",
-    "@dojo/has": "beta1",
-    "@dojo/interfaces": "beta1",
-    "@dojo/shim": "beta1",
+    "@dojo/core": "next",
+    "@dojo/has": "next",
+    "@dojo/interfaces": "next",
+    "@dojo/shim": "next",
     "@types/grunt": "^0.4.21",
     "@types/mkdirp": "^0.3.29",
     "@types/semver": "^5.3.31",
@@ -55,7 +55,7 @@
     "semver": "^5.3.0",
     "travis-ci": "^2.1.1",
     "tslib": "^1.6.1",
-    "typedoc": "devpaul/typedoc#latest",
+    "typedoc": "^0.8.0",
     "winston": "^2.3.1"
   }
 }

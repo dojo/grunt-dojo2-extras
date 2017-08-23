@@ -7,8 +7,8 @@ import initAuthorization from '../src/commands/initialize/initAuthorization';
 
 interface Options {
 	password?: string;
-	repoName?: string;
-	repoOwner?: string;
+	repo?: string;
+	owner?: string;
 	username?: string;
 }
 
