@@ -165,9 +165,11 @@
 										"isRest": true
 									},
 									"type": {
-										"type": "intrinsic",
-										"isArray": true,
-										"name": "string"
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
 									}
 								}
 							],
@@ -576,9 +578,11 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "intrinsic",
-										"isArray": true,
-										"name": "string"
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
 									}
 								},
 								{
@@ -1477,10 +1481,12 @@
 								"name": "Promise",
 								"typeArguments": [
 									{
-										"type": "reference",
-										"isArray": true,
-										"name": "Release",
-										"id": 1337
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "Release",
+											"id": 1337
+										}
 									}
 								]
 							}
@@ -2557,9 +2563,11 @@
 										"isRest": true
 									},
 									"type": {
-										"type": "intrinsic",
-										"isArray": true,
-										"name": "any"
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "any"
+										}
 									}
 								}
 							],
@@ -3031,18 +3039,20 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"type": {
-								"type": "union",
-								"isArray": true,
-								"types": [
-									{
-										"type": "intrinsic",
-										"name": "string"
-									},
-									{
-										"type": "intrinsic",
-										"name": "symbol"
-									}
-								]
+								"type": "array",
+								"elementType": {
+									"type": "union",
+									"types": [
+										{
+											"type": "intrinsic",
+											"name": "string"
+										},
+										{
+											"type": "intrinsic",
+											"name": "symbol"
+										}
+									]
+								}
 							},
 							"overwrites": {
 								"type": "reference",
@@ -3220,9 +3230,11 @@
 								}
 							],
 							"type": {
-								"type": "reference",
-								"isArray": true,
-								"name": "Function"
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Function"
+								}
 							},
 							"overwrites": {
 								"type": "reference",
@@ -6867,10 +6879,12 @@
 								"name": "Promise",
 								"typeArguments": [
 									{
-										"type": "reference",
-										"isArray": true,
-										"name": "EnvironmentVariable",
-										"id": 1492
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "EnvironmentVariable",
+											"id": 1492
+										}
 									}
 								]
 							}
@@ -9085,10 +9099,12 @@
 						}
 					],
 					"type": {
-						"type": "reference",
-						"isArray": true,
-						"name": "EnvironmentVariable",
-						"id": 1492
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"name": "EnvironmentVariable",
+							"id": 1492
+						}
 					}
 				}
 			],
@@ -9545,10 +9561,12 @@
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
-								"type": "reference",
-								"isArray": true,
-								"name": "Release",
-								"id": 1337
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Release",
+									"id": 1337
+								}
 							}
 						}
 					],
@@ -10149,9 +10167,11 @@
 										"isRest": true
 									},
 									"type": {
-										"type": "intrinsic",
-										"isArray": true,
-										"name": "any"
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "any"
+										}
 									}
 								}
 							],
@@ -10193,18 +10213,20 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"type": {
-								"type": "union",
-								"isArray": true,
-								"types": [
-									{
-										"type": "intrinsic",
-										"name": "string"
-									},
-									{
-										"type": "intrinsic",
-										"name": "symbol"
-									}
-								]
+								"type": "array",
+								"elementType": {
+									"type": "union",
+									"types": [
+										{
+											"type": "intrinsic",
+											"name": "string"
+										},
+										{
+											"type": "intrinsic",
+											"name": "symbol"
+										}
+									]
+								}
 							},
 							"inheritedFrom": {
 								"type": "reference",
@@ -10358,9 +10380,11 @@
 								}
 							],
 							"type": {
-								"type": "reference",
-								"isArray": true,
-								"name": "Function"
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Function"
+								}
 							},
 							"inheritedFrom": {
 								"type": "reference",
@@ -11213,14 +11237,11 @@
 				}
 			],
 			"type": {
-				"type": "reference",
-				"name": "Array",
-				"typeArguments": [
-					{
-						"type": "intrinsic",
-						"name": "string"
-					}
-				]
+				"type": "array",
+				"elementType": {
+					"type": "intrinsic",
+					"name": "string"
+				}
 			},
 			"defaultValue": " [ 'tests/integration/all' ]"
 		},
@@ -12259,10 +12280,12 @@
 								"text": "Release filters to apply to the release"
 							},
 							"type": {
-								"type": "reference",
-								"isArray": true,
-								"name": "ReleaseFilter",
-								"id": 1385
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "ReleaseFilter",
+									"id": 1385
+								}
 							},
 							"defaultValue": " []"
 						}
@@ -12272,10 +12295,12 @@
 						"name": "Promise",
 						"typeArguments": [
 							{
-								"type": "reference",
-								"isArray": true,
-								"name": "Release",
-								"id": 1337
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Release",
+									"id": 1337
+								}
 							}
 						]
 					}
@@ -12828,10 +12853,12 @@
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
-								"type": "reference",
-								"isArray": true,
-								"name": "Release",
-								"id": 1337
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Release",
+									"id": 1337
+								}
 							}
 						}
 					],
@@ -13072,9 +13099,11 @@
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
-								"type": "intrinsic",
-								"isArray": true,
-								"name": "string"
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
 							}
 						},
 						{
@@ -13429,9 +13458,11 @@
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
-								"type": "intrinsic",
-								"isArray": true,
-								"name": "string"
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
 							}
 						},
 						{
@@ -13883,35 +13914,32 @@
 						}
 					],
 					"type": {
-						"type": "reference",
-						"name": "Array",
-						"typeArguments": [
-							{
-								"type": "union",
-								"types": [
-									{
-										"type": "reflection",
-										"declaration": {
-											"id": 1557,
-											"name": "__type",
-											"kind": 65536,
-											"kindString": "Type literal",
-											"flags": {}
-										}
-									},
-									{
-										"type": "reflection",
-										"declaration": {
-											"id": 1558,
-											"name": "__type",
-											"kind": 65536,
-											"kindString": "Type literal",
-											"flags": {}
-										}
+						"type": "array",
+						"elementType": {
+							"type": "union",
+							"types": [
+								{
+									"type": "reflection",
+									"declaration": {
+										"id": 1557,
+										"name": "__type",
+										"kind": 65536,
+										"kindString": "Type literal",
+										"flags": {}
 									}
-								]
-							}
-						]
+								},
+								{
+									"type": "reflection",
+									"declaration": {
+										"id": 1558,
+										"name": "__type",
+										"kind": 65536,
+										"kindString": "Type literal",
+										"flags": {}
+									}
+								}
+							]
+						}
 					},
 					"defaultValue": " [\n\t\t{ name: 'assets', location: 'assets' },\n\t\t{ name: 'tslib', location: './node_modules/tslib', main: 'tslib.js' },\n\t\t{ name: 'tasks', location: './_build/tasks' },\n\t\t{ name: 'src', location: './_build/src' },\n\t\t{ name: 'tests', location: './_build/tests' }\n\t]"
 				}
