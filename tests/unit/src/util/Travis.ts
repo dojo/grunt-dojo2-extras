@@ -45,7 +45,7 @@ registerSuite({
 			const accessToken = 'access_token';
 			const post = requestStub.post;
 
-			post.returns(Promise.resolve({ json: () => Promise.resolve({ 'access_token': accessToken }) }));
+			post.returns(Promise.resolve({ json: () => Promise.resolve<{ access_token: string }>({ 'access_token': accessToken }) }));
 
 			const authenticate = await travis.authenticate(token);
 
@@ -102,7 +102,7 @@ registerSuite({
 				},
 
 				async 'authentication fails; eventually throws'() {
-					const auth = stub(travis, 'authenticate').returns(Promise.reject());
+					const auth = stub(travis, 'authenticate').returns(Promise.reject(undefined));
 					const deleteAuth = stub(travis, 'deleteAuthorization').returns(Promise.resolve());
 
 					return travis.createAuthorization(repo).then(
@@ -160,7 +160,7 @@ registerSuite({
 
 		async fetchRepository() {
 			requestStub.get.returns(Promise.resolve({
-				json: () => Promise.resolve({
+				json: () => Promise.resolve<{ repo: string }>({
 					repo: 'repo'
 				})
 			}));
@@ -191,7 +191,14 @@ registerSuite({
 	},
 
 	'Repository': (() => {
-		const envVarArr = [{
+		type EnvVar = {
+			id: string;
+			name: string;
+			value: string;
+			'public': boolean;
+			repository_id: number;
+		};
+		const envVarArr: EnvVar[] = [{
 			id: 'id',
 			name: 'name',
 			value: 'value',
@@ -219,7 +226,7 @@ registerSuite({
 
 			async listEnvironmentVariables() {
 				requestStub.get.returns(Promise.resolve({
-					json: () => Promise.resolve({
+					json: () => Promise.resolve<{ env_vars: Promise<EnvVar[]> }>({
 						'env_vars': Promise.resolve(envVarArr)
 					})
 				}));
