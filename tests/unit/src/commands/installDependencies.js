@@ -50,13 +50,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var sinon_1 = require("sinon");
     var installDependencies;
     var joinStub;
-    var execStub;
+    var promiseExecStub;
     var existsSyncStub;
     registerSuite({
         name: 'commands/installDependencies',
         before: function () {
             joinStub = sinon_1.stub();
-            execStub = sinon_1.stub();
+            promiseExecStub = sinon_1.stub();
             existsSyncStub = sinon_1.stub();
         },
         after: function () {
@@ -68,7 +68,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     join: joinStub
                 },
                 '../util/process': {
-                    exec: execStub
+                    promiseExec: promiseExecStub
                 },
                 'fs': {
                     existsSync: existsSyncStub
@@ -77,7 +77,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         },
         afterEach: function () {
             joinStub.reset();
-            execStub.reset();
+            promiseExecStub.reset();
             existsSyncStub.reset();
         },
         installDependencies: (function () {
@@ -93,8 +93,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                     return [4, assertInstallDependencies(dir)];
                                 case 1:
                                     _a.sent();
-                                    assert.isTrue(execStub.calledTwice);
-                                    assert.strictEqual(execStub.secondCall.args[1].cwd, dir);
+                                    assert.isTrue(promiseExecStub.calledTwice);
+                                    assert.strictEqual(promiseExecStub.secondCall.args[1].cwd, dir);
                                     return [2];
                             }
                         });
@@ -109,7 +109,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                     return [4, assertInstallDependencies(dir)];
                                 case 1:
                                     _a.sent();
-                                    assert.isTrue(execStub.calledOnce);
+                                    assert.isTrue(promiseExecStub.calledOnce);
                                     return [2];
                             }
                         });
@@ -129,7 +129,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 assert.strictEqual(typingsJson, typingsJsonDir);
                                 assert.isTrue(joinStub.calledOnce);
                                 assert.strictEqual(joinStub.firstCall.args[0], dir);
-                                assert.strictEqual(execStub.firstCall.args[1].cwd, dir);
+                                assert.strictEqual(promiseExecStub.firstCall.args[1].cwd, dir);
                                 return [2, typingsJson];
                         }
                     });

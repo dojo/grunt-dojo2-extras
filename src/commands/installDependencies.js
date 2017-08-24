@@ -56,11 +56,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     case 0:
                         log_1.logger.info('Installing dependencies');
                         typingsJson = path_1.join(dir, 'typings.json');
-                        return [4, process_1.exec('npm install', { silent: false, cwd: dir })];
+                        return [4, process_1.promiseExec('npm install', { silent: false, cwd: dir })];
                     case 1:
                         _a.sent();
                         if (!fs_1.existsSync(typingsJson)) return [3, 3];
-                        return [4, process_1.exec('typings install', { silent: false, cwd: dir })];
+                        return [4, process_1.promiseExec('typings install', { silent: false, cwd: dir })];
                     case 2:
                         _a.sent();
                         _a.label = 3;
