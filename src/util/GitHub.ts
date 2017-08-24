@@ -1,8 +1,9 @@
 import { githubAuth, hasGitCredentials } from './environment';
 import * as GitHubApi from 'github';
 import { AuthorizationCreateParams } from 'github';
+import '@dojo/shim/Promise';
 
-export interface Release {
+export interface Tag {
 	name: string;
 	commit: {
 		sha: string;
@@ -92,8 +93,8 @@ export default class GitHub {
 		});
 	}
 
-	async fetchReleases(): Promise<Release[]> {
-		const response = await this.api.repos.getReleases({
+	async fetchTags(): Promise<Tag[]> {
+		const response = await this.api.repos.getTags({
 			owner: this.owner,
 			repo: this.name
 		});

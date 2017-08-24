@@ -32,7 +32,7 @@ registerSuite({
 			repos = {
 				createKey: stub().returns({ data: 'createKey' }),
 				deleteKey: stub(),
-				getReleases: stub().returns({ data: 'getReleases' })
+				getTags: stub().returns({ data: 'getTags' })
 			};
 		};
 
@@ -188,12 +188,12 @@ registerSuite({
 		}
 	})(),
 
-	async fetchReleases() {
-		const fetchReleases = await github.fetchReleases();
+	async fetchTags() {
+		const fetchTags = await github.fetchTags();
 		const api = GitHubApiSpy.lastCall.returnValue;
 
-		assert.strictEqual(fetchReleases, 'getReleases');
-		assert.isTrue(api.repos.getReleases.calledOnce);
+		assert.strictEqual(fetchTags, 'getTags');
+		assert.isTrue(api.repos.getTags.calledOnce);
 	},
 
 	findAuthorization: (() => {

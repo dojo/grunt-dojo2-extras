@@ -2,8 +2,8 @@ import * as registerSuite from 'intern!object';
 import * as assert from 'intern/chai!assert';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
-import { getHtmlApiPath, getJsonApiPath } from '../../../../src/commands/getReleases';
-import { Release } from '../../../../src/util/GitHub';
+import { getHtmlApiPath, getJsonApiPath } from '../../../../src/commands/getTags';
+import { Tag } from '../../../../src/util/GitHub';
 
 let module: any;
 let existsSyncStub: SinonStub;
@@ -17,7 +17,7 @@ function assertExistsFilter(builder: any, expected: boolean, filename: string) {
 }
 
 registerSuite({
-	name: 'getReleases',
+	name: 'getTags',
 
 	before() {
 		existsSyncStub = stub();
@@ -28,7 +28,7 @@ registerSuite({
 	},
 
 	beforeEach() {
-		module = loadModule('src/commands/getReleases', {
+		module = loadModule('src/commands/getTags', {
 			fs: {
 				existsSync: existsSyncStub
 			}
@@ -93,15 +93,15 @@ registerSuite({
 		}
 	},
 
-	getReleases: (() => {
-		let getReleases: any;
+	getTags: (() => {
+		let getTags: any;
 		let mockGitHub: any;
 
 		return {
 			before() {
-				getReleases = module.default;
+				getTags = module.default;
 				mockGitHub = {
-					fetchReleases() {
+					fetchTags() {
 						return Promise.resolve([
 							{ name: 'one' },
 							{ name: '2.0.0' },
@@ -113,24 +113,24 @@ registerSuite({
 			},
 
 			async 'removes version not compatible with semver'() {
-				const releases = await getReleases(mockGitHub);
+				const tags = await getTags(mockGitHub);
 				const expected = [
 					{ name: '1.6.5' },
 					{ name: '2.0.0' },
 					{ name: '3.0.0-beta' }
 				];
-				assert.deepEqual(releases, expected);
+				assert.deepEqual(tags, expected);
 			},
 
 			async 'applies filters'() {
-				const filter = (release: Release) => {
-					return release.name === '2.0.0';
+				const filter = (tag: Tag) => {
+					return tag.name === '2.0.0';
 				};
-				const releases = await getReleases(mockGitHub, [ filter ]);
+				const tags = await getTags(mockGitHub, [ filter ]);
 				const expected = [
 					{ name: '2.0.0' }
 				];
-				assert.deepEqual(releases, expected);
+				assert.deepEqual(tags, expected);
 			}
 		};
 	})()
