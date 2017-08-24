@@ -135,7 +135,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
-                                    checkoutStub.returns(Promise.reject());
+                                    checkoutStub.returns(Promise.reject(undefined));
                                     isInitializedStub.returns(true);
                                     return [4, assertSync()];
                                 case 1:

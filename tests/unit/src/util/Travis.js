@@ -147,7 +147,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         return __awaiter(this, void 0, void 0, function () {
                             var auth, deleteAuth;
                             return __generator(this, function (_a) {
-                                auth = sinon_1.stub(travis, 'authenticate').returns(Promise.reject());
+                                auth = sinon_1.stub(travis, 'authenticate').returns(Promise.reject(undefined));
                                 deleteAuth = sinon_1.stub(travis, 'deleteAuthorization').returns(Promise.resolve());
                                 return [2, travis.createAuthorization(repo).then(function () {
                                         auth.restore();

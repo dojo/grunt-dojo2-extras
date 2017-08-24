@@ -51,7 +51,7 @@
                     return runWrapAsyncTaskTest.call(this, taskPromise, callbackAssert);
                 },
                 'rejects': function () {
-                    var taskPromise = Promise.reject();
+                    var taskPromise = Promise.reject(undefined);
                     var errbackAssert = function () {
                         assert.isTrue(loggerStub.error.notCalled);
                         assert.isTrue(doneStub.calledWithExactly(false));
