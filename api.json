@@ -1105,7 +1105,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 35,
+							"line": 36,
 							"character": 24
 						}
 					]
@@ -1121,7 +1121,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 33,
+							"line": 34,
 							"character": 14
 						}
 					],
@@ -1142,7 +1142,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 35,
+							"line": 36,
 							"character": 15
 						}
 					],
@@ -1163,7 +1163,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 29,
+							"line": 30,
 							"character": 5
 						}
 					],
@@ -1183,7 +1183,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 31,
+							"line": 32,
 							"character": 6
 						}
 					],
@@ -1216,7 +1216,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 56,
+							"line": 57,
 							"character": 8
 						}
 					]
@@ -1245,7 +1245,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 61,
+							"line": 62,
 							"character": 8
 						}
 					]
@@ -1294,7 +1294,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 65,
+							"line": 66,
 							"character": 26
 						}
 					]
@@ -1342,7 +1342,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 70,
+							"line": 71,
 							"character": 16
 						}
 					]
@@ -1399,7 +1399,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 81,
+							"line": 82,
 							"character": 26
 						}
 					]
@@ -1456,14 +1456,14 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 87,
+							"line": 88,
 							"character": 16
 						}
 					]
 				},
 				{
 					"id": 1371,
-					"name": "fetchReleases",
+					"name": "fetchTags",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {
@@ -1472,7 +1472,7 @@
 					"signatures": [
 						{
 							"id": 1372,
-							"name": "fetchReleases",
+							"name": "fetchTags",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
@@ -1484,7 +1484,7 @@
 										"type": "array",
 										"elementType": {
 											"type": "reference",
-											"name": "Release",
+											"name": "Tag",
 											"id": 1337
 										}
 									}
@@ -1495,8 +1495,8 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 95,
-							"character": 20
+							"line": 96,
+							"character": 16
 						}
 					]
 				},
@@ -1550,7 +1550,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 108,
+							"line": 109,
 							"character": 24
 						}
 					]
@@ -1579,7 +1579,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 153,
+							"line": 154,
 							"character": 12
 						}
 					]
@@ -1608,7 +1608,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 157,
+							"line": 158,
 							"character": 10
 						}
 					]
@@ -1641,7 +1641,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 141,
+							"line": 142,
 							"character": 19
 						}
 					]
@@ -1670,7 +1670,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 161,
+							"line": 162,
 							"character": 9
 						}
 					]
@@ -1722,7 +1722,7 @@
 			"sources": [
 				{
 					"fileName": "src/util/GitHub.ts",
-					"line": 28,
+					"line": 29,
 					"character": 27
 				}
 			]
@@ -7424,7 +7424,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 17,
+							"line": 18,
 							"character": 12
 						}
 					],
@@ -7444,7 +7444,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 14,
+							"line": 15,
 							"character": 3
 						}
 					],
@@ -7464,7 +7464,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 16,
+							"line": 17,
 							"character": 5
 						}
 					],
@@ -7484,7 +7484,7 @@
 					"sources": [
 						{
 							"fileName": "src/util/GitHub.ts",
-							"line": 15,
+							"line": 16,
 							"character": 6
 						}
 					],
@@ -7509,7 +7509,7 @@
 			"sources": [
 				{
 					"fileName": "src/util/GitHub.ts",
-					"line": 13,
+					"line": 14,
 					"character": 29
 				}
 			]
@@ -9435,156 +9435,6 @@
 			}
 		},
 		{
-			"id": 1337,
-			"name": "Release",
-			"kind": 256,
-			"kindString": "Interface",
-			"flags": {
-				"isExported": true
-			},
-			"children": [
-				{
-					"id": 1339,
-					"name": "commit",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isExported": true
-					},
-					"sources": [
-						{
-							"fileName": "src/util/GitHub.ts",
-							"line": 7,
-							"character": 7
-						}
-					],
-					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 1340,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "src/util/GitHub.ts",
-									"line": 7,
-									"character": 8
-								}
-							]
-						}
-					}
-				},
-				{
-					"id": 1338,
-					"name": "name",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isExported": true
-					},
-					"sources": [
-						{
-							"fileName": "src/util/GitHub.ts",
-							"line": 6,
-							"character": 5
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "string"
-					}
-				}
-			],
-			"groups": [
-				{
-					"title": "Properties",
-					"kind": 1024,
-					"children": [
-						1339,
-						1338
-					]
-				}
-			],
-			"sources": [
-				{
-					"fileName": "src/util/GitHub.ts",
-					"line": 5,
-					"character": 24
-				}
-			]
-		},
-		{
-			"id": 1385,
-			"name": "ReleaseFilter",
-			"kind": 256,
-			"kindString": "Interface",
-			"flags": {
-				"isExported": true
-			},
-			"signatures": [
-				{
-					"id": 1386,
-					"name": "__call",
-					"kind": 4096,
-					"kindString": "Call signature",
-					"flags": {},
-					"parameters": [
-						{
-							"id": 1387,
-							"name": "release",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {},
-							"type": {
-								"type": "reference",
-								"name": "Release",
-								"id": 1337
-							}
-						},
-						{
-							"id": 1388,
-							"name": "index",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {},
-							"type": {
-								"type": "intrinsic",
-								"name": "number"
-							}
-						},
-						{
-							"id": 1389,
-							"name": "array",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {},
-							"type": {
-								"type": "array",
-								"elementType": {
-									"type": "reference",
-									"name": "Release",
-									"id": 1337
-								}
-							}
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "boolean"
-					}
-				}
-			],
-			"sources": [
-				{
-					"fileName": "src/commands/getReleases.ts",
-					"line": 6,
-					"character": 30
-				}
-			]
-		},
-		{
 			"id": 1488,
 			"name": "RepositoryData",
 			"kind": 256,
@@ -10909,6 +10759,156 @@
 			]
 		},
 		{
+			"id": 1337,
+			"name": "Tag",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 1339,
+					"name": "commit",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/util/GitHub.ts",
+							"line": 8,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 1340,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "src/util/GitHub.ts",
+									"line": 8,
+									"character": 8
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 1338,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/util/GitHub.ts",
+							"line": 7,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						1339,
+						1338
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/util/GitHub.ts",
+					"line": 6,
+					"character": 20
+				}
+			]
+		},
+		{
+			"id": 1385,
+			"name": "TagFilter",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 1386,
+					"name": "__call",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 1387,
+							"name": "tag",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Tag",
+								"id": 1337
+							}
+						},
+						{
+							"id": 1388,
+							"name": "index",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 1389,
+							"name": "array",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Tag",
+									"id": 1337
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/commands/getTags.ts",
+					"line": 6,
+					"character": 26
+				}
+			]
+		},
+		{
 			"id": 1384,
 			"name": "OAuthScope",
 			"kind": 4194304,
@@ -10922,7 +10922,7 @@
 			"sources": [
 				{
 					"fileName": "src/util/GitHub.ts",
-					"line": 23,
+					"line": 24,
 					"character": 22
 				}
 			],
@@ -11437,14 +11437,14 @@
 					],
 					"type": {
 						"type": "reference",
-						"name": "ReleaseFilter",
+						"name": "TagFilter",
 						"id": 1385
 					}
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/commands/getReleases.ts",
+					"fileName": "src/commands/getTags.ts",
 					"line": 29,
 					"character": 42
 				}
@@ -11500,14 +11500,14 @@
 					],
 					"type": {
 						"type": "reference",
-						"name": "ReleaseFilter",
+						"name": "TagFilter",
 						"id": 1385
 					}
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/commands/getReleases.ts",
+					"fileName": "src/commands/getTags.ts",
 					"line": 40,
 					"character": 42
 				}
@@ -11591,7 +11591,7 @@
 					"kindString": "Call signature",
 					"flags": {},
 					"comment": {
-						"returns": "a filter to check if the release satisfies the semver\n"
+						"returns": "a filter to check if the tag satisfies the semver\n"
 					},
 					"parameters": [
 						{
@@ -11611,14 +11611,14 @@
 					],
 					"type": {
 						"type": "reference",
-						"name": "ReleaseFilter",
+						"name": "TagFilter",
 						"id": 1385
 					}
 				}
 			],
 			"sources": [
 				{
-					"fileName": "src/commands/getReleases.ts",
+					"fileName": "src/commands/getTags.ts",
 					"line": 59,
 					"character": 35
 				}
@@ -12162,7 +12162,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/commands/getReleases.ts",
+					"fileName": "src/commands/getTags.ts",
 					"line": 13,
 					"character": 30
 				}
@@ -12229,7 +12229,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/commands/getReleases.ts",
+					"fileName": "src/commands/getTags.ts",
 					"line": 20,
 					"character": 30
 				}
@@ -12237,7 +12237,7 @@
 		},
 		{
 			"id": 1416,
-			"name": "getReleases",
+			"name": "getTags",
 			"kind": 64,
 			"kindString": "Function",
 			"flags": {
@@ -12246,13 +12246,13 @@
 			"signatures": [
 				{
 					"id": 1417,
-					"name": "getReleases",
+					"name": "getTags",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"comment": {
-						"shortText": "Get a list of GitHub releases that pass the supplied filters",
-						"returns": "a list of releases\n"
+						"shortText": "Get a list of GitHub tags that pass the supplied filters",
+						"returns": "a list of tags\n"
 					},
 					"parameters": [
 						{
@@ -12277,13 +12277,13 @@
 							"kindString": "Parameter",
 							"flags": {},
 							"comment": {
-								"text": "Release filters to apply to the release"
+								"text": "Tag filters to apply to the tag"
 							},
 							"type": {
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"name": "ReleaseFilter",
+									"name": "TagFilter",
 									"id": 1385
 								}
 							},
@@ -12298,7 +12298,7 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"name": "Release",
+									"name": "Tag",
 									"id": 1337
 								}
 							}
@@ -12308,9 +12308,9 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/commands/getReleases.ts",
+					"fileName": "src/commands/getTags.ts",
 					"line": 72,
-					"character": 41
+					"character": 37
 				}
 			]
 		},
@@ -12817,18 +12817,18 @@
 					"flags": {},
 					"comment": {
 						"shortText": "A filters only the latest",
-						"returns": "if the release is the latest\n"
+						"returns": "if the tag is the latest\n"
 					},
 					"parameters": [
 						{
 							"id": 1410,
-							"name": "_release",
+							"name": "_tag",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"name": "Release",
+								"name": "Tag",
 								"id": 1337
 							}
 						},
@@ -12839,7 +12839,7 @@
 							"kindString": "Parameter",
 							"flags": {},
 							"comment": {
-								"text": "the index of the release"
+								"text": "the index of the tag"
 							},
 							"type": {
 								"type": "intrinsic",
@@ -12856,7 +12856,7 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"name": "Release",
+									"name": "Tag",
 									"id": 1337
 								}
 							}
@@ -12870,7 +12870,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/commands/getReleases.ts",
+					"fileName": "src/commands/getTags.ts",
 					"line": 51,
 					"character": 28
 				}
@@ -14046,12 +14046,12 @@
 				1314,
 				1498,
 				1263,
-				1337,
-				1385,
 				1488,
 				1548,
 				1118,
-				1149
+				1149,
+				1337,
+				1385
 			]
 		},
 		{
