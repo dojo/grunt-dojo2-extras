@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../src/commands/typedoc", "./util/wrapAsyncTask", "../src/util/GitHub", "../src/commands/sync", "../src/commands/getReleases", "path", "../src/commands/installDependencies", "../src/log", "../src/util/file", "@dojo/shim/Promise"], factory);
+        define(["require", "exports", "../src/commands/typedoc", "./util/wrapAsyncTask", "../src/util/GitHub", "../src/commands/sync", "../src/commands/getTags", "path", "../src/commands/installDependencies", "../src/log", "../src/util/file", "@dojo/shim/Promise"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -47,7 +47,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var wrapAsyncTask_1 = require("./util/wrapAsyncTask");
     var GitHub_1 = require("../src/util/GitHub");
     var sync_1 = require("../src/commands/sync");
-    var getReleases_1 = require("../src/commands/getReleases");
+    var getTags_1 = require("../src/commands/getTags");
     var path_1 = require("path");
     var installDependencies_1 = require("../src/commands/installDependencies");
     var log_1 = require("../src/log");
@@ -71,12 +71,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             return __generator(this, function (_a) {
                 filters = getFilterOptions(options.filter);
                 if (options.format === 'json') {
-                    filters.push(getReleases_1.createJsonApiMissingFilter(repo.name, options.dest));
+                    filters.push(getTags_1.createJsonApiMissingFilter(repo.name, options.dest));
                 }
                 else {
-                    filters.push(getReleases_1.createHtmlApiMissingFilter(repo.name, options.dest));
+                    filters.push(getTags_1.createHtmlApiMissingFilter(repo.name, options.dest));
                 }
-                return [2, getReleases_1.default(repo, filters)];
+                return [2, getTags_1.default(repo, filters)];
             });
         });
     }
@@ -85,10 +85,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             return [];
         }
         if (filter === 'latest') {
-            return [getReleases_1.latestFilter];
+            return [getTags_1.latestFilter];
         }
         if (typeof filter === 'string') {
-            return [getReleases_1.createVersionFilter(filter)];
+            return [getTags_1.createVersionFilter(filter)];
         }
         if (Array.isArray(filter)) {
             return filter;
@@ -120,7 +120,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             return [4, getMissing(repo, options)];
                         case 1:
                             missing = _a.sent();
-                            pathTemplate = format === 'json' ? getReleases_1.getJsonApiPath : getReleases_1.getHtmlApiPath;
+                            pathTemplate = format === 'json' ? getTags_1.getJsonApiPath : getTags_1.getHtmlApiPath;
                             if (missing.length === 0) {
                                 if (options.filter) {
                                     log_1.logger.info("No APIs match the filter: \"" + options.filter);

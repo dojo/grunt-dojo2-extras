@@ -39,13 +39,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./environment", "github"], factory);
+        define(["require", "exports", "./environment", "github", "@dojo/shim/Promise"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var environment_1 = require("./environment");
     var GitHubApi = require("github");
+    require("@dojo/shim/Promise");
     var GitHub = (function () {
         function GitHub(owner, name) {
             this.authed = false;
@@ -131,12 +132,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 });
             });
         };
-        GitHub.prototype.fetchReleases = function () {
+        GitHub.prototype.fetchTags = function () {
             return __awaiter(this, void 0, void 0, function () {
                 var response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4, this.api.repos.getReleases({
+                        case 0: return [4, this.api.repos.getTags({
                                 owner: this.owner,
                                 repo: this.name
                             })];

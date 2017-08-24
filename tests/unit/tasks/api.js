@@ -19,7 +19,7 @@
     var registerMultiTaskStub;
     var typedocStub = sinon_1.stub();
     var syncStub = sinon_1.stub();
-    var getReleasesStub = sinon_1.stub();
+    var getTagsStub = sinon_1.stub();
     var createHtmlApiMissingFilterStub = sinon_1.stub();
     var createJsonApiMissingFilterStub = sinon_1.stub();
     var createVersionFilterStub = sinon_1.stub();
@@ -49,8 +49,8 @@
                 './util/wrapAsyncTask': { default: wrapAsyncTaskStub },
                 '../src/util/GitHub': { default: GitHubSpy },
                 '../src/commands/sync': { default: syncStub },
-                '../src/commands/getReleases': {
-                    default: getReleasesStub,
+                '../src/commands/getTags': {
+                    default: getTagsStub,
                     createHtmlApiMissingFilter: createHtmlApiMissingFilterStub,
                     createJsonApiMissingFilter: createJsonApiMissingFilterStub,
                     createVersionFilter: createVersionFilterStub,
@@ -74,7 +74,7 @@
             typedocStub.reset();
             GitHubSpy.reset();
             syncStub.reset();
-            getReleasesStub.reset();
+            getTagsStub.reset();
             createHtmlApiMissingFilterStub.reset();
             createJsonApiMissingFilterStub.reset();
             createVersionFilterStub.reset();
@@ -90,7 +90,7 @@
             registerMultiTaskStub.restore();
         },
         'api task has remote options including html format and string repo; no missing filters, no APIs match; eventually resolves': function () {
-            getReleasesStub.returns([]);
+            getTagsStub.returns([]);
             optionsStub.returns({
                 src: 'src',
                 dest: 'dest',
@@ -110,7 +110,7 @@
                 assert.isTrue(makeTempDirectoryStub.notCalled);
                 assert.isTrue(createVersionFilterStub.calledOnce);
                 assert.isTrue(createHtmlApiMissingFilterStub.calledOnce);
-                assert.isTrue(getReleasesStub.calledOnce);
+                assert.isTrue(getTagsStub.calledOnce);
                 assert.isTrue(getHtmlApiPathStub.notCalled);
             });
             api(grunt);
@@ -118,7 +118,7 @@
             assert.isTrue(registerMultiTaskStub.calledOnce);
         },
         'api task has remote options including json format and object repo; no filters, all APIs up to date; eventually resolves': function () {
-            getReleasesStub.returns([]);
+            getTagsStub.returns([]);
             optionsStub.returns({
                 src: 'src',
                 dest: 'dest',
@@ -136,7 +136,7 @@
                 assert.isTrue(makeTempDirectoryStub.calledOnce);
                 assert.isTrue(createVersionFilterStub.notCalled);
                 assert.isTrue(createJsonApiMissingFilterStub.calledOnce);
-                assert.isTrue(getReleasesStub.calledOnce);
+                assert.isTrue(getTagsStub.calledOnce);
                 assert.isTrue(getJsonApiPathStub.notCalled);
             });
             api(grunt);
@@ -144,7 +144,7 @@
             assert.isTrue(registerMultiTaskStub.calledOnce);
         },
         'api task has remote options including json format and object repo; latest filters, all APIs up to date; eventually resolves': function () {
-            getReleasesStub.returns([{ name: 'name' }]);
+            getTagsStub.returns([{ name: 'name' }]);
             optionsStub.returns({
                 src: 'src',
                 dest: 'dest',
@@ -163,7 +163,7 @@
                 assert.isTrue(makeTempDirectoryStub.calledOnce);
                 assert.isTrue(createVersionFilterStub.notCalled);
                 assert.isTrue(createJsonApiMissingFilterStub.calledOnce);
-                assert.isTrue(getReleasesStub.calledOnce);
+                assert.isTrue(getTagsStub.calledOnce);
                 assert.isTrue(getJsonApiPathStub.calledOnce);
                 assert.isTrue(syncStub.calledOnce);
                 assert.isTrue(installDependenciesStub.notCalled);
@@ -174,7 +174,7 @@
             assert.isTrue(registerMultiTaskStub.calledOnce);
         },
         'api task has remote options including filter object; runs installDependencies; eventually resolves': function () {
-            getReleasesStub.returns([{ name: 'name' }]);
+            getTagsStub.returns([{ name: 'name' }]);
             optionsStub.returns({
                 src: 'src',
                 dest: 'dest',
@@ -193,7 +193,7 @@
                 assert.isTrue(makeTempDirectoryStub.calledOnce);
                 assert.isTrue(createVersionFilterStub.notCalled);
                 assert.isTrue(createHtmlApiMissingFilterStub.calledOnce);
-                assert.isTrue(getReleasesStub.calledOnce);
+                assert.isTrue(getTagsStub.calledOnce);
                 assert.isTrue(getHtmlApiPathStub.calledOnce);
                 assert.isTrue(syncStub.calledOnce);
                 assert.isTrue(installDependenciesStub.calledOnce);
@@ -204,7 +204,7 @@
             assert.isTrue(registerMultiTaskStub.calledOnce);
         },
         'api task has remote options; runs installDependencies; eventually resolves': function () {
-            getReleasesStub.returns([{ name: 'name' }]);
+            getTagsStub.returns([{ name: 'name' }]);
             optionsStub.returns({
                 src: 'src',
                 dest: 'dest',
@@ -223,7 +223,7 @@
                 assert.isTrue(makeTempDirectoryStub.calledOnce);
                 assert.isTrue(createVersionFilterStub.notCalled);
                 assert.isTrue(createHtmlApiMissingFilterStub.calledOnce);
-                assert.isTrue(getReleasesStub.calledOnce);
+                assert.isTrue(getTagsStub.calledOnce);
                 assert.isTrue(getHtmlApiPathStub.calledOnce);
                 assert.isTrue(syncStub.calledOnce);
                 assert.isTrue(installDependenciesStub.calledOnce);

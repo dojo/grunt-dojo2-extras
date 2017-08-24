@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon", "../../../../src/commands/getReleases"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon", "../../../../src/commands/getTags"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var assert = require("intern/chai!assert");
     var loadModule_1 = require("../../../_support/loadModule");
     var sinon_1 = require("sinon");
-    var getReleases_1 = require("../../../../src/commands/getReleases");
+    var getTags_1 = require("../../../../src/commands/getTags");
     var module;
     var existsSyncStub;
     function assertExistsFilter(builder, expected, filename) {
@@ -59,7 +59,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         assert.strictEqual(existsSyncStub.firstCall.args[0], filename);
     }
     registerSuite({
-        name: 'getReleases',
+        name: 'getTags',
         before: function () {
             existsSyncStub = sinon_1.stub();
         },
@@ -67,7 +67,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             loadModule_1.cleanupModuleMocks();
         },
         beforeEach: function () {
-            module = loadModule_1.default('src/commands/getReleases', {
+            module = loadModule_1.default('src/commands/getTags', {
                 fs: {
                     existsSync: existsSyncStub
                 }
@@ -77,10 +77,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             existsSyncStub.reset();
         },
         getHtmlApiPath: function () {
-            assert.strictEqual(getReleases_1.getHtmlApiPath('base', 'project', 'version'), 'base/project/version');
+            assert.strictEqual(getTags_1.getHtmlApiPath('base', 'project', 'version'), 'base/project/version');
         },
         getJsonApiPath: function () {
-            assert.strictEqual(getReleases_1.getJsonApiPath('base', 'project', 'version'), 'base/project-version.json');
+            assert.strictEqual(getTags_1.getJsonApiPath('base', 'project', 'version'), 'base/project-version.json');
         },
         filters: {
             createHtmlApiMissingFilter: {
@@ -121,14 +121,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 }
             }
         },
-        getReleases: (function () {
-            var getReleases;
+        getTags: (function () {
+            var getTags;
             var mockGitHub;
             return {
                 before: function () {
-                    getReleases = module.default;
+                    getTags = module.default;
                     mockGitHub = {
-                        fetchReleases: function () {
+                        fetchTags: function () {
                             return Promise.resolve([
                                 { name: 'one' },
                                 { name: '2.0.0' },
@@ -140,18 +140,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 },
                 'removes version not compatible with semver': function () {
                     return __awaiter(this, void 0, void 0, function () {
-                        var releases, expected;
+                        var tags, expected;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4, getReleases(mockGitHub)];
+                                case 0: return [4, getTags(mockGitHub)];
                                 case 1:
-                                    releases = _a.sent();
+                                    tags = _a.sent();
                                     expected = [
                                         { name: '1.6.5' },
                                         { name: '2.0.0' },
                                         { name: '3.0.0-beta' }
                                     ];
-                                    assert.deepEqual(releases, expected);
+                                    assert.deepEqual(tags, expected);
                                     return [2];
                             }
                         });
@@ -159,20 +159,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 },
                 'applies filters': function () {
                     return __awaiter(this, void 0, void 0, function () {
-                        var filter, releases, expected;
+                        var filter, tags, expected;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
-                                    filter = function (release) {
-                                        return release.name === '2.0.0';
+                                    filter = function (tag) {
+                                        return tag.name === '2.0.0';
                                     };
-                                    return [4, getReleases(mockGitHub, [filter])];
+                                    return [4, getTags(mockGitHub, [filter])];
                                 case 1:
-                                    releases = _a.sent();
+                                    tags = _a.sent();
                                     expected = [
                                         { name: '2.0.0' }
                                     ];
-                                    assert.deepEqual(releases, expected);
+                                    assert.deepEqual(tags, expected);
                                     return [2];
                             }
                         });
@@ -182,4 +182,4 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         })()
     });
 });
-//# sourceMappingURL=getReleases.js.map
+//# sourceMappingURL=getTags.js.map

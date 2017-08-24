@@ -1,6 +1,7 @@
 import * as GitHubApi from 'github';
 import { AuthorizationCreateParams } from 'github';
-export interface Release {
+import '@dojo/shim/Promise';
+export interface Tag {
     name: string;
     commit: {
         sha: string;
@@ -26,7 +27,7 @@ export default class GitHub {
     createKey(key: string): Promise<any>;
     deleteAuthorization(id: string | number): Promise<any>;
     deleteKey(id: string | number): Promise<any>;
-    fetchReleases(): Promise<Release[]>;
+    fetchTags(): Promise<Tag[]>;
     findAuthorization(params: AuthorizationCreateParams): Promise<AuthResponse>;
     isApiAuthenticated(): boolean;
     getHttpsUrl(): string;

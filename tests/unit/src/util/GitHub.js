@@ -71,7 +71,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     this.repos = {
                         createKey: sinon_1.stub().returns({ data: 'createKey' }),
                         deleteKey: sinon_1.stub(),
-                        getReleases: sinon_1.stub().returns({ data: 'getReleases' })
+                        getTags: sinon_1.stub().returns({ data: 'getTags' })
                     };
                 }
                 Object.defineProperty(class_1.prototype, "auth", {
@@ -273,17 +273,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 });
             }
         })(),
-        fetchReleases: function () {
+        fetchTags: function () {
             return __awaiter(this, void 0, void 0, function () {
-                var fetchReleases, api;
+                var fetchTags, api;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4, github.fetchReleases()];
+                        case 0: return [4, github.fetchTags()];
                         case 1:
-                            fetchReleases = _a.sent();
+                            fetchTags = _a.sent();
                             api = GitHubApiSpy.lastCall.returnValue;
-                            assert.strictEqual(fetchReleases, 'getReleases');
-                            assert.isTrue(api.repos.getReleases.calledOnce);
+                            assert.strictEqual(fetchTags, 'getTags');
+                            assert.isTrue(api.repos.getTags.calledOnce);
                             return [2];
                     }
                 });
