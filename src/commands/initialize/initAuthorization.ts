@@ -47,10 +47,10 @@ export default async function initAuthorization(repo: GitHub, travis: Travis = n
 				fingerprint: repo.toString()
 			});
 
-			const tokenStr = JSON.stringify({
+			const tokenStr = `'${JSON.stringify({
 				type: 'oauth',
 				token: appAuth.token
-			});
+			})}'`;
 			await travisRepo.setEnvironmentVariables({ name: env.githubAuthName, value: tokenStr, isPublic: false });
 		}
 	}
