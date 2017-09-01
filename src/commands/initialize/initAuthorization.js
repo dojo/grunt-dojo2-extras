@@ -108,10 +108,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                             })];
                     case 6:
                         appAuth = _a.sent();
-                        tokenStr = JSON.stringify({
+                        tokenStr = "'" + JSON.stringify({
                             type: 'oauth',
                             token: appAuth.token
-                        });
+                        }) + "'";
                         return [4, travisRepo.setEnvironmentVariables({ name: env.githubAuthName, value: tokenStr, isPublic: false })];
                     case 7:
                         _a.sent();
