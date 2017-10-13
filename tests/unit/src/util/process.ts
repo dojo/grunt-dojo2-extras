@@ -3,12 +3,12 @@ import * as assert from 'intern/chai!assert';
 import { stub, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import * as processUtil from 'src/util/process';
-import { LogStream } from 'src/log';
 import { throwWithError } from '../../../_support/util';
 
 let module: any;
 let execStub: SinonStub;
 let spawnStub: SinonStub;
+let LogStream: any;
 
 registerSuite({
 	name: 'util/process',
@@ -29,6 +29,8 @@ registerSuite({
 				spawn: spawnStub
 			}
 		});
+		const loader = (require as any).nodeRequire || require;
+		LogStream = loader((require as any).toUrl('src/log')).LogStream;
 	},
 
 	afterEach() {
