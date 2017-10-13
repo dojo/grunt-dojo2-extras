@@ -1,5 +1,6 @@
 import * as registerSuite from 'intern!object';
 import * as assert from 'intern/chai!assert';
+import * as path from 'path';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
 import { getHtmlApiPath, getJsonApiPath } from '../../../../src/commands/getTags';
@@ -40,35 +41,35 @@ registerSuite({
 	},
 
 	getHtmlApiPath() {
-		assert.strictEqual(getHtmlApiPath('base', 'project', 'version'), 'base/project/version');
+		assert.strictEqual(getHtmlApiPath('base', 'project', 'version'), path.join('base', 'project', 'version'));
 	},
 
 	getJsonApiPath() {
-		assert.strictEqual(getJsonApiPath('base', 'project', 'version'), 'base/project-version.json');
+		assert.strictEqual(getJsonApiPath('base', 'project', 'version'), path.join('base', 'project-version.json'));
 	},
 
 	filters: {
 		createHtmlApiMissingFilter: {
 			'exists; returns false'() {
 				const { createHtmlApiMissingFilter } = module;
-				assertExistsFilter(createHtmlApiMissingFilter, true, 'directory/project/version');
+				assertExistsFilter(createHtmlApiMissingFilter, true, path.join('directory', 'project', 'version'));
 			},
 
 			'does not exist; returns true'() {
 				const { createHtmlApiMissingFilter } = module;
-				assertExistsFilter(createHtmlApiMissingFilter, false, 'directory/project/version');
+				assertExistsFilter(createHtmlApiMissingFilter, false, path.join('directory', 'project', 'version'));
 			}
 		},
 
 		createJsonApiMissingFilter: {
 			'exists; returns false'() {
 				const { createJsonApiMissingFilter } = module;
-				assertExistsFilter(createJsonApiMissingFilter, true, 'directory/project-version.json');
+				assertExistsFilter(createJsonApiMissingFilter, true, path.join('directory', 'project-version.json'));
 			},
 
 			'does not exist; returns true'() {
 				const { createJsonApiMissingFilter } = module;
-				assertExistsFilter(createJsonApiMissingFilter, false, 'directory/project-version.json');
+				assertExistsFilter(createJsonApiMissingFilter, false, path.join('directory', 'project-version.json'));
 			}
 		},
 
