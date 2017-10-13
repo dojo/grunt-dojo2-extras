@@ -39,13 +39,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "../../../_support/loadModule", "sinon", "../../../../src/commands/getTags"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "path", "../../../_support/loadModule", "sinon", "../../../../src/commands/getTags"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var registerSuite = require("intern!object");
     var assert = require("intern/chai!assert");
+    var path = require("path");
     var loadModule_1 = require("../../../_support/loadModule");
     var sinon_1 = require("sinon");
     var getTags_1 = require("../../../../src/commands/getTags");
@@ -77,30 +78,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             existsSyncStub.reset();
         },
         getHtmlApiPath: function () {
-            assert.strictEqual(getTags_1.getHtmlApiPath('base', 'project', 'version'), 'base/project/version');
+            assert.strictEqual(getTags_1.getHtmlApiPath('base', 'project', 'version'), path.join('base', 'project', 'version'));
         },
         getJsonApiPath: function () {
-            assert.strictEqual(getTags_1.getJsonApiPath('base', 'project', 'version'), 'base/project-version.json');
+            assert.strictEqual(getTags_1.getJsonApiPath('base', 'project', 'version'), path.join('base', 'project-version.json'));
         },
         filters: {
             createHtmlApiMissingFilter: {
                 'exists; returns false': function () {
                     var createHtmlApiMissingFilter = module.createHtmlApiMissingFilter;
-                    assertExistsFilter(createHtmlApiMissingFilter, true, 'directory/project/version');
+                    assertExistsFilter(createHtmlApiMissingFilter, true, path.join('directory', 'project', 'version'));
                 },
                 'does not exist; returns true': function () {
                     var createHtmlApiMissingFilter = module.createHtmlApiMissingFilter;
-                    assertExistsFilter(createHtmlApiMissingFilter, false, 'directory/project/version');
+                    assertExistsFilter(createHtmlApiMissingFilter, false, path.join('directory', 'project', 'version'));
                 }
             },
             createJsonApiMissingFilter: {
                 'exists; returns false': function () {
                     var createJsonApiMissingFilter = module.createJsonApiMissingFilter;
-                    assertExistsFilter(createJsonApiMissingFilter, true, 'directory/project-version.json');
+                    assertExistsFilter(createJsonApiMissingFilter, true, path.join('directory', 'project-version.json'));
                 },
                 'does not exist; returns true': function () {
                     var createJsonApiMissingFilter = module.createJsonApiMissingFilter;
-                    assertExistsFilter(createJsonApiMissingFilter, false, 'directory/project-version.json');
+                    assertExistsFilter(createJsonApiMissingFilter, false, path.join('directory', 'project-version.json'));
                 }
             },
             latestFilter: function () {

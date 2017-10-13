@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "sinon", "../../../_support/loadModule", "src/util/process", "src/log", "../../../_support/util"], factory);
+        define(["require", "exports", "intern!object", "intern/chai!assert", "sinon", "../../../_support/loadModule", "src/util/process", "../../../_support/util"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -49,11 +49,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     var sinon_1 = require("sinon");
     var loadModule_1 = require("../../../_support/loadModule");
     var processUtil = require("src/util/process");
-    var log_1 = require("src/log");
     var util_1 = require("../../../_support/util");
     var module;
     var execStub;
     var spawnStub;
+    var LogStream;
     registerSuite({
         name: 'util/process',
         before: function () {
@@ -70,6 +70,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                     spawn: spawnStub
                 }
             });
+            var loader = require.nodeRequire || require;
+            LogStream = loader(require.toUrl('src/log')).LogStream;
         },
         afterEach: function () {
             execStub.reset();
@@ -134,8 +136,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var proc = module.exec('ls', { silent: false });
                 assert.isTrue(proc.stdout.pipe.calledOnce);
                 assert.isTrue(proc.stderr.pipe.calledOnce);
-                assert.instanceOf(proc.stdout.pipe.lastCall.args[0], log_1.LogStream);
-                assert.instanceOf(proc.stderr.pipe.lastCall.args[0], log_1.LogStream);
+                assert.instanceOf(proc.stdout.pipe.lastCall.args[0], LogStream);
+                assert.instanceOf(proc.stderr.pipe.lastCall.args[0], LogStream);
             }
         },
         promiseExec: (function () {
@@ -200,8 +202,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 var proc = module.spawn('ls', ['-l'], { silent: false });
                 assert.isTrue(proc.stdout.pipe.calledOnce);
                 assert.isTrue(proc.stderr.pipe.calledOnce);
-                assert.instanceOf(proc.stdout.pipe.lastCall.args[0], log_1.LogStream);
-                assert.instanceOf(proc.stderr.pipe.lastCall.args[0], log_1.LogStream);
+                assert.instanceOf(proc.stdout.pipe.lastCall.args[0], LogStream);
+                assert.instanceOf(proc.stderr.pipe.lastCall.args[0], LogStream);
             }
         },
         promiseSpawn: (function () {
