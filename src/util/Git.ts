@@ -7,9 +7,9 @@ import { logger } from '../log';
 import * as env from '../util/environment';
 
 export default class Git {
-	cloneDirectory: string | null;
+	cloneDirectory: string;
 
-	keyFile?: string;
+	keyFile: string;
 
 	url?: string;
 
@@ -19,7 +19,7 @@ export default class Git {
 	}
 
 	async add(... params: string[]): Promise<any> {
-		return promiseExec(`git add ${ params.join(' ') }`, { silent: false, cwd: this.cloneDirectory});
+		return promiseExec(`git add ${ params.join(' ') }`, { silent: false, cwd: this.cloneDirectory });
 	}
 
 	/**
@@ -137,8 +137,10 @@ export default class Git {
 
 	pull(remote?: string, branch?: string) {
 		const command = [ 'pull' ];
-		if (remote || branch) {
+		if (remote) {
 			command.push(remote);
+		}
+		if (branch) {
 			command.push(branch);
 		}
 		return this.execSSHAgent('git', command, {

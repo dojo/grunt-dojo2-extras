@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import * as grunt from 'grunt';
 import { stub, spy, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../_support/loadModule';
@@ -18,9 +18,7 @@ const publishModeStub = stub();
 const wrapAsyncTaskStub = stub();
 const optionsStub = stub();
 
-registerSuite({
-	name: 'tasks/publish',
-
+registerSuite('tasks/publish', {
 	before() {
 		publish = loadModule('tasks/publish', {
 			'../src/commands/publish': { default: publishStub.returns(Promise.resolve()) },
@@ -58,6 +56,7 @@ registerSuite({
 		gruntOptionStub.restore();
 	},
 
+	tests: {
 	'publish task runs, has git credentials; eventually resolves'(this: any) {
 		gruntOptionStub.returns('publishMode');
 		hasGitCredentialsStub.returns(true);
@@ -91,5 +90,6 @@ registerSuite({
 		publish(grunt);
 
 		assert.isTrue(wrapAsyncTaskStub.calledOnce);
+	}
 	}
 });

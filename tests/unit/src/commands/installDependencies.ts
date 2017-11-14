@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
 
@@ -8,9 +8,7 @@ let joinStub: SinonStub;
 let promiseExecStub: SinonStub;
 let existsSyncStub: SinonStub;
 
-registerSuite({
-	name: 'commands/installDependencies',
-
+registerSuite('commands/installDependencies', {
 	before() {
 		joinStub = stub();
 		promiseExecStub = stub();
@@ -41,6 +39,7 @@ registerSuite({
 		existsSyncStub.reset();
 	},
 
+	tests: {
 	installDependencies: (() => {
 		const dir = 'dir';
 		const typingsJsonDir = 'dir/typings.json';
@@ -77,4 +76,5 @@ registerSuite({
 			return typingsJson;
 		}
 	})()
+	}
 });

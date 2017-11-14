@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import * as environment from 'src/util/environment';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
@@ -11,9 +11,7 @@ let mappedEnvs: { name: string; value: string; }[];
 let module: any;
 let existsSyncStub: SinonStub;
 
-registerSuite({
-	name: 'util/environment',
-
+registerSuite('util/environment', {
 	before() {
 		const relevantEnv = [
 			'TRAVIS_COMMIT_MESSAGE',
@@ -58,6 +56,7 @@ registerSuite({
 		existsSyncStub.reset();
 	},
 
+	tests: {
 	commitMessage() {
 		const expected = 'update test coverage for `util/environment`';
 		process.env.TRAVIS_COMMIT_MESSAGE = expected;
@@ -201,5 +200,6 @@ registerSuite({
 			delete process.env.TRAVIS_REPO_SLUG;
 			assert.equal(environment.repositorySource(), '');
 		}
+	}
 	}
 });

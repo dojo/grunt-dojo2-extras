@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { spy, stub, SinonStub } from 'sinon';
 import Git from 'src/util/Git';
@@ -15,9 +15,7 @@ let toStringStub: SinonStub;
 let existsSyncStub: SinonStub;
 let chmodSyncStub: SinonStub;
 
-registerSuite({
-	name: 'util/Git',
-
+registerSuite('util/Git', {
 	before() {
 		promiseSpawnStub = stub();
 		promiseExecStub = stub();
@@ -59,6 +57,7 @@ registerSuite({
 		chmodSyncStub.reset();
 	},
 
+	tests: {
 	'constructor': {
 		'with params'() {
 			const gitWithArgs = new Module('dir', 'file');
@@ -116,7 +115,7 @@ registerSuite({
 		const actual = git.checkout('1.2.3');
 
 		assert.instanceOf(actual, Promise);
-		assert.strictEqual(await actual, 'pass');
+		assert.strictEqual((await actual) as any, 'pass');
 	},
 
 	clone: {
@@ -271,6 +270,7 @@ registerSuite({
 				cwd: git.cloneDirectory
 			});
 		},
+		tests: {
 		async 'exec and toString each called once'() {
 			execStub.returns({ stdout: '' });
 			toStringStub.returns('');
@@ -295,6 +295,7 @@ registerSuite({
 			const changed = await git.areFilesChanged();
 
 			assert.isFalse(changed);
+		}
 		}
 	},
 
@@ -341,7 +342,7 @@ registerSuite({
 
 	isInitialized: {
 		'throws error if there is no cloneDirectory'() {
-			git.cloneDirectory = undefined;
+			git.cloneDirectory = undefined as any;
 			assert.throws(git.isInitialized);
 
 			try {
@@ -384,5 +385,6 @@ registerSuite({
 	setConfig() {
 		git.setConfig('key', 'value');
 		assert.isTrue(promiseExecStub.calledWith('git config --global key value', { silent: false }));
+	}
 	}
 });

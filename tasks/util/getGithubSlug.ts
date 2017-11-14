@@ -5,8 +5,8 @@ export interface Options {
 }
 
 export interface Slug {
-	name: string;
-	owner: string;
+	name?: string;
+	owner?: string;
 }
 
 /**

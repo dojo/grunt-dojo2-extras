@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import * as streams from 'src/util/streams';
 import { Readable } from 'stream';
 import { EventEmitter } from 'events';
@@ -19,8 +19,7 @@ function createStream(data: string | Buffer): Readable {
 	return stream;
 }
 
-registerSuite({
-	name: 'util/streams',
+registerSuite('util/streams', {
 
 	toString: {
 		'stream is not readable; rejects'() {

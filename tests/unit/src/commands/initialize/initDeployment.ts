@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../../_support/loadModule';
 import { spy, stub, SinonStub } from 'sinon';
 import { throwWithError } from '../../../../_support/util';
@@ -41,9 +41,7 @@ const GitHub = class {
 
 const TravisSpy = spy(Travis);
 
-registerSuite({
-	name: 'commands/initialize/initDeployment',
-
+registerSuite('commands/initialize/initDeployment', {
 	after() {
 		cleanupModuleMocks();
 	},
@@ -109,6 +107,7 @@ registerSuite({
 		deleteKeyStub.reset();
 	},
 
+	tests: {
 	'initDeployment': (() => {
 		async function assertInitDeployment(travis?: any, options?: any) {
 			const repo = new GitHub();
@@ -206,4 +205,5 @@ registerSuite({
 			}
 		};
 	})()
+	}
 });

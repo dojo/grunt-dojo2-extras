@@ -1,8 +1,9 @@
-import request, { Response, RequestOptions } from '@dojo/core/request';
+import request, { RequestOptions } from '@dojo/core/request';
+import { Response as ResponseInterface } from '@dojo/core/request/interfaces';
 import GitHub, { AuthResponse } from './GitHub';
 import { logger } from '../log';
 
-function responseHandler(response: Response): Response {
+function responseHandler(response: ResponseInterface): ResponseInterface {
 	const statusCode = response.status;
 	if (statusCode < 200 || statusCode >= 300) {
 		const message = response.statusText;
@@ -32,7 +33,7 @@ export interface FetchRepositoryResponse {
 }
 
 export default class Travis {
-	token: string = null;
+	token?: string;
 
 	private githubAuthorization: AuthResponse;
 
@@ -86,6 +87,10 @@ export default class Travis {
 	}
 
 	async fetchRepository(slug: string) {
+		if (!this.token) {
+			throw new Error('authenticate() must be called first');
+		}
+
 		const endpoint = `https://api.travis-ci.org/repos/${ slug }`;
 		const response = await request.get(endpoint, {
 			headers: getHeaders(this.token)

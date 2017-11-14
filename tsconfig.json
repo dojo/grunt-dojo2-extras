@@ -3,7 +3,7 @@
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": ".",
 		"declaration": true,
-		"importHelpers": false,
+		"importHelpers": true,
 		"inlineSources": true,
 		"lib": [
 			"DOM",
@@ -15,8 +15,6 @@
 		],
 		"module": "umd",
 		"moduleResolution": "node",
-		"noImplicitAny": true,
-		"noImplicitThis": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"outDir": "./_build",
@@ -24,7 +22,9 @@
 		"removeComments": true,
 		"rootDir": ".",
 		"sourceMap": true,
-		"target": "ES5"
+    "strict": true,
+		"target": "es5",
+		"types": [ "intern", "grunt" ]
 	},
 	"include": [
 		"./src/**/*.ts",

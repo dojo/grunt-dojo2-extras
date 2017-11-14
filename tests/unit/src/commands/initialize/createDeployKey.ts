@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../../_support/loadModule';
 import { stub } from 'sinon';
 import { throwWithError } from '../../../../_support/util';
@@ -20,9 +20,7 @@ const encryptDataStub = stub();
 const decryptDataStub = stub();
 const equalStub = stub();
 
-registerSuite({
-	name: 'commands/initialize/createDeployKey',
-
+registerSuite('commands/initialize/createDeployKey', {
 	after() {
 		cleanupModuleMocks();
 	},
@@ -71,6 +69,7 @@ registerSuite({
 		equalStub.reset();
 	},
 
+	tests: {
 	'createDeployKey': (() => {
 		return {
 			async 'with explicit arguments passed in'() {
@@ -111,4 +110,5 @@ registerSuite({
 			return key;
 		}
 	})()
+	}
 });

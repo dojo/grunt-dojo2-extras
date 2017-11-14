@@ -1,3 +1,4 @@
+import '@dojo/shim/main';
 import * as config from './config';
 import { join, basename, extname } from 'path';
 import { readdirSync } from 'fs';

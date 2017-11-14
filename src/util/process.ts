@@ -36,7 +36,8 @@ function applyOptions(proc: ChildProcess, options: CommonProcessOptions) {
 	}
 }
 
-export function exec(command: string, options?: ExecOptions): ChildProcess {
+export function exec(command: string, options: ExecOptions = {}): ChildProcess {
+	options.silent = options.silent || false;
 	logger.debug(`exec ${ command }`);
 	const proc: ChildProcess = execChild(command, options);
 	applyOptions(proc, options);
@@ -52,7 +53,8 @@ export function promiseExec(command: string, options: ExecOptions = {}) {
 export interface SpawnOptions extends CommonProcessOptions, ChildSpawnOptions {
 }
 
-export function spawn(command: string, args: string[], options?: SpawnOptions): ChildProcess {
+export function spawn(command: string, args: string[], options: SpawnOptions = {}): ChildProcess {
+	options.silent = options.silent || false;
 	logger.debug(`spawn ${ command } ${ args ? args.join(' ') : '' }`);
 	const proc: ChildProcess = spawnChild(command, args, options);
 	applyOptions(proc, options);

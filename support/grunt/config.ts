@@ -65,19 +65,13 @@ export const copy = {
 
 export const intern = {
 	options: {
-		runType: 'client',
 		reporters: [
-			'Console', 'LcovHtml'
+			'runner', 'htmlcoverage'
 		]
 	},
 	unit: {
 		options: {
-			config: '_build/tests/intern'
-		}
-	},
-	integration: {
-		options: {
-			config: '_build/tests/intern-integration'
+			config: 'intern.json'
 		}
 	}
 };

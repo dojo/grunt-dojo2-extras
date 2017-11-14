@@ -1,14 +1,12 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
 
 let publish: any;
 let gitCommitStub: SinonStub;
 
-registerSuite({
-	name: 'commands/publish',
-
+registerSuite('commands/publish', {
 	before() {
 		gitCommitStub = stub();
 	},
@@ -29,6 +27,7 @@ registerSuite({
 		gitCommitStub.reset();
 	},
 
+	tests: {
 	'publish': {
 		async 'publishMode is a function that returns "skip"'() {
 			const opts = {
@@ -64,6 +63,7 @@ registerSuite({
 					};
 				},
 
+				tests: {
 				async 'repo has no changes'() {
 					const areFilesChanged = opts.repo.areFilesChanged;
 
@@ -102,7 +102,9 @@ registerSuite({
 
 					assert.isTrue(opts.repo.push.calledOnce);
 				}
+				}
 			};
 		})()
+	}
 	}
 });

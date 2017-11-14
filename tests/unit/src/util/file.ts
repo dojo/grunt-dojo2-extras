@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
 
@@ -9,9 +9,7 @@ let mkdtempSyncStub: SinonStub;
 let mkdirpSyncStub: SinonStub;
 let joinStub: SinonStub;
 
-registerSuite({
-	name: 'util/file',
-
+registerSuite('util/file', {
 	before() {
 		existsSyncStub = stub();
 		mkdtempSyncStub = stub();
@@ -45,6 +43,7 @@ registerSuite({
 		joinStub.reset();
 	},
 
+	tests: {
 	makeTempDirectory: {
 		'base directory does not exist; directory is created'() {
 			existsSyncStub.returns(false);
@@ -73,5 +72,6 @@ registerSuite({
 			assert.isTrue(mkdtempSyncStub.calledOnce);
 			assert.strictEqual(tempDir, 'temp_dir');
 		}
+	}
 	}
 });

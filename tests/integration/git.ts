@@ -1,10 +1,9 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import Git from 'src/util/Git';
 import { tmpDirectory } from '../_support/tmpFiles';
 
-registerSuite({
-	name: 'git',
+registerSuite('git', {
 
 	async build() {
 		const out = tmpDirectory();

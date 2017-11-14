@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import { stub, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import * as processUtil from 'src/util/process';
@@ -10,9 +10,7 @@ let execStub: SinonStub;
 let spawnStub: SinonStub;
 let LogStream: any;
 
-registerSuite({
-	name: 'util/process',
-
+registerSuite('util/process', {
 	before() {
 		execStub = stub();
 		spawnStub = stub();
@@ -38,6 +36,7 @@ registerSuite({
 		spawnStub.reset();
 	},
 
+	tests: {
 	promisify: (() => {
 		let proc: any;
 
@@ -56,6 +55,7 @@ registerSuite({
 				(<SinonStub> processUtil.exec).restore();
 			},
 
+			tests: {
 			async 'eventually resolves the returned promise'() {
 				const promise = processUtil.promisify(processUtil.exec('test'));
 
@@ -78,6 +78,7 @@ registerSuite({
 						assert.strictEqual(process.exitCode, 1);
 					}
 				);
+			}
 			}
 		};
 	})(),
@@ -231,4 +232,5 @@ registerSuite({
 			return promise;
 		}
 	})()
+	}
 });

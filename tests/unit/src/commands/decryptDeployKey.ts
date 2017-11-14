@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub } from 'sinon';
 import { throwWithError } from '../../../_support/util';
@@ -17,9 +17,7 @@ const existsSyncStub = stub();
 const createWriteStreamStub = stub();
 const createReadStreamStub = stub();
 
-registerSuite({
-	name: 'commands/decryptDeployKey',
-
+registerSuite('commands/decryptDeployKey', {
 	after() {
 		cleanupModuleMocks();
 	},
@@ -57,6 +55,7 @@ registerSuite({
 		decryptDataObj.pipe.reset();
 	},
 
+	tests: {
 	'decryptDeployKey': (() => {
 		function ensureDecryptionResolves() {
 			existsSyncStub.onCall(0).returns(true);
@@ -126,4 +125,5 @@ registerSuite({
 			}
 		};
 	})()
+	}
 });

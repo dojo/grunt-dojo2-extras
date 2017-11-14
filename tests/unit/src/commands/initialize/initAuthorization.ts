@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../../_support/loadModule';
 import { spy, stub, SinonStub } from 'sinon';
 import { throwWithError } from '../../../../_support/util';
@@ -46,9 +46,7 @@ const GitHub = class {
 const TravisSpy = spy(Travis);
 const GitHubSpy = spy(GitHub);
 
-registerSuite({
-	name: 'commands/initialize/initAuthorization',
-
+registerSuite('commands/initialize/initAuthorization', {
 	after() {
 		cleanupModuleMocks();
 	},
@@ -98,6 +96,7 @@ registerSuite({
 		githubAuthStub.reset();
 	},
 
+	tests: {
 	'initAuthorization': (() => {
 		return {
 			async 'explicit Travis instance'() {
@@ -165,4 +164,5 @@ registerSuite({
 			assert.isTrue(travisDeleteAuthorizationStub.calledOnce);
 		}
 	})()
+	}
 });

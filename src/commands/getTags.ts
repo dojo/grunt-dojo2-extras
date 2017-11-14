@@ -59,7 +59,7 @@ export function latestFilter(_tag: Tag, index: number, array: Tag[]) {
 export function createVersionFilter(comp: string): TagFilter {
 	return (tag: Tag) => {
 		const version = semver.clean(tag.name);
-		return semver.satisfies(version, comp);
+		return semver.satisfies(version!, comp);
 	};
 }
 
@@ -77,7 +77,7 @@ export default async function getTags(repo: GitHub, filters: TagFilter[] = []): 
 		.sort(function (a: Tag, b: Tag) {
 			const left = semver.clean(a.name);
 			const right = semver.clean(b.name);
-			return semver.compare(left, right, true);
+			return semver.compare(left!, right!, true);
 		})
 		.filter(function (tag: Tag, index: number, array: Tag[]) {
 			for (const filter of filters) {

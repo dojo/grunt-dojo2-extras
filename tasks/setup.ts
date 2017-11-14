@@ -12,17 +12,21 @@ interface Options {
 	username?: string;
 }
 
+function throws(message: string): never {
+	throw new Error(message);
+}
+
 function getGitHub(task: IMultiTask<any>, grunt: IGrunt) {
 	const options = task.options<Options>({
 		password: grunt.config.get<string>('github.password'),
 		username: grunt.config.get<string>('github.username')
 	});
-	const { name, owner } = getGithubSlug(options, grunt);
+	const { name = throws('"repo" configuration invalid'), owner = throws('"repo" configuration invalid') } = getGithubSlug(options, grunt);
 	const repo = new GitHub(owner, name);
 	repo.api.authenticate({
 		type: 'basic',
-		password: options.password,
-		username: options.username
+		password: options.password!,
+		username: options.username!
 	});
 	return repo;
 }
