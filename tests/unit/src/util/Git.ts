@@ -1,10 +1,11 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { spy, stub, SinonStub } from 'sinon';
-import Git from 'src/util/Git';
-import * as env from 'src/util/environment';
+import Git from '../../../../src/util/Git';
+import * as env from '../../../../src/util/environment';
 import { throwWithError } from '../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let Module: any;
 let git: Git;
@@ -30,7 +31,7 @@ registerSuite('util/Git', {
 	},
 
 	beforeEach() {
-		Module = loadModule('src/util/Git', {
+		Module = loadModule(require, '../../../../src/util/Git', {
 			'./process': {
 				promiseSpawn: promiseSpawnStub,
 				promiseExec: promiseExecStub,

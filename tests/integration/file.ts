@@ -1,7 +1,8 @@
+import { makeTempDirectory } from '../../src/util/file';
+import { existsSync, statSync } from 'fs';
+
 const { registerSuite } = intern.getInterface('object');
 const { assert } = intern.getPlugin('chai');
-import { makeTempDirectory } from 'src/util/file';
-import { existsSync, statSync } from 'fs';
 
 registerSuite('file', {
 

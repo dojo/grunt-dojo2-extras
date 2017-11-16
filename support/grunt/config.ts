@@ -69,9 +69,19 @@ export const intern = {
 			'runner', 'htmlcoverage'
 		]
 	},
-	unit: {
+	all: {
 		options: {
 			config: 'intern.json'
+		}
+	},
+	unit: {
+		options: {
+			config: 'intern.json@unit'
+		}
+	},
+	integration: {
+		options: {
+			config: 'intern.json@integration'
 		}
 	}
 };

@@ -1,8 +1,9 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
-import * as environment from 'src/util/environment';
+import * as environment from '../../../../src/util/environment';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 const file = 'test.file';
 
@@ -37,7 +38,7 @@ registerSuite('util/environment', {
 	},
 
 	beforeEach() {
-		module = loadModule('src/util/environment', {
+		module = loadModule(require, '../../../../src/util/environment', {
 			fs: {
 				existsSync: existsSyncStub
 			}
@@ -108,7 +109,7 @@ registerSuite('util/environment', {
 			assert.isTrue(module.hasGitCredentials());
 		},
 
-		'Running  on Travis; no key file: returns false'() {
+		'Running on Travis; no key file: returns false'() {
 			existsSyncStub.returns(false);
 
 			delete process.env.HAS_GIT_CREDENTIALS;

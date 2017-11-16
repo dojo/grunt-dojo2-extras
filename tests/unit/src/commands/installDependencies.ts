@@ -1,7 +1,8 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let installDependencies: any;
 let joinStub: SinonStub;
@@ -20,7 +21,7 @@ registerSuite('commands/installDependencies', {
 	},
 
 	beforeEach() {
-		installDependencies = loadModule('src/commands/installDependencies', {
+		installDependencies = loadModule(require, '../../../../src/commands/installDependencies', {
 			'path': {
 				join: joinStub
 			},

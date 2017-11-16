@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/dojo/grunt-dojo2-extras#readme",
   "devDependencies": {
-    "@dojo/loader": "./tarballs/dojo-loader-0.1.1-beta.1.tgz",
     "@types/mockery": "^1.4.29",
     "@types/node": "^6.0.70",
     "@types/sinon": "^2.1.2",

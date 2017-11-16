@@ -1,7 +1,8 @@
+import Git from '../../src/util/Git';
+import { tmpDirectory } from '../_support/tmpFiles';
+
 const { registerSuite } = intern.getInterface('object');
 const { assert } = intern.getPlugin('chai');
-import Git from 'src/util/Git';
-import { tmpDirectory } from '../_support/tmpFiles';
 
 registerSuite('git', {
 

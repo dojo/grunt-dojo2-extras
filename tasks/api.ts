@@ -43,7 +43,7 @@ function isRemoteOptions(options: any): options is RemoteApiOptions {
 
 function getGitHub(repo: RemoteApiOptions['repo']) {
 	if (typeof repo === 'string') {
-		const [ owner, name ] =  repo.split('/');
+		const [ owner, name ] = repo.split('/');
 		return new GitHub(owner, name);
 	}
 	else {

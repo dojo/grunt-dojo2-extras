@@ -1,8 +1,9 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../../_support/loadModule';
 import { spy, stub, SinonStub } from 'sinon';
 import { throwWithError } from '../../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let initDeployment: any;
 
@@ -68,7 +69,7 @@ registerSuite('commands/initialize/initDeployment', {
 			}
 		});
 
-		initDeployment = loadModule('src/commands/initialize/initDeployment', {
+		initDeployment = loadModule(require, '../../../../../src/commands/initialize/initDeployment', {
 			'../../util/Travis': { default: TravisSpy },
 			'../../util/environment': {
 				decryptKeyName: 'decryptKey',

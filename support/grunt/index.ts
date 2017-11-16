@@ -21,7 +21,7 @@ export = function (grunt: IGrunt) {
 
 	grunt.registerTask('build', [ 'shell:build-ts', 'copy:staticDistFiles' ]);
 	grunt.registerTask('dev', [ 'clean', 'tslint', 'build' ]);
-	grunt.registerTask('test', [ 'dev', 'intern' ]);
+	grunt.registerTask('test', [ 'dev', 'intern:all' ]);
 	grunt.registerTask('unit', [ 'dev', 'intern:unit' ]);
 	grunt.registerTask('integration', [ 'dev', 'intern:integration' ]);
 	grunt.registerTask('init:deploy', [ 'prompt:github', 'setupDeploy' ]);

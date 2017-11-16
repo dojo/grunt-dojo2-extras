@@ -1,7 +1,8 @@
+import getGithubSlug from '../../../../tasks/util/getGithubSlug';
+import { stub } from 'sinon';
+
 const { registerSuite } = intern.getInterface('object');
 const { assert } = intern.getPlugin('chai');
-import getGithubSlug from 'tasks/util/getGithubSlug';
-import { stub } from 'sinon';
 
 function assertEnvironment(key: string) {
 	process.env[key] = 'devpaul/dojo.io';

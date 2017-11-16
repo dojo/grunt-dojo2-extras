@@ -1,8 +1,9 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
-import * as streams from 'src/util/streams';
+import * as streams from '../../../../src/util/streams';
 import { Readable } from 'stream';
 import { EventEmitter } from 'events';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 function assertReject(promise: Promise<any>) {
 	return promise.then(function () {

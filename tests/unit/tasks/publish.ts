@@ -1,9 +1,10 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import * as grunt from 'grunt';
 import { stub, spy, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../_support/loadModule';
 import { setupWrappedAsyncStub } from '../../_support/tasks';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let publish: any;
 let gruntOptionStub: SinonStub;
@@ -20,7 +21,7 @@ const optionsStub = stub();
 
 registerSuite('tasks/publish', {
 	before() {
-		publish = loadModule('tasks/publish', {
+		publish = loadModule(require, '../../../tasks/publish', {
 			'../src/commands/publish': { default: publishStub.returns(Promise.resolve()) },
 			'../src/util/Git': { default: GitSpy },
 			'./util/wrapAsyncTask': { default: wrapAsyncTaskStub },

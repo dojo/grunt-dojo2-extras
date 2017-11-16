@@ -1,7 +1,8 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let publish: any;
 let gitCommitStub: SinonStub;
@@ -16,7 +17,7 @@ registerSuite('commands/publish', {
 	},
 
 	beforeEach() {
-		publish = loadModule('src/commands/publish', {
+		publish = loadModule(require, '../../../../src/commands/publish', {
 			'../util/environment': {
 				gitCommit: gitCommitStub
 			}

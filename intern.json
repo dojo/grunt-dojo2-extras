@@ -15,73 +15,24 @@
 		"./_build/tests/integration/all.js"
 	],
 
-	"functionalSuites": [
-		"./_build/tests/functional/all.js"
+	"plugins": [
+		"@dojo/shim/main"
 	],
-
-  "plugins": [
-    { "useLoader": true, "script": "@dojo/shim/main" }
-  ],
-
-  "loader": {
-    "script": "dojo2",
-    "options": {
-      "packages": [
-        { "name": "src", "location": "_build/src" },
-        { "name": "tests", "location": "_build/tests" },
-        { "name": "tasks", "location": "_build/tasks" },
-        { "name": "assets", "location": "assets" },
-        { "name": "@dojo", "location": "node_modules/@dojo" },
-        { "name": "tslib", "location": "node_modules/tslib", "main": "tslib" }
-      ]
-    }
-  },
 
 	"coverage": [
 		"./_build/src/**/*.js"
 	],
 
 	"configs": {
-		"browserstack": {
-			"tunnel": "browserstack",
-
-			"environments+": [
-				{ "browserName": "internet explorer", "version": "11" },
-				{ "browserName": "edge" },
-				{ "browserName": "firefox", "platform": "WINDOWS" },
-				{ "browserName": "chrome", "platform": "WINDOWS" },
-				{ "browserName": "safari", "platform": "MAC" }
-			],
-
-			"maxConcurrency": 5
-		},
-
-		"local": {
-			"tunnel": "selenium",
-			"tunnelOptions": {
-				"hostname": "localhost",
-				"port": 4444
-			},
-
-			"environments+": [
-				{ "browserName": "chrome" }
+		"unit": {
+			"suites": [
+				"./_build/tests/unit/all.js"
 			]
 		},
-
-		"saucelabs": {
-			"tunnel": "saucelabs",
-			"tunnelOptions": {},
-
-			"defaultTimeout": 10000,
-			"environments+": [
-				{ "browserName": "internet explorer", "version": [ "10.0", "11.0" ], "platform": "Windows 7" },
-				{ "browserName": "microsoftedge", "platform": "Windows 10" },
-				{ "browserName": "firefox", "version": "43", "platform": "Windows 10" },
-				{ "browserName": "chrome", "platform": "Windows 10" },
-				{ "browserName": "safari", "version": "9", "platform": "OS X 10.11" },
-				{ "browserName": "iphone", "version": "9.3" }
-			],
-			"maxConcurrency": 4
+		"integration": {
+			"suites": [
+				"./_build/tests/integration/all.js"
+			]
 		}
 	}
 }

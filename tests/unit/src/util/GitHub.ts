@@ -1,8 +1,9 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { spy, stub, SinonSpy, SinonStub } from 'sinon';
-import GitHub from 'src/util/GitHub';
+import GitHub from '../../../../src/util/GitHub';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let Module: any;
 let github: GitHub;
@@ -42,7 +43,7 @@ registerSuite('util/GitHub', {
 	},
 
 	beforeEach() {
-		Module = loadModule('src/util/GitHub', {
+		Module = loadModule(require, '../../../../src/util/GitHub', {
 			'./environment': {
 				githubAuth: githubAuthStub,
 				hasGitCredentials: hasGitCredentialsStub

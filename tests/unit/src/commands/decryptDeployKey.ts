@@ -1,8 +1,9 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub } from 'sinon';
 import { throwWithError } from '../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let decryptDeployKey: any;
 
@@ -26,7 +27,7 @@ registerSuite('commands/decryptDeployKey', {
 		decryptDataObj.on.returns(decryptDataObj);
 		decryptDataObj.pipe.returns(decryptDataObj);
 
-		decryptDeployKey = loadModule('src/commands/decryptDeployKey', {
+		decryptDeployKey = loadModule(require, '../../../../src/commands/decryptDeployKey', {
 			'../util/crypto': {
 				decryptData: decryptDataStub.returns(decryptDataObj)
 			},

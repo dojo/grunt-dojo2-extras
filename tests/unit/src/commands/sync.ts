@@ -1,7 +1,8 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { spy, stub, SinonSpy, SinonStub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let sync: any;
 let GitSpy: SinonSpy;
@@ -37,7 +38,7 @@ registerSuite('commands/sync', {
 	},
 
 	beforeEach() {
-		sync = loadModule('src/commands/sync', {
+		sync = loadModule(require, '../../../../src/commands/sync', {
 			'../util/Git': { default: GitSpy }
 		});
 	},

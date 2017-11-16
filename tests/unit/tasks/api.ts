@@ -1,9 +1,10 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import * as grunt from 'grunt';
 import { stub, spy, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../_support/loadModule';
 import { setupWrappedAsyncStub } from '../../_support/tasks';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let api: any;
 let registerMultiTaskStub: SinonStub;
@@ -36,7 +37,7 @@ const GitHubSpy = spy(GitHub);
 
 registerSuite('tasks/api', {
 	beforeEach() {
-		api = loadModule('tasks/api', {
+		api = loadModule(require, '../../../tasks/api', {
 			'../src/commands/typedoc': { default: typedocStub },
 			'./util/wrapAsyncTask': { default: wrapAsyncTaskStub },
 			'../src/util/GitHub': { default: GitHubSpy },

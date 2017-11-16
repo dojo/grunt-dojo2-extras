@@ -1,14 +1,15 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import { stub, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
-import * as processUtil from 'src/util/process';
+import * as processUtil from '../../../../src/util/process';
 import { throwWithError } from '../../../_support/util';
+import { logger, LogStream } from '../../../../src/log';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let module: any;
 let execStub: SinonStub;
 let spawnStub: SinonStub;
-let LogStream: any;
 
 registerSuite('util/process', {
 	before() {
@@ -21,14 +22,16 @@ registerSuite('util/process', {
 	},
 
 	beforeEach() {
-		module = loadModule('src/util/process', {
+		module = loadModule(require, '../../../../src/util/process', {
 			child_process: {
 				exec: execStub,
 				spawn: spawnStub
+			},
+			'../log': {
+				logger,
+				LogStream
 			}
 		});
-		const loader = (require as any).nodeRequire || require;
-		LogStream = loader((require as any).toUrl('src/log')).LogStream;
 	},
 
 	afterEach() {

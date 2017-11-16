@@ -1,7 +1,8 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let module: any;
 let existsSyncStub: SinonStub;
@@ -22,7 +23,7 @@ registerSuite('util/file', {
 	},
 
 	beforeEach() {
-		module = loadModule('src/util/file', {
+		module = loadModule(require, '../../../../src/util/file', {
 			'fs': {
 				existsSync: existsSyncStub,
 				mkdtempSync: mkdtempSyncStub

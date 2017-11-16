@@ -1,10 +1,11 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import Test from 'intern/lib/Test';
 import * as grunt from 'grunt';
 import { SinonStub, stub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../_support/loadModule';
 import { setupWrappedAsyncStub } from '../../_support/tasks';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let prebuild: any;
 let registerTaskStub: SinonStub;
@@ -20,7 +21,7 @@ registerSuite('tasks/prebuild', {
 
 	beforeEach() {
 		registerTaskStub = stub(grunt, 'registerTask');
-		prebuild = loadModule('tasks/prebuild', {
+		prebuild = loadModule(require, '../../../tasks/prebuild', {
 			'./util/wrapAsyncTask': { default: wrapAsyncTaskStub },
 			'../src/commands/decryptDeployKey': { default: decryptDeployKeyStub },
 			'../src/log': { logger: loggerStub }

@@ -1,11 +1,9 @@
 import * as mockery from 'mockery';
-import { AmdRootRequire } from '@dojo/core/load';
+import * as tslib from 'tslib';
 
-declare const require: AmdRootRequire;
+export default function loadModule<T>(require: NodeRequire, mid: string, mocks: any, returnDefault: boolean = true): T {
+	const moduleUnderTestPath = require.resolve(mid);
 
-const tslib: any = require('tslib');
-
-export default function loadModule<T>(mid: string, mocks: any, returnDefault: boolean = true): T {
 	mockery.enable({
 		useCleanCache: true,
 		warnOnReplace: false,
@@ -19,8 +17,7 @@ export default function loadModule<T>(mid: string, mocks: any, returnDefault: bo
 
 	mockery.registerMock('tslib', tslib);
 
-	const loader = require.nodeRequire || require;
-	const module = loader(require.toUrl(mid));
+	const module = require(moduleUnderTestPath);
 	return returnDefault && module.default ? module.default : module;
 }
 

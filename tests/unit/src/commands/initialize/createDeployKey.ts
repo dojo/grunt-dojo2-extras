@@ -1,8 +1,9 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../../_support/loadModule';
 import { stub } from 'sinon';
 import { throwWithError } from '../../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let createDeployKey: any;
 
@@ -29,7 +30,7 @@ registerSuite('commands/initialize/createDeployKey', {
 		encryptedStub.pipe.returns(encryptedStub);
 		encryptedStub.on.returns(encryptedStub).yields();
 
-		createDeployKey = loadModule('src/commands/initialize/createDeployKey', {
+		createDeployKey = loadModule(require, '../../../../../src/commands/initialize/createDeployKey', {
 			'../../util/environment': {
 				keyFile: keyFileStub.returns('keyFileStub'),
 				encryptedKeyFile: encryptedKeyFileStub.returns('encryptedKeyFileStub')

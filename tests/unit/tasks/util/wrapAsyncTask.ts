@@ -1,8 +1,9 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import { stub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { throwWithError } from '../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 const doneStub = stub();
 const taskStub = stub();
@@ -18,7 +19,7 @@ registerSuite('tasks/util/wrapAsyncTask', {
 	},
 
 	before() {
-		wrapAsyncTask = loadModule('tasks/util/wrapAsyncTask', {
+		wrapAsyncTask = loadModule(require, '../../../../tasks/util/wrapAsyncTask', {
 			'../../src/log': { logger: loggerStub }
 		});
 	},

@@ -22,7 +22,7 @@
 		"removeComments": true,
 		"rootDir": ".",
 		"sourceMap": true,
-    "strict": true,
+		"strict": true,
 		"target": "es5",
 		"types": [ "intern", "grunt" ]
 	},

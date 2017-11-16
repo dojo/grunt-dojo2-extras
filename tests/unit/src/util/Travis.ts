@@ -1,9 +1,10 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
-import Travis, { Repository } from 'src/util/Travis';
+import Travis, { Repository } from '../../../../src/util/Travis';
 import { throwWithError } from '../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let module: any;
 let travis: Travis;
@@ -22,7 +23,7 @@ registerSuite('util/Travis', {
 	},
 
 	beforeEach() {
-		module = loadModule('src/util/Travis', {
+		module = loadModule(require, '../../../../src/util/Travis', {
 			'@dojo/core/request': { default: requestStub }
 		}, false);
 	},

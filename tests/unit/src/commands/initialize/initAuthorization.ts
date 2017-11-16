@@ -1,8 +1,9 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import loadModule, { cleanupModuleMocks } from '../../../../_support/loadModule';
 import { spy, stub, SinonStub } from 'sinon';
 import { throwWithError } from '../../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let initAuthorization: any;
 
@@ -64,7 +65,7 @@ registerSuite('commands/initialize/initAuthorization', {
 		}));
 		repoDeleteAuthorizationStub.returns(Promise.resolve());
 
-		initAuthorization = loadModule('src/commands/initialize/initAuthorization', {
+		initAuthorization = loadModule(require, '../../../../../src/commands/initialize/initAuthorization', {
 			'../../util/Travis': { default: TravisSpy },
 			'../../util/GitHub': { default: GitHubSpy },
 			'@dojo/shim/array': {

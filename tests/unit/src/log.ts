@@ -1,8 +1,9 @@
+import * as log from '../../../src/log';
+import { LogStream } from '../../../src/log';
+import { TransportInstance, transports } from 'winston';
+
 const { registerSuite } = intern.getInterface('object');
 const { assert } = intern.getPlugin('chai');
-import * as log from 'src/log';
-import { LogStream } from 'src/log';
-import { TransportInstance, transports } from 'winston';
 
 const cachedTransports: { [ key: string ]: TransportInstance } = {};
 

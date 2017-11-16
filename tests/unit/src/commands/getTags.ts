@@ -1,10 +1,11 @@
-const { registerSuite } = intern.getInterface('object');
-const { assert } = intern.getPlugin('chai');
 import * as path from 'path';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
 import { getHtmlApiPath, getJsonApiPath } from '../../../../src/commands/getTags';
 import { Tag } from '../../../../src/util/GitHub';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let module: any;
 let existsSyncStub: SinonStub;
@@ -27,7 +28,7 @@ registerSuite('getTags', {
 	},
 
 	beforeEach() {
-		module = loadModule('src/commands/getTags', {
+		module = loadModule(require, '../../../../src/commands/getTags', {
 			fs: {
 				existsSync: existsSyncStub
 			}
