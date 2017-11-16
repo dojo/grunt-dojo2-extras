@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/dojo/grunt-dojo2-extras#readme",
   "devDependencies": {
+    "@dojo/interfaces": "~0.2.0",
     "@types/mockery": "^1.4.29",
     "@types/node": "^6.0.70",
     "@types/sinon": "^2.1.2",
@@ -41,9 +42,9 @@
     "typescript": "~2.6.1"
   },
   "dependencies": {
-    "@dojo/core": "./tarballs/dojo-core-0.2.2-beta.1.tgz",
-    "@dojo/has": "./tarballs/dojo-has-0.1.1-beta.1.tgz",
-    "@dojo/shim": "./tarballs/dojo-shim-0.2.3-beta.1.tgz",
+    "@dojo/core": "~0.3.0",
+    "@dojo/has": "~0.1.1",
+    "@dojo/shim": "~0.2.3",
     "@types/grunt": "^0.4.21",
     "@types/mkdirp": "^0.3.29",
     "@types/semver": "^5.3.31",

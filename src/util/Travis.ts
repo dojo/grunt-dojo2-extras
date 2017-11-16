@@ -1,9 +1,8 @@
-import request, { RequestOptions } from '@dojo/core/request';
-import { Response as ResponseInterface } from '@dojo/core/request/interfaces';
+import request, { RequestOptions, Response } from '@dojo/core/request';
 import GitHub, { AuthResponse } from './GitHub';
 import { logger } from '../log';
 
-function responseHandler(response: ResponseInterface): ResponseInterface {
+function responseHandler(response: Response): Response {
 	const statusCode = response.status;
 	if (statusCode < 200 || statusCode >= 300) {
 		const message = response.statusText;
