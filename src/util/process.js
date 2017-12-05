@@ -32,6 +32,8 @@
         }
     }
     function exec(command, options) {
+        if (options === void 0) { options = {}; }
+        options.silent = options.silent || false;
         log_1.logger.debug("exec " + command);
         var proc = child_process_1.exec(command, options);
         applyOptions(proc, options);
@@ -45,6 +47,8 @@
     }
     exports.promiseExec = promiseExec;
     function spawn(command, args, options) {
+        if (options === void 0) { options = {}; }
+        options.silent = options.silent || false;
         log_1.logger.debug("spawn " + command + " " + (args ? args.join(' ') : ''));
         var proc = child_process_1.spawn(command, args, options);
         applyOptions(proc, options);

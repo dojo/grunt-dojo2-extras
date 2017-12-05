@@ -4,14 +4,16 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "mockery"], factory);
+        define(["require", "exports", "mockery", "tslib"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var mockery = require("mockery");
-    function loadModule(mid, mocks, returnDefault) {
+    var tslib = require("tslib");
+    function loadModule(require, mid, mocks, returnDefault) {
         if (returnDefault === void 0) { returnDefault = true; }
+        var moduleUnderTestPath = require.resolve(mid);
         mockery.enable({
             useCleanCache: true,
             warnOnReplace: false,
@@ -21,8 +23,8 @@
         for (var mid_1 in mocks) {
             mockery.registerMock(mid_1, mocks[mid_1]);
         }
-        var loader = require.nodeRequire || require;
-        var module = loader(require.toUrl(mid));
+        mockery.registerMock('tslib', tslib);
+        var module = require(moduleUnderTestPath);
         return returnDefault && module.default ? module.default : module;
     }
     exports.default = loadModule;

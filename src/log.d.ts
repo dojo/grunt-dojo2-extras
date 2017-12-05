@@ -1,4 +1,3 @@
-/// <reference types="winston" />
 /// <reference types="node" />
 import { LoggerInstance } from 'winston';
 import { Writable, WritableOptions } from 'stream';

@@ -4,30 +4,29 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "grunt", "sinon", "../../_support/loadModule", "../../_support/tasks"], factory);
+        define(["require", "exports", "grunt", "sinon", "../../_support/loadModule", "../../_support/tasks"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var registerSuite = require("intern!object");
-    var assert = require("intern/chai!assert");
     var grunt = require("grunt");
     var sinon_1 = require("sinon");
     var loadModule_1 = require("../../_support/loadModule");
     var tasks_1 = require("../../_support/tasks");
+    var registerSuite = intern.getInterface('object').registerSuite;
+    var assert = intern.getPlugin('chai').assert;
     var prebuild;
     var registerTaskStub;
     var wrapAsyncTaskStub = sinon_1.stub();
     var decryptDeployKeyStub = sinon_1.stub();
     var loggerStub = { info: sinon_1.stub() };
-    registerSuite({
-        name: 'tasks/prebuild',
+    registerSuite('tasks/prebuild', {
         after: function () {
             loadModule_1.cleanupModuleMocks();
         },
         beforeEach: function () {
             registerTaskStub = sinon_1.stub(grunt, 'registerTask');
-            prebuild = loadModule_1.default('tasks/prebuild', {
+            prebuild = loadModule_1.default(require, '../../../tasks/prebuild', {
                 './util/wrapAsyncTask': { default: wrapAsyncTaskStub },
                 '../src/commands/decryptDeployKey': { default: decryptDeployKeyStub },
                 '../src/log': { logger: loggerStub }
@@ -39,34 +38,36 @@
             loggerStub.info.reset();
             registerTaskStub.restore();
         },
-        'decryptDeployKey': (function () {
-            function assertInWrappedAsyncStub(test, shouldLog) {
-                tasks_1.setupWrappedAsyncStub(wrapAsyncTaskStub, test.async(), function () {
-                    assert.isTrue(registerTaskStub.calledOnce);
-                    assert.isTrue(decryptDeployKeyStub.calledOnce);
-                    if (shouldLog) {
-                        assert.isTrue(loggerStub.info.calledWith('Decrypted deploy key'), 'Should have logged that the key was decrypted');
-                    }
-                    else {
-                        assert.isTrue(loggerStub.info.notCalled, 'Should not have logged that the key was decrypted');
-                    }
-                });
-            }
-            function testPrebuild(test, wasDecryptionSuccessful) {
-                assertInWrappedAsyncStub(test, wasDecryptionSuccessful);
-                decryptDeployKeyStub.returns(Promise.resolve(wasDecryptionSuccessful));
-                prebuild(grunt);
-                assert.isTrue(wrapAsyncTaskStub.calledOnce);
-            }
-            return {
-                'successful decryption': function () {
-                    testPrebuild(this, true);
-                },
-                'decryption failed': function () {
-                    testPrebuild(this, false);
+        tests: {
+            'decryptDeployKey': (function () {
+                function assertInWrappedAsyncStub(test, shouldLog) {
+                    tasks_1.setupWrappedAsyncStub(wrapAsyncTaskStub, test.async(), function () {
+                        assert.isTrue(registerTaskStub.calledOnce);
+                        assert.isTrue(decryptDeployKeyStub.calledOnce);
+                        if (shouldLog) {
+                            assert.isTrue(loggerStub.info.calledWith('Decrypted deploy key'), 'Should have logged that the key was decrypted');
+                        }
+                        else {
+                            assert.isTrue(loggerStub.info.notCalled, 'Should not have logged that the key was decrypted');
+                        }
+                    });
                 }
-            };
-        })()
+                function testPrebuild(test, wasDecryptionSuccessful) {
+                    assertInWrappedAsyncStub(test, wasDecryptionSuccessful);
+                    decryptDeployKeyStub.returns(Promise.resolve(wasDecryptionSuccessful));
+                    prebuild(grunt);
+                    assert.isTrue(wrapAsyncTaskStub.calledOnce);
+                }
+                return {
+                    'successful decryption': function () {
+                        testPrebuild(this, true);
+                    },
+                    'decryption failed': function () {
+                        testPrebuild(this, false);
+                    }
+                };
+            })()
+        }
     });
 });
 //# sourceMappingURL=prebuild.js.map

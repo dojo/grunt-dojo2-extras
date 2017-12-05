@@ -1,8 +1,8 @@
 /// <reference types="node" />
 import { ChildProcess } from 'child_process';
 export default class Git {
-    cloneDirectory: string | null;
-    keyFile?: string;
+    cloneDirectory: string;
+    keyFile: string;
     url?: string;
     constructor(cloneDirectory?: string, keyFile?: string);
     add(...params: string[]): Promise<any>;

@@ -6,7 +6,7 @@ export interface FetchRepositoryResponse {
     repo: RepositoryData;
 }
 export default class Travis {
-    token: string;
+    token?: string;
     private githubAuthorization;
     authenticate(githubToken: string): Promise<string>;
     createAuthorization(repo: GitHub): Promise<void>;

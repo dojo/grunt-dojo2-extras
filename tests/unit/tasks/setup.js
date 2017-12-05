@@ -4,16 +4,16 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "intern!object", "intern/chai!assert", "grunt", "sinon", "../../_support/loadModule"], factory);
+        define(["require", "exports", "grunt", "sinon", "../../_support/loadModule"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var registerSuite = require("intern!object");
-    var assert = require("intern/chai!assert");
     var grunt = require("grunt");
     var sinon_1 = require("sinon");
     var loadModule_1 = require("../../_support/loadModule");
+    var registerSuite = intern.getInterface('object').registerSuite;
+    var assert = intern.getPlugin('chai').assert;
     var setup;
     var registerMultiTaskStub;
     var authenticateStub = sinon_1.stub();
@@ -32,11 +32,10 @@
         return class_1;
     }());
     var GitHubSpy = sinon_1.spy(GitHub);
-    registerSuite({
-        name: 'tasks/setup',
+    registerSuite('tasks/setup', {
         beforeEach: function () {
             registerMultiTaskStub = sinon_1.stub(grunt, 'registerMultiTask');
-            setup = loadModule_1.default('tasks/setup', {
+            setup = loadModule_1.default(require, '../../../tasks/setup', {
                 './util/wrapAsyncTask': { default: wrapAsyncTaskStub },
                 '../src/util/GitHub': { default: GitHubSpy },
                 './util/getGithubSlug': { default: getGithubSlugStub },
@@ -57,27 +56,29 @@
             GitHubSpy.reset();
             registerMultiTaskStub.restore();
         },
-        'setup calls initDeployment and initAuthorization; eventually resolves': function () {
-            var deferred = this.async();
-            var counter = 0;
-            getGithubSlugStub.returns({ name: 'name', owner: 'owner' });
-            optionsStub.returns({ password: 'password', username: 'username' });
-            wrapAsyncTaskStub.callsFake(function (task) {
-                task.call({ options: optionsStub }).then(deferred.rejectOnError(function () {
-                    if (counter >= 1) {
-                        assert.isTrue(optionsStub.calledTwice);
-                        assert.isTrue(registerMultiTaskStub.calledTwice);
-                        assert.isTrue(getGithubSlugStub.calledTwice);
-                        assert.isTrue(GitHubSpy.calledTwice);
-                        assert.isTrue(initDeploymentStub.calledOnce);
-                        assert.isTrue(initAuthorizationStub.calledOnce);
-                        deferred.resolve();
-                    }
-                    counter++;
-                }));
-            });
-            setup(grunt);
-            assert.isTrue(wrapAsyncTaskStub.calledTwice);
+        tests: {
+            'setup calls initDeployment and initAuthorization; eventually resolves': function () {
+                var deferred = this.async();
+                var counter = 0;
+                getGithubSlugStub.returns({ name: 'name', owner: 'owner' });
+                optionsStub.returns({ password: 'password', username: 'username' });
+                wrapAsyncTaskStub.callsFake(function (task) {
+                    task.call({ options: optionsStub }).then(deferred.rejectOnError(function () {
+                        if (counter >= 1) {
+                            assert.isTrue(optionsStub.calledTwice);
+                            assert.isTrue(registerMultiTaskStub.calledTwice);
+                            assert.isTrue(getGithubSlugStub.calledTwice);
+                            assert.isTrue(GitHubSpy.calledTwice);
+                            assert.isTrue(initDeploymentStub.calledOnce);
+                            assert.isTrue(initAuthorizationStub.calledOnce);
+                            deferred.resolve();
+                        }
+                        counter++;
+                    }));
+                });
+                setup(grunt);
+                assert.isTrue(wrapAsyncTaskStub.calledTwice);
+            }
         }
     });
 });

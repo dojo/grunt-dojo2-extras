@@ -1,24 +1,15 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
         var v = factory(require, exports);
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "winston", "stream"], factory);
+        define(["require", "exports", "tslib", "winston", "stream"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = require("tslib");
     var winston_1 = require("winston");
     var stream_1 = require("stream");
     exports.logger = new winston_1.Logger({
@@ -30,11 +21,12 @@ var __extends = (this && this.__extends) || (function () {
         ]
     });
     var LogStream = (function (_super) {
-        __extends(LogStream, _super);
+        tslib_1.__extends(LogStream, _super);
         function LogStream(level, opts) {
             if (level === void 0) { level = 'info'; }
-            if (opts === void 0) { opts = undefined; }
-            var _this = _super.call(this, opts) || this;
+            var _this = this;
+            opts = opts || undefined;
+            _this = _super.call(this, opts) || this;
             _this.buffer = '';
             _this.level = level;
             return _this;

@@ -1,2 +1,3 @@
-export default function loadModule<T>(mid: string, mocks: any, returnDefault?: boolean): T;
+/// <reference types="node" />
+export default function loadModule<T>(require: NodeRequire, mid: string, mocks: any, returnDefault?: boolean): T;
 export declare function cleanupModuleMocks(): void;
