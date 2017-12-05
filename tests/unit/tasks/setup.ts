@@ -1,8 +1,9 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import * as grunt from 'grunt';
 import { stub, spy, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../_support/loadModule';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let setup: any;
 let registerMultiTaskStub: SinonStub;
@@ -23,12 +24,10 @@ const GitHub = class {
 };
 const GitHubSpy = spy(GitHub);
 
-registerSuite({
-	name: 'tasks/setup',
-
+registerSuite('tasks/setup', {
 	beforeEach() {
 		registerMultiTaskStub = stub(grunt, 'registerMultiTask');
-		setup = loadModule('tasks/setup', {
+		setup = loadModule(require, '../../../tasks/setup', {
 			'./util/wrapAsyncTask': { default: wrapAsyncTaskStub },
 			'../src/util/GitHub': { default: GitHubSpy },
 			'./util/getGithubSlug': { default: getGithubSlugStub },
@@ -53,6 +52,7 @@ registerSuite({
 		registerMultiTaskStub.restore();
 	},
 
+	tests: {
 	'setup calls initDeployment and initAuthorization; eventually resolves'(this: any) {
 		const deferred = this.async();
 
@@ -80,5 +80,6 @@ registerSuite({
 		setup(grunt);
 
 		assert.isTrue(wrapAsyncTaskStub.calledTwice);
+	}
 	}
 });

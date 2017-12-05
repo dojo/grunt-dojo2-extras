@@ -1,9 +1,9 @@
 import * as mockery from 'mockery';
-import { RootRequire } from '@dojo/interfaces/loader';
+import * as tslib from 'tslib';
 
-declare const require: RootRequire;
+export default function loadModule<T>(require: NodeRequire, mid: string, mocks: any, returnDefault: boolean = true): T {
+	const moduleUnderTestPath = require.resolve(mid);
 
-export default function loadModule<T>(mid: string, mocks: any, returnDefault: boolean = true): T {
 	mockery.enable({
 		useCleanCache: true,
 		warnOnReplace: false,
@@ -15,8 +15,9 @@ export default function loadModule<T>(mid: string, mocks: any, returnDefault: bo
 		mockery.registerMock(mid, mocks[mid]);
 	}
 
-	const loader = require.nodeRequire || require;
-	const module = loader(require.toUrl(mid));
+	mockery.registerMock('tslib', tslib);
+
+	const module = require(moduleUnderTestPath);
 	return returnDefault && module.default ? module.default : module;
 }
 

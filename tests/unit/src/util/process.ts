@@ -1,18 +1,17 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import { stub, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
-import * as processUtil from 'src/util/process';
+import * as processUtil from '../../../../src/util/process';
 import { throwWithError } from '../../../_support/util';
+import { logger, LogStream } from '../../../../src/log';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let module: any;
 let execStub: SinonStub;
 let spawnStub: SinonStub;
-let LogStream: any;
 
-registerSuite({
-	name: 'util/process',
-
+registerSuite('util/process', {
 	before() {
 		execStub = stub();
 		spawnStub = stub();
@@ -23,14 +22,16 @@ registerSuite({
 	},
 
 	beforeEach() {
-		module = loadModule('src/util/process', {
+		module = loadModule(require, '../../../../src/util/process', {
 			child_process: {
 				exec: execStub,
 				spawn: spawnStub
+			},
+			'../log': {
+				logger,
+				LogStream
 			}
 		});
-		const loader = (require as any).nodeRequire || require;
-		LogStream = loader((require as any).toUrl('src/log')).LogStream;
 	},
 
 	afterEach() {
@@ -38,6 +39,7 @@ registerSuite({
 		spawnStub.reset();
 	},
 
+	tests: {
 	promisify: (() => {
 		let proc: any;
 
@@ -56,6 +58,7 @@ registerSuite({
 				(<SinonStub> processUtil.exec).restore();
 			},
 
+			tests: {
 			async 'eventually resolves the returned promise'() {
 				const promise = processUtil.promisify(processUtil.exec('test'));
 
@@ -78,6 +81,7 @@ registerSuite({
 						assert.strictEqual(process.exitCode, 1);
 					}
 				);
+			}
 			}
 		};
 	})(),
@@ -231,4 +235,5 @@ registerSuite({
 			return promise;
 		}
 	})()
+	}
 });

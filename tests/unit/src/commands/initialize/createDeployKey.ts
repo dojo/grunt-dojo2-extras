@@ -1,8 +1,9 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import loadModule, { cleanupModuleMocks } from '../../../../_support/loadModule';
 import { stub } from 'sinon';
 import { throwWithError } from '../../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let createDeployKey: any;
 
@@ -20,9 +21,7 @@ const encryptDataStub = stub();
 const decryptDataStub = stub();
 const equalStub = stub();
 
-registerSuite({
-	name: 'commands/initialize/createDeployKey',
-
+registerSuite('commands/initialize/createDeployKey', {
 	after() {
 		cleanupModuleMocks();
 	},
@@ -31,7 +30,7 @@ registerSuite({
 		encryptedStub.pipe.returns(encryptedStub);
 		encryptedStub.on.returns(encryptedStub).yields();
 
-		createDeployKey = loadModule('src/commands/initialize/createDeployKey', {
+		createDeployKey = loadModule(require, '../../../../../src/commands/initialize/createDeployKey', {
 			'../../util/environment': {
 				keyFile: keyFileStub.returns('keyFileStub'),
 				encryptedKeyFile: encryptedKeyFileStub.returns('encryptedKeyFileStub')
@@ -71,6 +70,7 @@ registerSuite({
 		equalStub.reset();
 	},
 
+	tests: {
 	'createDeployKey': (() => {
 		return {
 			async 'with explicit arguments passed in'() {
@@ -111,4 +111,5 @@ registerSuite({
 			return key;
 		}
 	})()
+	}
 });

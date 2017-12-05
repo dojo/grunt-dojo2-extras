@@ -1,7 +1,8 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
-import getGithubSlug from 'tasks/util/getGithubSlug';
+import getGithubSlug from '../../../../tasks/util/getGithubSlug';
 import { stub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 function assertEnvironment(key: string) {
 	process.env[key] = 'devpaul/dojo.io';
@@ -12,9 +13,7 @@ function assertEnvironment(key: string) {
 
 let processCache: any;
 
-registerSuite({
-	name: 'getGithubSlug',
-
+registerSuite('getGithubSlug', {
 	beforeEach() {
 		processCache = {
 			TRAVIS_REPO_SLUG: process.env.TRAVIS_REPO_SLUG,
@@ -30,11 +29,12 @@ registerSuite({
 		}
 	},
 
+	tests: {
 	'grunt repo option'() {
 		const gruntMock: any = {
 			option: stub().returns('devpaul/dojo.io')
 		};
-		const { name, owner } = getGithubSlug(null, gruntMock);
+		const { name, owner } = getGithubSlug(undefined, gruntMock);
 		assert.strictEqual(owner, 'devpaul');
 		assert.strictEqual(name, 'dojo.io');
 	},
@@ -58,5 +58,6 @@ registerSuite({
 		const { name, owner } = getGithubSlug();
 		assert.isUndefined(name);
 		assert.isUndefined(owner);
+	}
 	}
 });

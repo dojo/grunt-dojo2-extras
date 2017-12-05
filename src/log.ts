@@ -15,7 +15,8 @@ export class LogStream extends Writable {
 
 	readonly level: string;
 
-	constructor(level: string = 'info', opts: WritableOptions = undefined) {
+	constructor(level: string = 'info', opts?: WritableOptions) {
+		opts = opts || undefined;
 		super(opts);
 		this.buffer = '';
 		this.level = level;
@@ -50,7 +51,7 @@ export class LogStream extends Writable {
 
 	private writeLogMultiline(chunk: string) {
 		const pieces = (this.buffer + chunk).split('\n');
-		this.buffer = pieces.pop();
+		this.buffer = pieces.pop()!;
 
 		for (let str of pieces) {
 			this.writeLog(str.trim());

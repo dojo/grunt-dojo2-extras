@@ -1,18 +1,17 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
-import Travis, { Repository } from 'src/util/Travis';
+import Travis, { Repository } from '../../../../src/util/Travis';
 import { throwWithError } from '../../../_support/util';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let module: any;
 let travis: Travis;
 let repository: Repository;
 let requestStub: SinonStub & Partial<{ get: SinonStub, post: SinonStub }>;
 
-registerSuite({
-	name: 'util/Travis',
-
+registerSuite('util/Travis', {
 	before() {
 		requestStub = stub() as SinonStub & Partial<{ get: SinonStub, post: SinonStub }>;
 		requestStub.post = stub();
@@ -24,26 +23,28 @@ registerSuite({
 	},
 
 	beforeEach() {
-		module = loadModule('src/util/Travis', {
+		module = loadModule(require, '../../../../src/util/Travis', {
 			'@dojo/core/request': { default: requestStub }
 		}, false);
 	},
 
 	afterEach() {
 		requestStub.reset();
-		requestStub.post.reset();
+		requestStub.post!.reset();
 		requestStub.get.reset();
 	},
 
+	tests: {
 	'Travis': {
 		beforeEach() {
 			travis = new module.default();
 		},
 
+		tests: {
 		async authenticate() {
 			const token = 'token';
 			const accessToken = 'access_token';
-			const post = requestStub.post;
+			const post = requestStub.post!;
 
 			post.returns(Promise.resolve({ json: () => Promise.resolve<{ access_token: string }>({ 'access_token': accessToken }) }));
 
@@ -71,6 +72,7 @@ registerSuite({
 					repo.findAuthorization.reset();
 				},
 
+				tests: {
 				'existing authorization; eventually throws'() {
 					repo.findAuthorization.returns(Promise.resolve({ id: 1 }));
 
@@ -119,6 +121,7 @@ registerSuite({
 						}
 					);
 				}
+				}
 			};
 		})(),
 
@@ -136,6 +139,7 @@ registerSuite({
 					repo.deleteAuthorization.reset();
 				},
 
+				tests: {
 				async 'not authorized'() {
 					await travis.deleteAuthorization(repo);
 
@@ -155,20 +159,32 @@ registerSuite({
 
 					create.restore();
 				}
+				}
 			};
 		})(),
 
-		async fetchRepository() {
-			requestStub.get.returns(Promise.resolve({
-				json: () => Promise.resolve<{ repo: string }>({
-					repo: 'repo'
-				})
-			}));
+		fetchRepository: {
+			async authorized() {
+				requestStub.get.returns(Promise.resolve({
+					json: () => Promise.resolve<{ repo: string }>({
+						repo: 'repo'
+					})
+				}));
 
-			const fetchRepository = await travis.fetchRepository('slug');
+				travis.token = 'token';
+				const fetchRepository = await travis.fetchRepository('slug');
 
-			assert.isTrue(requestStub.get.calledOnce);
-			assert.instanceOf(fetchRepository, module.Repository);
+				assert.isTrue(requestStub.get.calledOnce);
+				assert.instanceOf(fetchRepository, module.Repository);
+			},
+
+			async 'not authorized'() {
+				return travis.fetchRepository('slug')
+					.then(() => {
+						assert.fail('Should not have resolved');
+					})
+					.catch(() => {});
+			}
 		},
 
 		isAuthorized: {
@@ -187,6 +203,7 @@ registerSuite({
 			'not authorized'() {
 				assert.isFalse(travis.isAuthorized());
 			}
+		}
 		}
 	},
 
@@ -217,9 +234,10 @@ registerSuite({
 				repository = new module.Repository(token, repo);
 			},
 
+			tests: {
 			'constructor'() {
 				assert.isTrue(repository.active);
-				assert.strictEqual(repository.id, repo.id);
+				assert.strictEqual(`${repository.id}`, `${repo.id}`);
 				assert.strictEqual(repository.slug, repo.slug);
 				assert.strictEqual(repository.token, token);
 			},
@@ -249,6 +267,7 @@ registerSuite({
 						envVars.restore();
 					},
 
+					tests: {
 					async 'update existing variable'() {
 						requestStub.returns(Promise.resolve({ json: () => {}}));
 
@@ -261,17 +280,20 @@ registerSuite({
 					},
 
 					async 'add new environment variable'() {
-						requestStub.post.returns(Promise.resolve({ json: () => {}}));
+						requestStub.post!.returns(Promise.resolve({ json: () => {}}));
 
 						await repository.setEnvironmentVariables({
 							name: 'new name',
 							value: 'value'
 						});
 
-						assert.isTrue(requestStub.post.calledOnce);
+						assert.isTrue(requestStub.post!.calledOnce);
+					}
 					}
 				};
 			})()
+			}
 		};
 	})()
+	}
 });

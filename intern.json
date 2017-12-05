@@ -1,0 +1,38 @@
+{
+	"capabilities+": {
+		"project": "Dojo 2",
+		"name": "grunt-dojo2-extras",
+		"fixSessionCapabilities": false,
+		"browserstack.debug": false
+	},
+
+	"environments": [
+		{ "browserName": "node" }
+	],
+
+	"suites": [
+		"./_build/tests/unit/all.js",
+		"./_build/tests/integration/all.js"
+	],
+
+	"plugins": [
+		"@dojo/shim/main"
+	],
+
+	"coverage": [
+		"./_build/src/**/*.js"
+	],
+
+	"configs": {
+		"unit": {
+			"suites": [
+				"./_build/tests/unit/all.js"
+			]
+		},
+		"integration": {
+			"suites": [
+				"./_build/tests/integration/all.js"
+			]
+		}
+	}
+}

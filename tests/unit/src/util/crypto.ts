@@ -1,12 +1,12 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import { Readable } from 'stream';
 import { existsSync } from 'fs';
 import { tmpFile } from '../../../_support/tmpFiles';
-import * as crypto from 'src/util/crypto';
+import * as crypto from '../../../../src/util/crypto';
 
-registerSuite({
-	name: 'util/crypto',
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
+
+registerSuite('util/crypto', {
 
 	async createDeployKey() {
 		const tmp = tmpFile('deployKey');

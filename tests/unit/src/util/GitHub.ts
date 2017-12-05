@@ -1,8 +1,9 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { spy, stub, SinonSpy, SinonStub } from 'sinon';
-import GitHub from 'src/util/GitHub';
+import GitHub from '../../../../src/util/GitHub';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let Module: any;
 let github: GitHub;
@@ -11,9 +12,7 @@ let hasGitCredentialsStub: SinonStub;
 let authorizationGetAllStub: SinonStub;
 let GitHubApiSpy: SinonSpy;
 
-registerSuite({
-	name: 'util/GitHub',
-
+registerSuite('util/GitHub', {
 	before() {
 		githubAuthStub = stub();
 		hasGitCredentialsStub = stub();
@@ -44,7 +43,7 @@ registerSuite({
 	},
 
 	beforeEach() {
-		Module = loadModule('src/util/GitHub', {
+		Module = loadModule(require, '../../../../src/util/GitHub', {
 			'./environment': {
 				githubAuth: githubAuthStub,
 				hasGitCredentials: hasGitCredentialsStub
@@ -62,6 +61,7 @@ registerSuite({
 		GitHubApiSpy.reset();
 	},
 
+	tests: {
 	'constructor': {
 		'without owner; throws Error'() {
 			try {
@@ -133,7 +133,7 @@ registerSuite({
 	async createAuthorization() {
 		const createAuth = await github.createAuthorization({});
 
-		assert.strictEqual(createAuth, 'create');
+		assert.strictEqual(createAuth as any, 'create');
 	},
 
 	async createKey() {
@@ -192,7 +192,7 @@ registerSuite({
 		const fetchTags = await github.fetchTags();
 		const api = GitHubApiSpy.lastCall.returnValue;
 
-		assert.strictEqual(fetchTags, 'getTags');
+		assert.strictEqual(fetchTags as any, 'getTags');
 		assert.isTrue(api.repos.getTags.calledOnce);
 	},
 
@@ -228,7 +228,7 @@ registerSuite({
 
 					const AuthGetAll = await assertAuthGetAllCalled(scope);
 
-					assert.strictEqual(AuthGetAll, findAuthParams);
+					assert.strictEqual(AuthGetAll, findAuthParams as any);
 				},
 
 				async 'getAll response data do not contain an array'() {
@@ -244,7 +244,7 @@ registerSuite({
 
 					const AuthGetAll = await assertAuthGetAllCalled(note);
 
-					assert.strictEqual(AuthGetAll, findAuthParams);
+					assert.strictEqual(AuthGetAll, findAuthParams as any);
 				}
 			}
 		};
@@ -310,5 +310,6 @@ registerSuite({
 		const toString = github.toString();
 
 		assert.strictEqual(toString, 'dojo/grunt-dojo2-extras');
+	}
 	}
 });

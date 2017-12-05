@@ -1,9 +1,10 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import * as grunt from 'grunt';
 import { stub, spy, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../_support/loadModule';
 import { setupWrappedAsyncStub } from '../../_support/tasks';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let api: any;
 let registerMultiTaskStub: SinonStub;
@@ -34,11 +35,9 @@ const GitHub = class {
 };
 const GitHubSpy = spy(GitHub);
 
-registerSuite({
-	name: 'tasks/api',
-
+registerSuite('tasks/api', {
 	beforeEach() {
-		api = loadModule('tasks/api', {
+		api = loadModule(require, '../../../tasks/api', {
 			'../src/commands/typedoc': { default: typedocStub },
 			'./util/wrapAsyncTask': { default: wrapAsyncTaskStub },
 			'../src/util/GitHub': { default: GitHubSpy },
@@ -87,6 +86,7 @@ registerSuite({
 		registerMultiTaskStub.restore();
 	},
 
+	tests: {
 	'api task has remote options including html format and string repo; no missing filters, no APIs match; eventually resolves'(this: any) {
 		getTagsStub.returns([]);
 		optionsStub.returns({
@@ -296,5 +296,6 @@ registerSuite({
 
 		assert.isTrue(wrapAsyncTaskStub.calledOnce);
 		assert.isTrue(registerMultiTaskStub.calledOnce);
+	}
 	}
 });

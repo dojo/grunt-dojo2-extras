@@ -29,7 +29,7 @@ async function shouldCreateGithubAuth(envvars: TravisEnvironmentVariable[], repo
 }
 
 export default async function initAuthorization(repo: GitHub, travis: Travis = new Travis()) {
-	let appAuth: AuthResponse;
+	let appAuth: AuthResponse | null = null;
 
 	if (!travis.isAuthorized()) {
 		logger.info('Creating a temporary authorization token in GitHub for Travis');
@@ -56,7 +56,7 @@ export default async function initAuthorization(repo: GitHub, travis: Travis = n
 	}
 	catch (e) {
 		if (appAuth) {
-			await repo.deleteAuthorization(appAuth.id);
+			await repo.deleteAuthorization(appAuth!.id);
 		}
 		throw e;
 	}

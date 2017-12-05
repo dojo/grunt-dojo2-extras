@@ -1,10 +1,11 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
-import * as Test from 'intern/lib/Test';
+import Test from 'intern/lib/Test';
 import * as grunt from 'grunt';
 import { SinonStub, stub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../_support/loadModule';
 import { setupWrappedAsyncStub } from '../../_support/tasks';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let prebuild: any;
 let registerTaskStub: SinonStub;
@@ -13,16 +14,14 @@ const wrapAsyncTaskStub = stub();
 const decryptDeployKeyStub = stub();
 const loggerStub = { info: stub() };
 
-registerSuite({
-	name: 'tasks/prebuild',
-
+registerSuite('tasks/prebuild', {
 	after() {
 		cleanupModuleMocks();
 	},
 
 	beforeEach() {
 		registerTaskStub = stub(grunt, 'registerTask');
-		prebuild = loadModule('tasks/prebuild', {
+		prebuild = loadModule(require, '../../../tasks/prebuild', {
 			'./util/wrapAsyncTask': { default: wrapAsyncTaskStub },
 			'../src/commands/decryptDeployKey': { default: decryptDeployKeyStub },
 			'../src/log': { logger: loggerStub }
@@ -37,6 +36,7 @@ registerSuite({
 		registerTaskStub.restore();
 	},
 
+	tests: {
 	'decryptDeployKey': (() => {
 		function assertInWrappedAsyncStub(test: Test, shouldLog: boolean) {
 			setupWrappedAsyncStub(wrapAsyncTaskStub, test.async(), () => {
@@ -74,4 +74,5 @@ registerSuite({
 			}
 		};
 	})()
+	}
 });

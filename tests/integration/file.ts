@@ -1,10 +1,10 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
-import { makeTempDirectory } from 'src/util/file';
+import { makeTempDirectory } from '../../src/util/file';
 import { existsSync, statSync } from 'fs';
 
-registerSuite({
-	name: 'file',
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
+
+registerSuite('file', {
 
 	tempDirectory() {
 		const path = makeTempDirectory('.test');

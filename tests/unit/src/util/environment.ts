@@ -1,8 +1,9 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
-import * as environment from 'src/util/environment';
+import * as environment from '../../../../src/util/environment';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 const file = 'test.file';
 
@@ -11,9 +12,7 @@ let mappedEnvs: { name: string; value: string; }[];
 let module: any;
 let existsSyncStub: SinonStub;
 
-registerSuite({
-	name: 'util/environment',
-
+registerSuite('util/environment', {
 	before() {
 		const relevantEnv = [
 			'TRAVIS_COMMIT_MESSAGE',
@@ -39,7 +38,7 @@ registerSuite({
 	},
 
 	beforeEach() {
-		module = loadModule('src/util/environment', {
+		module = loadModule(require, '../../../../src/util/environment', {
 			fs: {
 				existsSync: existsSyncStub
 			}
@@ -58,6 +57,7 @@ registerSuite({
 		existsSyncStub.reset();
 	},
 
+	tests: {
 	commitMessage() {
 		const expected = 'update test coverage for `util/environment`';
 		process.env.TRAVIS_COMMIT_MESSAGE = expected;
@@ -109,7 +109,7 @@ registerSuite({
 			assert.isTrue(module.hasGitCredentials());
 		},
 
-		'Running  on Travis; no key file: returns false'() {
+		'Running on Travis; no key file: returns false'() {
 			existsSyncStub.returns(false);
 
 			delete process.env.HAS_GIT_CREDENTIALS;
@@ -201,5 +201,6 @@ registerSuite({
 			delete process.env.TRAVIS_REPO_SLUG;
 			assert.equal(environment.repositorySource(), '');
 		}
+	}
 	}
 });

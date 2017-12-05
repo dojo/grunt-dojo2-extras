@@ -1,7 +1,8 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { spy, stub, SinonSpy, SinonStub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let typedoc: any;
 let TypedocSpy: SinonSpy;
@@ -14,9 +15,7 @@ const generateJsonStub = stub();
 const mkdirpStub = stub();
 const statSyncStub = stub();
 
-registerSuite({
-	name: 'commands/typedoc',
-
+registerSuite('commands/typedoc', {
 	before() {
 		const Typedoc = class {
 			bootstrapResult: any = { inputFiles: 'inputFiles' };
@@ -37,7 +36,7 @@ registerSuite({
 	},
 
 	beforeEach() {
-		typedoc = loadModule('src/commands/typedoc', {
+		typedoc = loadModule(require, '../../../../src/commands/typedoc', {
 			'path': {
 				dirname: dirnameStub,
 				extname: extnameStub
@@ -69,6 +68,7 @@ registerSuite({
 		TypedocSpy.reset();
 	},
 
+	tests: {
 	'typedoc': (() => {
 		return {
 			async 'opts.tsconfig is true'() {
@@ -116,4 +116,5 @@ registerSuite({
 			assert.isTrue(mkdirpStub.calledOnce);
 		}
 	})()
+	}
 });

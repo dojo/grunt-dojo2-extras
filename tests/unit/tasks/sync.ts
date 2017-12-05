@@ -1,10 +1,11 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
-import * as Test from 'intern/lib/Test';
+import Test from 'intern/lib/Test';
 import * as grunt from 'grunt';
 import { stub, spy, SinonStub } from 'sinon';
 import loadModule, { cleanupModuleMocks } from '../../_support/loadModule';
 import { setupWrappedAsyncStub } from '../../_support/tasks';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let sync: any;
 let registerMultiTaskStub: SinonStub;
@@ -29,9 +30,7 @@ const GitHub = class {
 const GitSpy = spy(Git);
 const GitHubSpy = spy(GitHub);
 
-registerSuite({
-	name: 'tasks/sync',
-
+registerSuite('tasks/sync', {
 	after() {
 		cleanupModuleMocks();
 	},
@@ -39,7 +38,7 @@ registerSuite({
 	beforeEach() {
 		registerMultiTaskStub = stub(grunt, 'registerMultiTask');
 		optionsStub.returns({});
-		sync = loadModule('tasks/sync', {
+		sync = loadModule(require, '../../../tasks/sync', {
 			'../src/commands/sync': { default: syncStub },
 			'./util/wrapAsyncTask': { default: wrapAsyncTaskStub },
 			'./util/getGithubSlug': { default: getGithubSlugStub },
@@ -60,6 +59,7 @@ registerSuite({
 		registerMultiTaskStub.restore();
 	},
 
+	tests: {
 	'syncTask uses GitHub repo info, calls sync; eventually resolves'(this: Test) {
 		getGithubSlugStub.returns({ name: 'name', owner: 'owner' });
 		syncStub.returns(Promise.resolve());
@@ -120,5 +120,6 @@ registerSuite({
 		sync(grunt);
 
 		assert.isTrue(wrapAsyncTaskStub.calledOnce);
+	}
 	}
 });

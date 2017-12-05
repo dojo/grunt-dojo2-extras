@@ -1,10 +1,11 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import * as path from 'path';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { stub, SinonStub } from 'sinon';
 import { getHtmlApiPath, getJsonApiPath } from '../../../../src/commands/getTags';
 import { Tag } from '../../../../src/util/GitHub';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let module: any;
 let existsSyncStub: SinonStub;
@@ -17,9 +18,7 @@ function assertExistsFilter(builder: any, expected: boolean, filename: string) {
 	assert.strictEqual(existsSyncStub.firstCall.args[0], filename);
 }
 
-registerSuite({
-	name: 'getTags',
-
+registerSuite('getTags', {
 	before() {
 		existsSyncStub = stub();
 	},
@@ -29,7 +28,7 @@ registerSuite({
 	},
 
 	beforeEach() {
-		module = loadModule('src/commands/getTags', {
+		module = loadModule(require, '../../../../src/commands/getTags', {
 			fs: {
 				existsSync: existsSyncStub
 			}
@@ -40,6 +39,7 @@ registerSuite({
 		existsSyncStub.reset();
 	},
 
+	tests: {
 	getHtmlApiPath() {
 		assert.strictEqual(getHtmlApiPath('base', 'project', 'version'), path.join('base', 'project', 'version'));
 	},
@@ -113,6 +113,7 @@ registerSuite({
 				};
 			},
 
+			tests: {
 			async 'removes version not compatible with semver'() {
 				const tags = await getTags(mockGitHub);
 				const expected = [
@@ -133,6 +134,8 @@ registerSuite({
 				];
 				assert.deepEqual(tags, expected);
 			}
+			}
 		};
 	})()
+	}
 });

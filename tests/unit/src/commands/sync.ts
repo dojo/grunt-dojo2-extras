@@ -1,7 +1,8 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
 import loadModule, { cleanupModuleMocks } from '../../../_support/loadModule';
 import { spy, stub, SinonSpy, SinonStub } from 'sinon';
+
+const { registerSuite } = intern.getInterface('object');
+const { assert } = intern.getPlugin('chai');
 
 let sync: any;
 let GitSpy: SinonSpy;
@@ -14,9 +15,7 @@ const syncOptions = {
 	url: 'http://web.site'
 };
 
-registerSuite({
-	name: 'commands/sync',
-
+registerSuite('commands/sync', {
 	before() {
 		checkoutStub = stub();
 		isInitializedStub = stub();
@@ -39,7 +38,7 @@ registerSuite({
 	},
 
 	beforeEach() {
-		sync = loadModule('src/commands/sync', {
+		sync = loadModule(require, '../../../../src/commands/sync', {
 			'../util/Git': { default: GitSpy }
 		});
 	},
@@ -50,6 +49,7 @@ registerSuite({
 		isInitializedStub.reset();
 	},
 
+	tests: {
 	sync: (() => {
 		return {
 			async 'Git initialized; checkout eventually resolves'() {
@@ -99,4 +99,5 @@ registerSuite({
 			assert.isTrue(git.checkout.calledOnce);
 		}
 	})()
+	}
 });

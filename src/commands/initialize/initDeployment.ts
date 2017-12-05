@@ -52,7 +52,7 @@ export default async function initDeployment(repo: GitHub, travis = new Travis()
 	encryptedKeyFile: env.encryptedKeyFile()
 }) {
 	const { deployKeyFile, encryptedKeyFile } = options;
-	let keyResponse: { id: number };
+	let keyResponse: { id: number } | null = null;
 
 	if (!travis.isAuthorized()) {
 		logger.info('Creating a temporary authorization token in GitHub for Travis');
@@ -90,7 +90,7 @@ export default async function initDeployment(repo: GitHub, travis = new Travis()
 	catch (e) {
 		logger.error(`There was an error ${ e.message }. Cleaning up...`);
 		if (keyResponse) {
-			await repo.deleteKey(keyResponse.id);
+			await repo.deleteKey(keyResponse!.id);
 		}
 		throw e;
 	}
